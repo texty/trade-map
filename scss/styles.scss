@@ -1,0 +1,88 @@
+@import "variables";
+@import "donate";
+@import "header";
+@import "footer";
+
+
+* {
+  line-height: 1.6;
+}
+
+
+  #data-vis {
+    display:grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 100px;
+  }
+
+  #line-chart {
+    grid-column: 2/3;
+  }
+
+  ul#my-list {
+    width: 100%;
+    height: 95vh;
+    overflow: auto;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  li {
+    margin:10px 0;
+  }
+
+  .main-category {
+    cursor:pointer;
+    margin:10px 0;
+    padding-left: 10px
+  }
+
+  .plus::before {
+    padding: 5px;
+    content: '+ '
+  }
+
+  .minus::before {
+    padding: 5px;
+    content: '- '
+  }
+
+
+  .detail-category {
+    transition: all 0.5s ease-out;
+  }
+
+  .hide {
+    height: 0;
+    overflow:hidden;
+  }
+
+  //line chart
+
+  svg {
+    display: block;
+  }
+
+  .valueline1, .valueline2 {
+    stroke-width: 2px;
+  }
+
+  .valueline1 {
+    fill: none;
+    stroke: green;
+  }
+
+  .valueline2 {
+    fill: none;
+    stroke: red;
+  }
+
+
+  //sankey
+  path.line {
+    fill: none;
+    stroke: grey;
+  }
+
