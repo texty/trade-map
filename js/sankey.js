@@ -1,22 +1,101 @@
 /**
- * Created by yevheniia on 19.10.19.
+ * Created by yevheniia on 20.10.19.
  */
 var drawSankey = function(data, selectedProduct, startYear, endYear) {
 
+    //TODO оце треба витягувати на запит і вже з цим працювати
+    var productData = data.filter(function (d) {
+        if(startYear != endYear){
+            return d.countries != "World" &&
+                d.product === selectedProduct &&
+                d.year >= parseDate(startYear) &&
+                d.year <= parseDate(endYear);
+        } else {
+            return d.countries != "World" &&
+                d.product === selectedProduct &&
+                d.year === parseDate(startYear)
+        }
+
+    });
+
+    /* Базова калькуляція, щоб приготувати дані до SANKEY -
+     групуємо за країною та екпорт/імпорт та сумуємо показники за обраний період */
+    var groups = _.groupBy(productData, 'countries', 'position');
+
+    //exporters, sort, top5
+    var exported = _.map(groups, function (value, key) {
+        return {
+            target: key + "-",
+            value: _.reduce(value, function (total, o) {
+                return total + o.Exported;
+            }, 0),
+            source: "Ukraine"
+        };
+    })
+        .sort(function (a, b) {
+            return b.value - a.value
+        })
+        .slice(0, 5);
+
+
+    //importers, sort, top5
+    var imported = _.map(groups, function (value, key) {
+        return {
+            target: "Ukraine",
+            value: _.reduce(value, function (total, o) {
+                return total + o.Imported;
+            }, 0),
+            source: key
+        };
+    })
+        .sort(function (a, b) {
+            return b.value - a.value
+        })
+        .slice(0, 5);
+
+    //обʼєднуємо в дані
+    var preparedData = imported.concat(exported);
+    //var preparedData = imported;
+
+
+    var graphData = {"nodes": [], "links": []};
+
+    preparedData.forEach(function (d) {
+        graphData.nodes.push({"name": d.source});
+        graphData.nodes.push({"name": d.target});
+        graphData.links.push({
+            "source": d.source,
+            "target": d.target,
+            "value": +d.value
+        });
+    });
+
+    graphData.nodes = d3.keys(d3.nest()
+        .key(function (d) {
+            return d.name;
+        })
+        .object(graphData.nodes));
+
+    // loop through each link replacing the text with its index from node
+    graphData.links.forEach(function (d, i) {
+        graphData.links[i].source = graphData.nodes.indexOf(graphData.links[i].source);
+        graphData.links[i].target = graphData.nodes.indexOf(graphData.links[i].target);
+    });
+
+    // now loop through each nodes to make nodes an array of objects
+    // rather than an array of strings
+    graphData.nodes.forEach(function (d, i) {
+        graphData.nodes[i] = {"name": d};
+    });
+
+    //малюємо
     d3.select('#sankey > svg').remove();
 
-    var units = "th.d.";
 
     var margin = {top: 10, right: 10, bottom: 10, left: 10},
         width = 700 - margin.left - margin.right,
         height = 300 - margin.top - margin.bottom;
 
-    // format variables
-    var formatNumber = d3.format(",.0f"),    // zero decimal places
-        format = function(d) { return formatNumber(d) + " " + units; },
-        color = d3.scaleOrdinal(d3.schemeCategory20);
-
-    // append the svg object to the body of the page
     var svg = d3.select("#sankey").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -25,167 +104,64 @@ var drawSankey = function(data, selectedProduct, startYear, endYear) {
             "translate(" + margin.left + "," + margin.top + ")");
 
 
-    //TODO оце треба витягувати на запит і вже з цим працювати
-    var productData = data.filter(function (d) {
-            return  d.countries != "World" &&
-                    d.product === selectedProduct &&
-                    d.year >= parseDate(startYear) &&
-                    d.year <= parseDate(endYear) &&
-                    (d.Imported > 0 || d.Exported > 0);
-        });
+    var formatNumber = d3.format(",.0f"),
+        format = function(d) { return formatNumber(d) + " тис. доларів"; },
+        color = d3.scaleOrdinal(d3.schemeCategory10);
+
+    var sankey = d3.sankey()
+        .nodeWidth(15)
+        .nodePadding(10)
+        .size([width, height]);
+
+    var link = svg.append("g")
+        .attr("class", "links")
+        .attr("fill", "none")
+        .attr("stroke", "#000")
+        .attr("stroke-opacity", 0.2)
+        .selectAll("path");
+
+    var node = svg.append("g")
+        .attr("class", "nodes")
+        .attr("font-family", "sans-serif")
+        .attr("font-size", 10)
+        .selectAll("g");
+
+    var graph = sankey(graphData);
+
+    link = link
+        .data(graphData.links)
+        .enter().append("path")
+        .attr("d", d3.sankeyLinkHorizontal())
+        .attr("stroke-width", function(d) { return Math.max(1, d.width); });
+
+    link.append("title")
+        .text(function(d) { return d.source.name + " → " + d.target.name + "\n" + format(d.value); });
+
+    node = node
+        .data(graphData.nodes)
+        .enter().append("g");
 
 
-        /* Базова калькуляція, щоб приготувати дані до SANKEY -
-         групуємо за країною та екпорт/імпорт та сумуємо показники за обраний період */
-        var groups = _.groupBy(productData, 'countries', 'position');
+    node.append("rect")
+        .attr("x", function(d) { return d.x0; })
+        .attr("y", function(d) { return d.y0; })
+        .attr("height", function(d) { return d.y1 - d.y0; })
+        .attr("width", function(d) { return d.x1 - d.x0; })
+        .attr("fill", function(d) { return color(d.name.replace(/ .*/, "")); })
+        .attr("stroke", "#000");
 
-        //exporters, sort, top5
-        var exported = _.map(groups, function(value, key) {
-            return {
-                target: key,
-                value: _.reduce(value, function(total, o) {
-                    return total + o.Exported;
-                }, 0),
-                source: "Ukraine"
-                };
-            })
-            .sort(function(a, b){ return b.value - a.value  })
-            .slice(0, 5);
+    node.append("text")
+        .attr("x", function(d) { return d.x0 - 6; })
+        .attr("y", function(d) { return (d.y1 + d.y0) / 2; })
+        .attr("dy", "0.35em")
+        .attr("text-anchor", "end")
+        .text(function(d) { return d.name; })
+        .filter(function(d) { return d.x0 < width / 2; })
+        .attr("x", function(d) { return d.x1 + 6; })
+        .attr("text-anchor", "start");
 
-
-        //importers, sort, top5
-        var imported = _.map(groups, function(value, key) {
-            return {
-                target: "Ukraine",
-                value: _.reduce(value, function(total, o) {
-                    return total + o.Imported;
-                }, 0),
-                source: key
-                };
-            })
-            .sort(function(a, b){ return b.value - a.value  })
-            .slice(0, 5);
-
-        //обʼєднуємо в дані
-        var preparedData = imported.concat(exported);
+    node.append("title")
+        .text(function(d) { return d.name + "\n" + format(d.value); });
 
 
-        var graph = {"nodes" : [], "links" : []};
-
-        preparedData.forEach(function (d) {
-            graph.nodes.push({ "name": d.source });
-            graph.nodes.push({ "name": d.target });
-            graph.links.push({ "source": d.source,
-                "target": d.target,
-                "value": +d.value });
-        });
-
-        graph.nodes = d3.keys(d3.nest()
-            .key(function (d) { return d.name; })
-            .object(graph.nodes));
-
-        // loop through each link replacing the text with its index from node
-        graph.links.forEach(function (d, i) {
-            graph.links[i].source = graph.nodes.indexOf(graph.links[i].source);
-            graph.links[i].target = graph.nodes.indexOf(graph.links[i].target);
-        });
-
-        // now loop through each nodes to make nodes an array of objects
-        // rather than an array of strings
-        graph.nodes.forEach(function (d, i) {
-            graph.nodes[i] = { "name": d };
-        });
-
-
-
-
-
-
-
-// Set the sankey diagram properties
-        var sankey = d3.sankey()
-            .nodeWidth(36)
-            .nodePadding(40)
-            .size([width, height]);
-
-        var path = sankey.link();
-
-
-        sankey
-            .nodes(graph.nodes)
-            .links(graph.links)
-            .layout(32);
-
-        // add in the links
-        var link = svg.append("g").selectAll(".link")
-            .data(graph.links)
-            .enter().append("path")
-            .attr("class", "link")
-            .attr("d", path)
-            .style("stroke-width", function(d) { return Math.max(1, d.dy); })
-            .style("stroke", "grey")
-            .style("fill", "none")
-            .sort(function(a, b) { return b.dy - a.dy; });
-
-        // add the link titles
-        link.append("title")
-            .text(function(d) {
-                return d.source.name + " → " +
-                    d.target.name + "\n" + format(d.value); });
-
-        // add in the nodes
-        var node = svg.append("g").selectAll(".node")
-            .data(graph.nodes)
-            .enter().append("g")
-            .attr("class", "node")
-            .attr("transform", function(d) {
-                return "translate(" + d.x + "," + d.y + ")"; })
-            .call(d3.drag()
-                .subject(function(d) {
-                    return d;
-                })
-                .on("start", function() {
-                    this.parentNode.appendChild(this);
-                })
-                .on("drag", dragmove));
-
-        // add the rectangles for the nodes
-        node.append("rect")
-            .attr("height", function(d) { return d.dy; })
-            .attr("width", sankey.nodeWidth())
-            .style("fill", function(d) {
-                return d.color = color(d.name.replace(/ .*/, "")); })
-            .style("stroke", function(d) {
-                return d3.rgb(d.color).darker(2); })
-            .append("title")
-            .text(function(d) {
-                return d.name + "\n" + format(d.value); });
-
-        // add in the title for the nodes
-        node.append("text")
-            .attr("x", -6)
-            .attr("y", function(d) { return d.dy / 2; })
-            .attr("dy", ".35em")
-            .attr("text-anchor", "end")
-            .attr("transform", null)
-            .text(function(d) { return d.name; })
-            .filter(function(d) { return d.x < width / 2; })
-            .attr("x", 6 + sankey.nodeWidth())
-            .attr("text-anchor", "start");
-
-        // the function for moving the nodes
-        function dragmove(d) {
-            d3.select(this)
-                .attr("transform",
-                    "translate("
-                    + d.x + ","
-                    + (d.y = Math.max(
-                            0, Math.min(height - d.dy, d3.event.y))
-                    ) + ")");
-            sankey.relayout();
-            link.attr("d", path);
-        }
-
-};
-
-
+}

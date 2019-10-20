@@ -98,19 +98,24 @@ var drawLines = function(data, key) {
 
 
        function brushended() {
-           console.log(d3.event.selection);
            //if (!d3.event.sourceEvent) return; // Only transition after input.
            if (!d3.event.selection) return; // Ignore empty selections.
 
-           var d0 = d3.event.selection.map(x.invert),
-               d1 = d0.map(d3.timeDay.round);
+           var d0 = d3.event.selection.map(x.invert);
+           
+           console.log(d0[0].getFullYear());
+           console.log(d0[1].getFullYear());
 
-           // If empty when rounded, use floor & ceil instead.
-           if (d1[0] >= d1[1]) {
-               d1[0] = d3.timeMonth.floor(d0[0]);
-               d1[1] = d3.timeMonth.offset(d1[0]);
-           }
+           var srartYear = Math.min(d0[0].getFullYear(), d0[1].getFullYear());
+           var endYear = Math.max(d0[0].getFullYear(), d0[1].getFullYear());
+
+           $("#selected-years").html(srartYear + " - " + endYear);
+           drawSankey(data, key, srartYear, endYear);
+
+
        }
+
+    //var same = d1.getTime() === d2.getTime();
   
 }
 

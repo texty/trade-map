@@ -1,15 +1,29 @@
 var parseDate = d3.timeParse("%Y");
 
-d3.csv("data/data.csv", function(data) {
+var chart_data;
+function retrieve_chart_data(cb) {
+    if (chart_data) return cb(chart_data);
 
-    data.forEach(function (item) {
-        item.year = parseDate(item.year);
-        item.Exported = +item.Exported || 0;
-        item.Imported = +item.Imported || 0;
-    });
+    return d3.csv("data/data.csv", function(err, myData){
+        if (err) throw err;
+
+        myData.forEach(function (item) {
+            item.year = parseDate(item.year);
+            item.Exported = +item.Exported || 0;
+            item.Imported = +item.Imported || 0;
+        });
+
+        chart_data = myData;
+        if (cb) return cb(myData);
+        return;
+    })
+}
+
+retrieve_chart_data(function(myData){
+
 
     //create list of products
-    var productsList = data.map(function (d) {
+    var productsList = myData.map(function (d) {
         return d.product
     });
 
@@ -30,9 +44,9 @@ d3.csv("data/data.csv", function(data) {
             $(".main-category").css("color", "black");
             $(this).css("color", "red");
             $("ul.detail-category").addClass("hide");
-            var sublist = $(this).find("ul.detail-category").removeClass("hide");
-            drawLines(data, item);
-            drawSankey(data, item, "2017", "2018");
+            $(this).find("ul.detail-category").removeClass("hide");
+            drawLines(myData, item);
+            drawSankey(myData, item, "2017", "2018");
 
         });
         
