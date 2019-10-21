@@ -41,13 +41,11 @@ retrieve_chart_data(function(myData){
         })
         .on("click", function (item) {
             $(this).toggleClass("plus minus");
-            $(".main-category").css("color", "black");
-            $(this).css("color", "red");
+            $(".main-category").css("color", "#33302e");
+            $(this).css("color", "orange");
             $("ul.detail-category").addClass("hide");
             $(this).find("ul.detail-category").removeClass("hide");
             drawLines(myData, item);
-            drawSankey(myData, item, "2017", "2018");
-
         });
         
 
