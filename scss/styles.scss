@@ -13,20 +13,38 @@ body {
   color: #33302e;;
 }
 
+header {
+  display:flex;
+
+
+  h1 {
+    margin: auto;
+    text-align: center;
+    font-size: 30px;
+  }
+}
+
 
   #data-vis {
     width: 100%;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: auto;
     display:grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 2fr;
     grid-gap: 100px;
+    @media(max-width: 800px) and (orientation: portrait) {
+      display: block;
+    }
   }
 
 
   #graphics {
+    grid-column: 2/3;
+    grid-row: 1/2;
     position: sticky;
     top: 10px;
+    width: 100%;
+    height: max-content;
 
 
   }
@@ -36,9 +54,14 @@ body {
   }
 
   ul#my-list {
+    padding-inline-start: 0;
+    grid-column: 1/2;
+    grid-row: 1/2;
     width: 100%;
-    //height: 95vh;
-    //overflow: auto;
+    @media(max-width: 800px) and (orientation: portrait) {
+      height: 30vh;
+      overflow: auto;
+    }
   }
 
   ul {
@@ -98,7 +121,7 @@ body {
 
   rect.selection {
     stroke: black;
-    fill: black;
+    fill: grey;
     fill-opacity: 0.3;
     stroke-opacity: 0.3;
   }

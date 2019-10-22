@@ -8,6 +8,7 @@ function retrieve_chart_data(cb) {
         if (err) throw err;
 
         myData.forEach(function (item) {
+            item.categotyNumber = +item.categotyNumber;
             item.year = parseDate(item.year);
             item.Exported = +item.Exported || 0;
             item.Imported = +item.Imported || 0;
@@ -21,13 +22,26 @@ function retrieve_chart_data(cb) {
 
 retrieve_chart_data(function(myData){
 
+    var productsList = [];
+    var subgroup = [];
+
 
     //create list of products
-    var productsList = myData.map(function (d) {
-        return d.product
+    myData
+        .sort(function(a, b){
+            return a.categotyNumber - b.categotyNumber;
+        })
+        .forEach(function (d) {
+            productsList.push(d.product);
     });
 
+
     productsList =  _.uniq(productsList);
+
+    console.log(productsList);
+
+
+
 
     var list = d3.select("#my-list");
 
@@ -74,6 +88,8 @@ retrieve_chart_data(function(myData){
     //             $(this).css("color", "black")
     //         });
     // });
+
+    drawLines(myData, "0406 Cheese and curd");
 });
 
 
