@@ -69,23 +69,24 @@ header {
   }
 
   li {
+    cursor: pointer;
     margin:10px 0;
+  }
+
+  li.main {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  li.subgroup {
+    padding-left: 20px;
+    display: none;
   }
 
   .main-category {
     cursor:pointer;
     margin:10px 0;
     padding-left: 10px
-  }
-
-  .plus::before {
-    padding: 5px;
-    content: '+ '
-  }
-
-  .minus::before {
-    padding: 5px;
-    content: '- '
   }
 
 

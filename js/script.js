@@ -22,46 +22,53 @@ function retrieve_chart_data(cb) {
 
 retrieve_chart_data(function(myData){
 
-    var productsList = [];
+    var group = [];
     var subgroup = [];
 
 
-    //create list of products
-    myData
-        .sort(function(a, b){
-            return a.categotyNumber - b.categotyNumber;
-        })
-        .forEach(function (d) {
-            productsList.push(d.product);
+    var productsList = myData.map(function(item){
+        return {
+            "category": item.category,
+            "categoryNumber": +item.categotyNumber,
+            "product": item.product,
+            "sort": +item.sort
+        }
     });
 
+    productsList = _.uniq(productsList, "product");
 
-    productsList =  _.uniq(productsList);
-
-    console.log(productsList);
-
-
-
-
-    var list = d3.select("#my-list");
+   var list = d3.select("#my-list");
 
     var li = list.selectAll("li")
         .data(productsList)
         .enter()
         .append("li")
-        .attr("class", "main-category plus")
+        .attr("class", function(d){
+            if(d.category === "group"){
+                return "main" + " c" + d.categoryNumber
+            } else {
+                return "subgroup" + " c" + d.categoryNumber
+            }
+        })
         .text(function (d) {
-            return d
+            return d.product
         })
         .on("click", function (item) {
-            $(this).toggleClass("plus minus");
-            $(".main-category").css("color", "#33302e");
-            $(this).css("color", "orange");
-            $("ul.detail-category").addClass("hide");
-            $(this).find("ul.detail-category").removeClass("hide");
-            drawLines(myData, item);
+            console.log(this);
+            if($(this).hasClass("main")){
+                var classNumber = $(this).attr('class').split(/\s+/);
+                console.log("li.subgroup." + classNumber[1]);
+                $("li.subgroup").css("display", "none");
+                $("li." + classNumber[1]).css("display", "block");
+            }
+            drawLines(myData, item.product);
+
         });
-        
+
+
+    li.sort(function(a, b) {
+        return a.sort - b.sort
+    });
 
 
     // li.each(function (d) {
@@ -70,7 +77,7 @@ retrieve_chart_data(function(myData){
     //         .attr("class", "detail-category hide")
     //         .selectAll("li")
     //         .data(subgroup.filter(function (k) {
-    //             return k.categotyNumber === d.categotyNumber
+    //             return k.categoryNumber === d.categoryNumber
     //         }))
     //         .enter()
     //         .append("li")
@@ -79,14 +86,9 @@ retrieve_chart_data(function(myData){
     //             return k.product
     //         })
     //         .on("click", function(item){
-    //             drawLines(item.product)
+    //             drawLines(myData, item.product)
     //         })
-    //         .on("mouseover", function (d) {
-    //             $(this).css("color", "red");
-    //         })
-    //         .on("mouseleave", function (d) {
-    //             $(this).css("color", "black")
-    //         });
+    //         ;
     // });
 
     drawLines(myData, "0406 Cheese and curd");

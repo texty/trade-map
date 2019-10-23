@@ -2,6 +2,8 @@
 
 var drawLines = function(data, key) {
 
+    console.log(key);
+
     d3.select('#line-chart > svg').remove();
 
     var testData = 
@@ -110,8 +112,8 @@ var drawLines = function(data, key) {
            var srartYear = Math.min(d0[0].getFullYear(), d0[1].getFullYear());
            var endYear = Math.max(d0[0].getFullYear(), d0[1].getFullYear());
 
-           console.log(srartYear);
-           console.log(endYear);
+           //console.log(srartYear);
+           //console.log(endYear);
 
            $("#selected-years").html(srartYear + " - " + endYear);
            drawSankey(data, key, srartYear, endYear);
