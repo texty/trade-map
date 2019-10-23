@@ -372,6 +372,15 @@ rect.selection {
   fill-opacity: 0.3;
   stroke-opacity: 0.3; }
 
+#sankey-annotation {
+  margin-top: 30px;
+  text-align: center;
+  font-weight: bold; }
+
+#selected-years {
+  font-weight: bold;
+  text-decoration: underline; }
+
 path.line {
   fill: none;
   stroke: grey; }

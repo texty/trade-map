@@ -129,6 +129,18 @@ header {
 
 
   //sankey
+
+  #sankey-annotation {
+    margin-top: 30px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  #selected-years {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
   path.line {
     fill: none;
     stroke: grey;

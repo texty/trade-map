@@ -5,11 +5,13 @@ var drawSankey = function(data, selectedProduct, startYear, endYear) {
 
     var productData = data.filter(function (d) {
         if(startYear != endYear){
+            $("#selected-years").html(startYear + " - " + endYear + " рр. ");
             return d.countries != "World" &&
                 d.product === selectedProduct &&
                 d.year >= parseDate(startYear) &&
                 d.year <= parseDate(endYear);
         } else {
+            $("#selected-years").html(startYear + " р. ");
             return d.countries != "World" &&
                 d.product === selectedProduct &&
                 d.year.getFullYear() === parseDate(startYear).getFullYear()
@@ -92,7 +94,7 @@ var drawSankey = function(data, selectedProduct, startYear, endYear) {
     d3.select('#sankey > svg').remove();
 
 
-   var margin = {top: 10, right: 10, bottom: 10, left: 10},
+    var margin = {top: 10, right: 100, bottom: 10, left: 80},
         width = 700 - margin.left - margin.right,
         height = 300 - margin.top - margin.bottom;
 
@@ -106,9 +108,8 @@ var drawSankey = function(data, selectedProduct, startYear, endYear) {
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
 
-
     var formatNumber = d3.format(",.0f"),
-        format = function(d) { return formatNumber(d) + " тис. доларів"; };
+        format = function(d) { return Math.round(d / 1000) + " млн доларів"; };
 
     var sankey = d3.sankey()
         .nodeWidth(15)
@@ -166,4 +167,4 @@ var drawSankey = function(data, selectedProduct, startYear, endYear) {
         .text(function(d) { return d.name + "\n" + format(d.value); });
 
 
-}
+};

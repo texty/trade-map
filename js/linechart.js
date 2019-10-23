@@ -14,7 +14,7 @@ var drawLines = function(data, key) {
         .sort(function (a, b) { return b.year - a.year  });
 
      
-    var margin = {top: 20, right: 100, bottom: 30, left: 50},
+    var margin = {top: 20, right: 100, bottom: 30, left: 80},
             width = 700 - margin.left - margin.right,
             height = 200 - margin.top - margin.bottom;
 
@@ -47,7 +47,8 @@ var drawLines = function(data, key) {
             .x(function (d) { return x(d.year); })
             .y(function (d) { return y(d.Imported); });
 
-        x.domain(d3.extent(testData, function (d) {  return d.year; }));
+        x.domain([new Date(2001, 0, 1), new Date(2018, 11, 31)]);
+        //x.domain(d3.extent(testData, function (d) {  return d.year; }));
         y.domain([0, d3.max(testData, function (d) { return Math.max(d.Exported, d.Imported); })]);
 
 
@@ -100,7 +101,7 @@ var drawLines = function(data, key) {
        svg.append("g")
             .attr('class', 'brush')
             .call(brush)
-            .call(brush.move, [x(new Date(2014, 0, 1)), x(new Date(2018, 0, 1))]);
+            .call(brush.move, [x(new Date(2001, 0, 1)), x(new Date(2018, 11, 31))]);
 
 
        function brushended() {
@@ -112,10 +113,9 @@ var drawLines = function(data, key) {
            var srartYear = Math.min(d0[0].getFullYear(), d0[1].getFullYear());
            var endYear = Math.max(d0[0].getFullYear(), d0[1].getFullYear());
 
-           //console.log(srartYear);
-           //console.log(endYear);
-
-           $("#selected-years").html(srartYear + " - " + endYear);
+           console.log(srartYear);
+           console.log(endYear);
+          
            drawSankey(data, key, srartYear, endYear);
        }
 
