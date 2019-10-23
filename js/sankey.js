@@ -2,19 +2,20 @@
  * Created by yevheniia on 20.10.19.
  */
 var drawSankey = function(data, selectedProduct, startYear, endYear) {
+    var parseYear =  d3.timeParse("%Y");
 
     var productData = data.filter(function (d) {
         if(startYear != endYear){
             $("#selected-years").html(startYear + " - " + endYear + " рр. ");
             return d.countries != "World" &&
                 d.product === selectedProduct &&
-                d.year >= parseDate(startYear) &&
-                d.year <= parseDate(endYear);
+                d.year >= parseYear(startYear) &&
+                d.year <= parseYear(endYear);
         } else {
             $("#selected-years").html(startYear + " р. ");
             return d.countries != "World" &&
                 d.product === selectedProduct &&
-                d.year.getFullYear() === parseDate(startYear).getFullYear()
+                d.year.getFullYear() === parseYear(startYear).getFullYear()
         }
     });
 
@@ -119,8 +120,8 @@ var drawSankey = function(data, selectedProduct, startYear, endYear) {
     var link = svg.append("g")
         .attr("class", "links")
         .attr("fill", "none")
-        .attr("stroke", "black")
-        .attr("stroke-opacity", 0.3)
+        .attr("stroke", "#f2dfce")
+        .attr("stroke-opacity", 0.9)
         .selectAll("path");
 
     var node = svg.append("g")
@@ -150,8 +151,8 @@ var drawSankey = function(data, selectedProduct, startYear, endYear) {
         .attr("y", function(d) { return d.y0; })
         .attr("height", function(d) { return d.y1 - d.y0; })
         .attr("width", function(d) { return d.x1 - d.x0; })
-        .attr("fill", function(d) { return d.color })
-        .attr("stroke", "#33302e");
+        .attr("fill", "grey")
+        .attr("stroke", "grey");
 
     node.append("text")
         .attr("x", function(d) { return d.x0 - 6; })

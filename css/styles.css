@@ -284,10 +284,15 @@
   line-height: 1.6; }
 
 body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto Slab', serif;
   color: #33302e; }
 
 header {
-  display: flex; }
+  background-color: #f2dfce;
+  display: flex;
+  min-height: 200px; }
   header h1 {
     margin: auto;
     text-align: center;
@@ -351,6 +356,10 @@ li.subgroup {
 .hide {
   height: 0;
   overflow: hidden; }
+
+#linechart-title {
+  text-align: center;
+  font-weight: bold; }
 
 svg {
   display: block; }

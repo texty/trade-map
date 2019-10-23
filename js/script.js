@@ -1,4 +1,4 @@
-var parseDate = d3.timeParse("%Y");
+var parseDate = d3.timeParse("%d-%m-%Y");
 
 var chart_data;
 function retrieve_chart_data(cb) {
