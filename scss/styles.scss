@@ -31,6 +31,24 @@ header {
   }
 }
 
+  #intro {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display:grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 100px;
+    @media(max-width: 800px) and (orientation: portrait) {
+      display: block;
+    }
+  }
+
+ svg#map {
+   grid-column: 2/3;
+   width: 100%;
+   margin: 50px auto;
+ }
+
 
   #data-vis {
     width: 100%;
