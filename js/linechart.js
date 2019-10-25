@@ -16,14 +16,14 @@ var drawLines = function(data, key) {
      
     var margin = {top: 20, right: 100, bottom: 30, left: 80},
             width = 700 - margin.left - margin.right,
-            height = 200 - margin.top - margin.bottom;
+            height = 150 - margin.top - margin.bottom;
 
         //linechartTest
     var svg = d3.select("#line-chart").append("svg")
             //.attr("width", width + margin.left + margin.right)
             //.attr("height", height + margin.top + margin.bottom)
             .attr( 'preserveAspectRatio',"xMinYMin meet")
-            .attr("viewBox", "0 0 700 200")
+            .attr("viewBox", "0 0 700 150")
             .attr('width', '100%')
             .append("g")
             .attr("transform",

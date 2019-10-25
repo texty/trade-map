@@ -289,12 +289,20 @@ body {
   font-family: 'Roboto Slab', serif;
   color: #33302e; }
 
+.text {
+  width: 50%;
+  margin: 50px auto; }
+  @media (max-width: 800px) {
+    .text {
+      width: 80%; } }
+
 header {
   background-color: #f2dfce;
   display: flex;
   min-height: 200px; }
   header h1 {
     margin: auto;
+    text-transform: uppercase;
     text-align: center;
     font-size: 30px; }
 
@@ -345,6 +353,9 @@ article {
   margin: auto;
   min-height: 100vh;
   z-index: 100000; }
+  @media (max-width: 800px) {
+    .step {
+      min-height: 0; } }
   .step p {
     padding: 5px; }
 
@@ -354,16 +365,14 @@ svg#map {
   margin: 50px auto; }
 
 table td {
-  padding: 5px 0; }
-
-#playground h2 {
-  text-align: center; }
-#playground p {
-  width: 50%;
-  margin: 0 auto; }
+  padding: 0;
+  font-size: 14px; }
+  @media (max-width: 800px) {
+    table td {
+      display: block; } }
 
 #data-vis {
-  width: 100%;
+  width: 96%;
   max-width: 1200px;
   margin: 100px auto 0 auto;
   display: grid;

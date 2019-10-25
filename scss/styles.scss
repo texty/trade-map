@@ -18,6 +18,14 @@ body {
   color: #33302e;
 }
 
+.text {
+  width: 50%;
+  margin:50px auto;
+  @media(max-width:800px) {
+    width: 80%;
+  }
+}
+
 header {
   background-color: #f2dfce;
   display:flex;
@@ -26,6 +34,7 @@ header {
 
   h1 {
     margin: auto;
+    text-transform: uppercase;
     text-align: center;
     font-size: 30px;
   }
@@ -88,7 +97,9 @@ header {
     margin:auto;
     min-height: 100vh;
     z-index: 100000;
-    //background-color: rgba(242, 223, 206, 0.5);
+    @media(max-width:800px) {
+      min-height: 0;
+    }
 
     p {
       padding: 5px;
@@ -103,26 +114,18 @@ header {
  }
 
 
-
  table td {
-   padding: 5px 0;
- }
-
-
- #playground {
-   h2 {
-     text-align: center;
+   padding: 0;
+   font-size: 14px;
+   @media(max-width:800px) {
+     display: block;
    }
 
-    p {
-      width: 50%;
-      margin: 0 auto;
-    }
  }
 
 
   #data-vis {
-    width: 100%;
+    width: 96%;
     max-width: 1200px;
     margin: 100px auto 0 auto;
     display:grid;
