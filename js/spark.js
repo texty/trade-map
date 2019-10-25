@@ -1,7 +1,7 @@
 /**
  * Created by yevheniia on 25.10.19.
  */
-var spark = function () {
+var spark = function (color) {
 
     var width = 200;
     var height = 50;
@@ -51,7 +51,7 @@ var spark = function () {
 
             g.append("path")
                 .style("fill", "transparent")
-                .style("stroke", "rgb(187, 21, 26)")
+                .style("stroke", color)
                 .style("stroke-width", "2px")
                 .attr("d", line);
 

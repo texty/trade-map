@@ -1,4 +1,4 @@
-function drawMap(geodata, container, key) {
+function drawMap(geodata, container, key, colorShceme) {
 
     var svg = d3.select(container)
         .attr( 'preserveAspectRatio',"xMinYMin meet")
@@ -17,11 +17,11 @@ function drawMap(geodata, container, key) {
     var min = d3.min(geodata, function(d){return d.properties[key];}),
             max= d3.max(geodata, function(d){return d.properties[key]});
 
-    console.log(max, max/1.5, max/2, max/4, max/6);
+    //console.log(max, max/1.5, max/2, max/4, max/6);
 
     var color = d3.scaleThreshold()
             .domain([min, 1000, 50000, 500000, max/6, max/4, max/2, max/1.5, max])
-            .range(d3.schemeReds[8]);
+            .range(colorShceme[8]);
 
     // Draw the map
     svg.append("g")
@@ -34,7 +34,6 @@ function drawMap(geodata, container, key) {
              .projection(projection)
        )
         .attr("data-tippy-content", function(d) {
-            console.log(d);
             return d.properties["ua_country_uk"] + " - " + d.properties[key] + " тис. доларів"
         })
        .attr("fill", function (d) {

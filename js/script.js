@@ -94,8 +94,8 @@ d3.json("data/trade-map.geojson",  function(topo) {
     });
 
 
-    drawMap(topo.features, "svg#import-map", "ua_01_18_imported_from");
-    drawMap(topo.features, "svg#export-map", "ua_01_18_exported_to");
+    drawMap(topo.features, "svg#import-map", "ua_01_18_imported_from", d3.schemePuBu);
+    drawMap(topo.features, "svg#export-map", "ua_01_18_exported_to", d3.schemeRdPu);
 
     tippy('.tippy', {
         delay: 0,
@@ -137,7 +137,7 @@ d3.json("data/top_5.json", function(top) {
         .datum(function (d) {
             return d.data;
         })
-        .call(spark());
+        .call(spark(exColor));
 
 
     var tBody2 = d3.select("#import-top")
@@ -157,7 +157,7 @@ d3.json("data/top_5.json", function(top) {
         .datum(function (d) {
             return d.data;
         })
-        .call(spark());
+        .call(spark(imColor));
 });
 
 

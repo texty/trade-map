@@ -56,14 +56,14 @@ var drawLines = function(data, key) {
         svg.append("path")
             .data([testData])
             .attr("class", "valueline1")
-            .style("stroke", "rgb(252, 146, 114)")
+            .style("stroke", "#c01788")
             .attr("d", valueline);
 
         // Add the valueline2 path.
         svg.append("path")
             .data([testData])
             .attr("class", "valueline2")
-            .style("stroke", "#33302e")
+            .style("stroke", imColor)
             .attr("d", valueline2);
 
         // Add the X Axis
@@ -81,14 +81,14 @@ var drawLines = function(data, key) {
             .attr("transform", "translate(" + (width + 3) + "," + y(testData[0].Imported) + ")")
             .attr("dy", ".35em")
             .attr("text-anchor", "start")
-            .style("fill", "#33302e")
+            .style("fill", imColor)
             .text("Imported");
 
         svg.append("text")
             .attr("transform", "translate(" + (width + 3) + "," + y(testData[0].Exported) + ")")
             .attr("dy", ".35em")
             .attr("text-anchor", "start")
-            .style("fill", "rgb(252, 146, 114)")
+            .style("fill", "#c01788")
             .text("Exported");
 
         d3.select("#linechart-title").text(key);
@@ -113,8 +113,8 @@ var drawLines = function(data, key) {
            var srartYear = Math.min(d0[0].getFullYear(), d0[1].getFullYear());
            var endYear = Math.max(d0[0].getFullYear(), d0[1].getFullYear());
 
-           console.log(srartYear);
-           console.log(endYear);
+           //console.log(srartYear);
+           //console.log(endYear);
           
            drawSankey(data, key, srartYear, endYear);
        }

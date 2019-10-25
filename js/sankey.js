@@ -32,7 +32,7 @@ var drawSankey = function(data, selectedProduct, startYear, endYear) {
                 return total + o.Exported;
             }, 0),
             source: "Ukraine",
-            color: "orange"
+            color: exColor
         };
     })
         .sort(function (a, b) {
@@ -49,7 +49,7 @@ var drawSankey = function(data, selectedProduct, startYear, endYear) {
                 return total + o.Imported;
             }, 0),
             source: key,
-            color: "#33302e"
+            color: imColor
         };
     })
         .sort(function (a, b) {
@@ -69,7 +69,8 @@ var drawSankey = function(data, selectedProduct, startYear, endYear) {
         graphData.links.push({
             "source": d.source,
             "target": d.target,
-            "value": +d.value
+            "value": +d.value,
+            "color": d.color
         });
     });
 
@@ -90,6 +91,8 @@ var drawSankey = function(data, selectedProduct, startYear, endYear) {
     graphData.nodes.forEach(function (d, i) {
         graphData.nodes[i] = {"name": d};
     });
+
+    console.log(graphData);
 
     //малюємо
     d3.select('#sankey > svg').remove();
@@ -120,7 +123,6 @@ var drawSankey = function(data, selectedProduct, startYear, endYear) {
     var link = svg.append("g")
         .attr("class", "links")
         .attr("fill", "none")
-        .attr("stroke", "rgb(252, 146, 114)")
         .attr("stroke-opacity", 0.9)
         .selectAll("path");
 
@@ -136,7 +138,11 @@ var drawSankey = function(data, selectedProduct, startYear, endYear) {
         .data(graphData.links)
         .enter().append("path")
         .attr("d", d3.sankeyLinkHorizontal())
-        .attr("stroke-width", function(d) { return Math.max(1, d.width); });
+        .attr("stroke-width", function(d) { return Math.max(1, d.width); })
+        .attr("stroke", function(d){
+            return d.color;
+        })
+        .attr("stroke-opacity", "0.5");
 
     link.append("title")
         .text(function(d) { return d.source.name + " → " + d.target.name + "\n" + format(d.value); });
