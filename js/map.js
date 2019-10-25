@@ -42,13 +42,15 @@ function drawMap(geodata, container, key) {
            
        });
 
-    tippy('.tippy', {
-        delay: 0,
-        arrow: true,
-        arrowType: 'round',
-        size: 'small',
-        duration: 500
-    });
+
+    $("#redrawsmth").on("click", function(){
+          svg.selectAll("path.tippy")
+              .attr("fill", function (d) {
+                  return color(5);
+              })
+    })
+
+
 
 
 }

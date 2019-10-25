@@ -408,6 +408,12 @@ li.main {
   font-weight: bold;
   margin-top: 10px; }
 
+li.main::before {
+  content: "+ "; }
+
+li.main.clicked::before {
+  content: "- " !important; }
+
 li.subgroup {
   padding-left: 20px;
   display: none; }
@@ -460,5 +466,8 @@ rect.selection {
 path.line {
   fill: none;
   stroke: grey; }
+
+.overlay {
+  fill: transparent; }
 
 /*# sourceMappingURL=styles.css.map */

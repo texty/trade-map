@@ -55,7 +55,9 @@ retrieve_chart_data(function(myData){
         })
         .on("click", function (item) {
             $("li").css("text-decoration", "none");
+            $("li").removeClass("clicked");
             $(this).css("text-decoration", "underline");
+            $(this).addClass("clicked");
             
             if($(this).hasClass("main")){
                 var classNumber = $(this).attr('class').split(/\s+/);
@@ -87,6 +89,16 @@ d3.json("data/trade-map.geojson",  function(topo) {
 
     drawMap(topo.features, "svg#import-map", "ua_imported_from");
     drawMap(topo.features, "svg#export-map", "ua_exported_to");
+
+    tippy('.tippy', {
+        delay: 0,
+        arrow: true,
+        arrowType: 'round',
+        size: 'small',
+        duration: 500
+    });
+
+    
 });
 
 

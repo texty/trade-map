@@ -145,8 +145,6 @@ header {
     p {
       width: 100%;
     }
-
-
   }
 
   #line-chart {
@@ -177,6 +175,16 @@ header {
     font-weight: bold;
     margin-top: 10px;
   }
+
+  li.main::before {
+    content: "+ ";
+  }
+
+  li.main.clicked::before {
+    content: "- " !important;
+  }
+
+
 
   li.subgroup {
     padding-left: 20px;
@@ -248,5 +256,10 @@ header {
   path.line {
     fill: none;
     stroke: grey;
+  }
+
+  .overlay {
+    fill: transparent;
+
   }
 

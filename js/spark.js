@@ -4,14 +4,18 @@
 var spark = function () {
 
     var width = 200;
-    var height = 50;
-    var margin = {top: 0, bottom: 0, left:0, right:0};
+    var height = 80;
+    var margin = {top: 10, bottom: 10, left:10, right:10};
 
     function chart(selection) {
 
         selection.each(function (data) {
+
+            var bisectDate = d3.bisector(function (d) {
+                return d.year;
+            }).left;
             
-            
+
             data.sort(function(a, b) {
                 return a.year - b.year
             });
@@ -21,15 +25,15 @@ var spark = function () {
 
             var g = svg.enter()
                 .append('svg')
-                .attr('width', width)
-                .attr('height', height)
+                .attr('width', width + margin.right + margin.left)
+                .attr('height', height + margin.bottom + margin.top)
                 .append("g")
                 .attr("transform",
-                    "translate(0, 0)");
+                    "translate(" + 10 + "," + 10 + ")");
 
 
-            var x = d3.scaleTime().range([0, width]);
-            var y = d3.scaleLinear().range([height, 0]);
+            var x = d3.scaleTime().range([0, width - margin.right - margin.left]);
+            var y = d3.scaleLinear().range([height - margin.bottom - margin.top, 0]);
 
 
             // define the 1st line
@@ -42,7 +46,6 @@ var spark = function () {
                 });
 
             x.domain([new Date(2001, 0, 1), new Date(2018, 11, 31)]);
-            //x.domain(d3.extent(testData, function (d) {  return d.year; }));
             y.domain([0, d3.max(data, function (d) { return d.thous; })]);
 
 
@@ -50,6 +53,43 @@ var spark = function () {
                 .style("fill", "transparent")
                 .style("stroke", "#33302e")
                 .attr("d", line);
+
+            g.append("rect")
+                .attr("class", "overlay")
+                .attr("width", width)
+                .attr("height", height)
+                .on("mouseover", function () {
+                    focus.style("display", null);
+                })
+                .on("mouseout", function () {
+                    focus.style("display", "none");
+                })
+                .on("mousemove", mousemove);
+
+
+            var focus = g.append("g")
+                .attr("class", "focus")
+                .style("display", "none")
+               ;
+
+            focus.append("circle")
+                .attr("r", 3);
+
+            focus.append("text")
+                .attr("x", 9)
+                .attr("dy", ".35em")
+                .style("font-size", "0.8em")
+                .style("fill", "red");
+
+            function mousemove() {
+                var x0 = x.invert(d3.mouse(this)[0]),
+                    i = bisectDate(data, x0, 1),
+                    d0 = data[i - 1],
+                    d1 = data[i],
+                    d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+                focus.attr("transform", "translate(" + x(d.year) + "," + y(d.thous) + ")");
+                focus.select("text").text(d.thous);
+            }
 
         });
 
