@@ -9,7 +9,7 @@ var drawLines = function(data, key) {
     var testData = 
         data
         .filter(function (d) {
-            return d.countries === "World" && d.product === key;
+            return d.country === "World" && d.product === key;
         })
         .sort(function (a, b) { return b.year - a.year  });
 

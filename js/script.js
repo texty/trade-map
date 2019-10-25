@@ -54,10 +54,16 @@ retrieve_chart_data(function(myData){
             return d.product
         })
         .on("click", function (item) {
-            $("li").css("text-decoration", "none");
             $("li").removeClass("clicked");
+
+            if(item.categoryNumber < 11) {
+                $(this).addClass("clicked");
+            }
+
+            $("li").css("text-decoration", "none");
+
             $(this).css("text-decoration", "underline");
-            $(this).addClass("clicked");
+
             
             if($(this).hasClass("main")){
                 var classNumber = $(this).attr('class').split(/\s+/);

@@ -7,13 +7,13 @@ var drawSankey = function(data, selectedProduct, startYear, endYear) {
     var productData = data.filter(function (d) {
         if(startYear != endYear){
             $("#selected-years").html(startYear + " - " + endYear + " рр. ");
-            return d.countries != "World" &&
+            return d.country != "World" &&
                 d.product === selectedProduct &&
                 d.year >= parseYear(startYear) &&
                 d.year <= parseYear(endYear);
         } else {
             $("#selected-years").html(startYear + " р. ");
-            return d.countries != "World" &&
+            return d.country != "World" &&
                 d.product === selectedProduct &&
                 d.year.getFullYear() === parseYear(startYear).getFullYear()
         }
@@ -22,7 +22,7 @@ var drawSankey = function(data, selectedProduct, startYear, endYear) {
 
     /* Базова калькуляція, щоб приготувати дані до SANKEY -
      групуємо за країною та екпорт/імпорт та сумуємо показники за обраний період */
-    var groups = _.groupBy(productData, 'countries', 'position');
+    var groups = _.groupBy(productData, 'country', 'position');
 
     //exporters, sort, top5
     var exported = _.map(groups, function (value, key) {
@@ -110,7 +110,7 @@ var drawSankey = function(data, selectedProduct, startYear, endYear) {
             "translate(" + margin.left + "," + margin.top + ")");
 
     var formatNumber = d3.format(",.0f"),
-        format = function(d) { return Math.round(d / 1000) + " млн доларів"; };
+        format = function(d) { return Math.round(d) + " тис. доларів"; };
 
     var sankey = d3.sankey()
         .nodeWidth(15)

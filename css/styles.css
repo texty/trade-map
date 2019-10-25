@@ -407,10 +407,22 @@ li.main {
   font-weight: bold;
   margin-top: 10px; }
 
-li.main::before {
+.main.c2::before,
+.main.c3::before,
+.main.c4::before,
+.main.c7::before,
+.main.c8::before,
+.main.c9::before,
+.main.c10::before {
   content: "+ "; }
 
-li.main.clicked::before {
+.main.c2.clicked::before,
+.main.c3.clicked::before,
+.main.c4.clicked::before,
+.main.c7.clicked::before,
+.main.c8.clicked::before,
+.main.c9.clicked::before,
+.main.c10.clicked::before {
   content: "- " !important; }
 
 li.subgroup {

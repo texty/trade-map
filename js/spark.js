@@ -32,7 +32,7 @@ var spark = function () {
                     "translate(" + 10 + "," + 10 + ")");
 
 
-            var x = d3.scaleTime().range([0, width - margin.right - margin.left]);
+            var x = d3.scaleTime().range([0, width/2]);
             var y = d3.scaleLinear().range([height - margin.bottom - margin.top, 0]);
 
 
@@ -51,7 +51,8 @@ var spark = function () {
 
             g.append("path")
                 .style("fill", "transparent")
-                .style("stroke", "#33302e")
+                .style("stroke", "rgb(187, 21, 26)")
+                .style("stroke-width", "2px")
                 .attr("d", line);
 
             g.append("rect")
@@ -79,7 +80,7 @@ var spark = function () {
                 .attr("x", 9)
                 .attr("dy", ".35em")
                 .style("font-size", "0.8em")
-                .style("fill", "red");
+                .style("fill", "black");
 
             function mousemove() {
                 var x0 = x.invert(d3.mouse(this)[0]),
