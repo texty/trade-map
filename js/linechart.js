@@ -56,7 +56,7 @@ var drawLines = function(data, key) {
         svg.append("path")
             .data([testData])
             .attr("class", "valueline1")
-            .style("stroke", "orange")
+            .style("stroke", "rgb(252, 146, 114)")
             .attr("d", valueline);
 
         // Add the valueline2 path.
@@ -88,7 +88,7 @@ var drawLines = function(data, key) {
             .attr("transform", "translate(" + (width + 3) + "," + y(testData[0].Exported) + ")")
             .attr("dy", ".35em")
             .attr("text-anchor", "start")
-            .style("fill", "orange")
+            .style("fill", "rgb(252, 146, 114)")
             .text("Exported");
 
         d3.select("#linechart-title").text(key);

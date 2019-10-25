@@ -19,33 +19,91 @@
 </header>
 
 
-<div id="intro">
-    <svg id="map"></svg>
+<section id='scrolly'>
 
 
-</div>
+    <div id="intro">
 
-<div id="data-vis">
+        <!--row 1-->
+        <div >
+            <p>в які країни ми експортували</p>
+            <svg id="export-map"></svg>
+        </div>
 
-    <ul id="my-list"></ul>
+        <div>
+            <p>звідки ми імпортували</p>
+            <svg id="import-map"></svg>
+        </div>
 
 
-    <div id="graphics">
-        <p id="linechart-title"></p>
-        <div id="line-chart"></div>
-        <p style="font-size: 14px; text-align: center; margin:20px auto;">Графік вище показує динамікау експорту та імпорту з 2001 року.
-            <br><b>Сіра плашка під роками інтерактивна.</b> <br>Встановіть потрібний період і подивіться, з якими країнами <br>ми торгували в обрані роки.
-         </p>
+        <!--row 2-->
+        <div>
+            <p>Топ-5 продуктів експорту</p>
+            <div>
+                <table id="export-top"></table>
+            </div>
+        </div>
 
-        <p id="sankey-annotation"> У <span id="selected-years"></span> ми торгували з такими країнами:</p>
+        <div>
+            <p>Топ-5 продуктів імпорту</p>
+            <div>
+                <table id="import-top"></table>
+            </div>
 
-        <div id="sankey"></div>
-        <!--<p>Дані: www.trademap.org</p>-->
+        </div>
     </div>
 
 
+    <article>
+        <div class='step' data-step='1'>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet aliquet ex, in mattis nunc. Sed ornare eu urna aliquam tristique. Aenean viverra dui id consequat iaculis. Suspendisse at elit eu justo luctus posuere quis eu urna. Sed quis hendrerit felis, eu efficitur tellus. Mauris aliquam viverra orci nec viverra. Aenean nulla mi, scelerisque in ultrices eu, tempus vitae velit. Sed nec scelerisque neque. Quisque dictum finibus dui sit amet fermentum. In id ex luctus, pellentesque ante vel, pulvinar eros. Integer at risus sodales nibh elementum sagittis nec in est. Proin fringilla ultricies leo a tincidunt. Nunc eu risus purus. Proin congue, urna nec ultrices facilisis, ante lacus bibendum ligula, nec lacinia massa sem eget eros. Vivamus posuere est non auctor tristique. Sed at felis odio.
 
+        </div>
+        <div class='step' data-step='2'>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet aliquet ex, in mattis nunc. Sed ornare eu urna aliquam tristique. Aenean viverra dui id consequat iaculis. Suspendisse at elit eu justo luctus posuere quis eu urna. Sed quis hendrerit felis, eu efficitur tellus. Mauris aliquam viverra orci nec viverra. Aenean nulla mi, scelerisque in ultrices eu, tempus vitae velit. Sed nec scelerisque neque. Quisque dictum finibus dui sit amet fermentum. In id ex luctus, pellentesque ante vel, pulvinar eros. Integer at risus sodales nibh elementum sagittis nec in est. Proin fringilla ultricies leo a tincidunt. Nunc eu risus purus. Proin congue, urna nec ultrices facilisis, ante lacus bibendum ligula, nec lacinia massa sem eget eros. Vivamus posuere est non auctor tristique. Sed at felis odio.
+
+        </div>
+        <div class='step' data-step='3'>
+            <p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet aliquet ex, in mattis nunc. Sed ornare eu urna aliquam tristique. Aenean viverra dui id consequat iaculis. Suspendisse at elit eu justo luctus posuere quis eu urna. Sed quis hendrerit felis, eu efficitur tellus. Mauris aliquam viverra orci nec viverra. Aenean nulla mi, scelerisque in ultrices eu, tempus vitae velit. Sed nec scelerisque neque. Quisque dictum finibus dui sit amet fermentum. In id ex luctus, pellentesque ante vel, pulvinar eros. Integer at risus sodales nibh elementum sagittis nec in est. Proin fringilla ultricies leo a tincidunt. Nunc eu risus purus. Proin congue, urna nec ultrices facilisis, ante lacus bibendum ligula, nec lacinia massa sem eget eros. Vivamus posuere est non auctor tristique. Sed at felis odio.</p>
+        </div>
+        <div class='step' data-step='4'>
+            <p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet aliquet ex, in mattis nunc. Sed ornare eu urna aliquam tristique. Aenean viverra dui id consequat iaculis. Suspendisse at elit eu justo luctus posuere quis eu urna. Sed quis hendrerit felis, eu efficitur tellus. Mauris aliquam viverra orci nec viverra. Aenean nulla mi, scelerisque in ultrices eu, tempus vitae velit. Sed nec scelerisque neque. Quisque dictum finibus dui sit amet fermentum. In id ex luctus, pellentesque ante vel, pulvinar eros. Integer at risus sodales nibh elementum sagittis nec in est. Proin fringilla ultricies leo a tincidunt. Nunc eu risus purus. Proin congue, urna nec ultrices facilisis, ante lacus bibendum ligula, nec lacinia massa sem eget eros. Vivamus posuere est non auctor tristique. Sed at felis odio.</p>
+        </div>
+    </article>
+</section>
+
+
+<div style="width: 50%; margin:50px auto;">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet aliquet ex, in mattis nunc. Sed ornare eu urna aliquam tristique. Aenean viverra dui id consequat iaculis. Suspendisse at elit eu justo luctus posuere quis eu urna. Sed quis hendrerit felis, eu efficitur tellus. Mauris aliquam viverra orci nec viverra. Aenean nulla mi, scelerisque in ultrices eu, tempus vitae velit. Sed nec scelerisque neque. Quisque dictum finibus dui sit amet fermentum. In id ex luctus, pellentesque ante vel, pulvinar eros. Integer at risus sodales nibh elementum sagittis nec in est. Proin fringilla ultricies leo a tincidunt. Nunc eu risus purus. Proin congue, urna nec ultrices facilisis, ante lacus bibendum ligula, nec lacinia massa sem eget eros. Vivamus posuere est non auctor tristique. Sed at felis odio.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet aliquet ex, in mattis nunc. Sed ornare eu urna aliquam tristique. Aenean viverra dui id consequat iaculis. Suspendisse at elit eu justo luctus posuere quis eu urna. Sed quis hendrerit felis, eu efficitur tellus. Mauris aliquam viverra orci nec viverra. Aenean nulla mi, scelerisque in ultrices eu, tempus vitae velit. Sed nec scelerisque neque. Quisque dictum finibus dui sit amet fermentum. In id ex luctus, pellentesque ante vel, pulvinar eros. Integer at risus sodales nibh elementum sagittis nec in est. Proin fringilla ultricies leo a tincidunt. Nunc eu risus purus. Proin congue, urna nec ultrices facilisis, ante lacus bibendum ligula, nec lacinia massa sem eget eros. Vivamus posuere est non auctor tristique. Sed at felis odio.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet aliquet ex, in mattis nunc. Sed ornare eu urna aliquam tristique. Aenean viverra dui id consequat iaculis. Suspendisse at elit eu justo luctus posuere quis eu urna. Sed quis hendrerit felis, eu efficitur tellus. Mauris aliquam viverra orci nec viverra. Aenean nulla mi, scelerisque in ultrices eu, tempus vitae velit. Sed nec scelerisque neque. Quisque dictum finibus dui sit amet fermentum. In id ex luctus, pellentesque ante vel, pulvinar eros. Integer at risus sodales nibh elementum sagittis nec in est. Proin fringilla ultricies leo a tincidunt. Nunc eu risus purus. Proin congue, urna nec ultrices facilisis, ante lacus bibendum ligula, nec lacinia massa sem eget eros. Vivamus posuere est non auctor tristique. Sed at felis odio.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet aliquet ex, in mattis nunc. Sed ornare eu urna aliquam tristique. Aenean viverra dui id consequat iaculis. Suspendisse at elit eu justo luctus posuere quis eu urna. Sed quis hendrerit felis, eu efficitur tellus. Mauris aliquam viverra orci nec viverra. Aenean nulla mi, scelerisque in ultrices eu, tempus vitae velit. Sed nec scelerisque neque. Quisque dictum finibus dui sit amet fermentum. In id ex luctus, pellentesque ante vel, pulvinar eros. Integer at risus sodales nibh elementum sagittis nec in est. Proin fringilla ultricies leo a tincidunt. Nunc eu risus purus. Proin congue, urna nec ultrices facilisis, ante lacus bibendum ligula, nec lacinia massa sem eget eros. Vivamus posuere est non auctor tristique. Sed at felis odio.</p>
 </div>
+
+<section id="playground">
+    <h2>Ми їмо турецьку полуницю, а свою експортуємо в Польщу</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet aliquet ex, in mattis nunc. Sed ornare eu urna aliquam tristique. Aenean viverra dui id consequat iaculis. Suspendisse at elit eu justo luctus posuere quis eu urna. Sed quis hendrerit felis, eu efficitur tellus. Mauris aliquam viverra orci nec viverra. Aenean nulla mi, scelerisque in ultrices eu, tempus vitae velit. Sed nec scelerisque neque. Quisque dictum finibus dui sit amet fermentum. In id ex luctus, pellentesque ante vel, pulvinar eros. Integer at risus sodales nibh elementum sagittis nec in est. Proin fringilla ultricies leo a tincidunt. Nunc eu risus purus. Proin congue, urna nec ultrices facilisis, ante lacus bibendum ligula, nec lacinia massa sem eget eros. Vivamus posuere est non auctor tristique. Sed at felis odio.</p>
+
+    <div id="data-vis">
+
+        <ul id="my-list"></ul>
+
+
+        <div id="graphics">
+
+            <p id="linechart-title"></p>
+            <div id="line-chart"></div>
+            <p style="font-size: 14px; text-align: center; margin:20px auto;">Графік вище показує динамікау експорту та імпорту з 2001 року.
+                <br><b>Сіра плашка під роками інтерактивна.</b> <br>Встановіть потрібний період і подивіться, з якими країнами <br>ми торгували в обрані роки.
+             </p>
+
+            <p id="sankey-annotation"> У <span id="selected-years"></span> ми торгували з такими країнами:</p>
+            <div id="sankey"></div>
+
+        </div>
+    </div>
+
+</section>
 
 
 <script type="text/javascript" src="lib/jquery-2.1.4.min.js"></script>
@@ -53,12 +111,15 @@
 <script src="lib/d3-sankey.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore.js"></script>
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+<!--<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>-->
+<script src="https://unpkg.com/tippy.js@3/dist/tippy.all.min.js"></script>
+
 <!--<script src="lib/scrollama.min.js"></script>-->
 <!--<script src="lib/share-behavior.js"></script>-->
 <script type="text/javascript" src="js/map.js"></script>
 <script type="text/javascript" src="js/sankey.js"></script>
 <script type="text/javascript" src="js/linechart.js"></script>
+<script type="text/javascript" src="js/spark.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 
 

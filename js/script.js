@@ -71,7 +71,76 @@ retrieve_chart_data(function(myData){
     li.sort(function(a, b) { return a.sort - b.sort });
 
     drawLines(myData, "02 Meat and edible meat offal");
+
 });
+
+
+
+
+//карти
+d3.json("data/trade-map.geojson",  function(topo) {
+    topo.features.forEach(function (d) {
+        d.properties["ua_exported_to"] = +d.properties["ua_exported_to"] || 0;
+        d.properties["ua_imported_from"] = +d.properties["ua_imported_from"] || 0;
+    });
+
+
+    drawMap(topo.features, "svg#import-map", "ua_imported_from");
+    drawMap(topo.features, "svg#export-map", "ua_exported_to");
+});
+
+
+//спарклайни
+d3.json("data/top_5.json", function(top) {
+
+    top.forEach(function(d){
+        d.data.forEach(function(nest){
+            nest.thous = +nest.thous;
+            nest.year = parseDate(nest.year);
+
+        })
+    });
+
+    var tBody = d3.select("#export-top")
+        .append("tbody");
+
+    var rows = tBody.selectAll('tr')
+        .data(top.filter(function(d){ return d.position === "exported"}))
+        .enter()
+        .append('tr');
+
+    rows.append('td')
+        .text(function (d) {
+            return d.product;
+        });
+    
+    rows.append('td')
+        .datum(function (d) {
+            return d.data;
+        })
+        .call(spark());
+
+
+    var tBody2 = d3.select("#import-top")
+        .append("tbody");
+
+    var rows2 = tBody2.selectAll('tr')
+        .data(top.filter(function(d){ return d.position === "imported"}))
+        .enter()
+        .append('tr');
+
+    rows2.append('td')
+        .text(function (d) {
+            return d.product;
+        });
+
+    rows2.append('td')
+        .datum(function (d) {
+            return d.data;
+        })
+        .call(spark());
+});
+
 
 
 

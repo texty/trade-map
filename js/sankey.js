@@ -120,7 +120,7 @@ var drawSankey = function(data, selectedProduct, startYear, endYear) {
     var link = svg.append("g")
         .attr("class", "links")
         .attr("fill", "none")
-        .attr("stroke", "#f2dfce")
+        .attr("stroke", "rgb(252, 146, 114)")
         .attr("stroke-opacity", 0.9)
         .selectAll("path");
 
