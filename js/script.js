@@ -39,6 +39,7 @@ retrieve_chart_data(function(myData){
 
    var list = d3.select("#my-list");
 
+
     var li = list.selectAll("li")
         .data(productsList)
         .enter()
@@ -54,11 +55,6 @@ retrieve_chart_data(function(myData){
             return d.product
         })
         .on("click", function (item) {
-            $("li").removeClass("clicked");
-
-            if(item.categoryNumber < 11) {
-                $(this).addClass("clicked");
-            }
 
             $("li").css("text-decoration", "none");
 
@@ -66,9 +62,14 @@ retrieve_chart_data(function(myData){
 
             
             if($(this).hasClass("main")){
+                $("li").removeClass("clicked");
                 var classNumber = $(this).attr('class').split(/\s+/);
                 $("li.subgroup").css("display", "none");
                 $("li." + classNumber[1]).css("display", "block");
+            }
+
+            if(item.categoryNumber < 11) {
+                $(this).addClass("clicked");
             }
             
             drawLines(myData, item.product);
