@@ -17,9 +17,11 @@ function drawMap(geodata, container, key) {
     var min = d3.min(geodata, function(d){return d.properties[key];}),
             max= d3.max(geodata, function(d){return d.properties[key]});
 
+    console.log(max, max/1.5, max/2, max/4, max/6);
+
     var color = d3.scaleThreshold()
             .domain([min, 1000, 50000, 500000, max/6, max/4, max/2, max/1.5, max])
-            .range(d3.schemeOranges[8]);
+            .range(d3.schemeReds[8]);
 
     // Draw the map
     svg.append("g")

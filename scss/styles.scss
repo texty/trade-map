@@ -86,13 +86,13 @@ header {
   .step {
     width: 80%;
     margin:auto;
-
     min-height: 100vh;
     z-index: 100000;
+    //background-color: rgba(242, 223, 206, 0.5);
 
     p {
       padding: 5px;
-      background-color: rgba(255, 255, 255, 0.8);
+
     }
   }
 

@@ -87,8 +87,8 @@ d3.json("data/trade-map.geojson",  function(topo) {
     });
 
 
-    drawMap(topo.features, "svg#import-map", "ua_imported_from");
-    drawMap(topo.features, "svg#export-map", "ua_exported_to");
+    drawMap(topo.features, "svg#import-map", "ua_01_18_imported_from");
+    drawMap(topo.features, "svg#export-map", "ua_01_18_exported_to");
 
     tippy('.tippy', {
         delay: 0,
