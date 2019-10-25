@@ -101,7 +101,7 @@ var drawLines = function(data, key) {
        svg.append("g")
             .attr('class', 'brush')
             .call(brush)
-            .call(brush.move, [x(new Date(2001, 0, 1)), x(new Date(2018, 11, 31))]);
+            .call(brush.move, [x(new Date(2014, 0, 1)), x(new Date(2018, 11, 31))]);
 
 
        function brushended() {
