@@ -294,7 +294,7 @@ body {
 
 .text {
   width: 50%;
-  margin: 50px auto; }
+  margin: 20px auto; }
   @media (max-width: 800px) {
     .text {
       width: 80%; } }
@@ -373,7 +373,7 @@ svg#map {
 table td {
   padding: 0;
   font-size: 14px; }
-  @media (max-width: 800px) {
+  @media (max-width: 1400px) {
     table td {
       display: block; } }
 
@@ -383,6 +383,9 @@ table td {
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: center; }
+  @media (max-width: 800px) {
+    .examples {
+      display: block; } }
   .examples img {
     width: 100%; }
 
