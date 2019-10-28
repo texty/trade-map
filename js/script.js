@@ -37,7 +37,9 @@ retrieve_chart_data(function(myData){
 
     productsList = _.uniq(productsList, "product");
 
-   var list = d3.select("#my-list");
+
+
+    var list = d3.select("#my-list");
 
 
     var li = list.selectAll("li")
