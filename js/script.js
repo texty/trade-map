@@ -81,7 +81,7 @@ retrieve_chart_data(function(myData){
 
     li.sort(function(a, b) { return a.sort - b.sort });
 
-    drawLines(myData, "02 Meat and edible meat offal");
+    drawLines(myData, "72 Iron and steel");
 
 });
 
