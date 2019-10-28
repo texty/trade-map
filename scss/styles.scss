@@ -138,11 +138,12 @@ header {
  .examples {
    width: 80%;
    margin: auto;
-   display: flex;
-   justify-content: space-around;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   justify-items: center;
 
    img {
-     height: 500px;
+     width: 100%;
      //margin:auto;
    }
  }
