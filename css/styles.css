@@ -346,6 +346,8 @@ header {
   #intro p {
     text-align: center;
     font-weight: 600; }
+  #intro img {
+    width: 100%; }
 
 article {
   grid-row: 1/2;
@@ -376,6 +378,10 @@ table td {
   @media (max-width: 1400px) {
     table td {
       display: block; } }
+
+#playground h2 {
+  margin-top: 50px;
+  text-align: center; }
 
 .examples {
   width: 80%;
