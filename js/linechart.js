@@ -82,14 +82,14 @@ var drawLines = function(data, key) {
             .attr("dy", ".35em")
             .attr("text-anchor", "start")
             .style("fill", imColor)
-            .text("Imported");
+            .text("Імпорт");
 
         svg.append("text")
             .attr("transform", "translate(" + (width + 3) + "," + y(testData[0].Exported) + ")")
             .attr("dy", ".35em")
             .attr("text-anchor", "start")
             .style("fill", "#c01788")
-            .text("Exported");
+            .text("Експорт");
 
         d3.select("#linechart-title").text(key);
 

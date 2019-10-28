@@ -22,16 +22,16 @@ var drawSankey = function(data, selectedProduct, startYear, endYear) {
 
     /* Базова калькуляція, щоб приготувати дані до SANKEY -
      групуємо за країною та екпорт/імпорт та сумуємо показники за обраний період */
-    var groups = _.groupBy(productData, 'country', 'position');
+    var groups = _.groupBy(productData, 'country_uk', 'position');
 
     //exporters, sort, top5
     var exported = _.map(groups, function (value, key) {
         return {
-            target: key + "-",
+            target: key + " ",
             value: _.reduce(value, function (total, o) {
                 return total + o.Exported;
             }, 0),
-            source: "Ukraine",
+            source: "Україна",
             color: exColor
         };
     })
@@ -44,7 +44,7 @@ var drawSankey = function(data, selectedProduct, startYear, endYear) {
     //importers, sort, top5
     var imported = _.map(groups, function (value, key) {
         return {
-            target: "Ukraine",
+            target: "Україна",
             value: _.reduce(value, function (total, o) {
                 return total + o.Imported;
             }, 0),
@@ -91,8 +91,6 @@ var drawSankey = function(data, selectedProduct, startYear, endYear) {
     graphData.nodes.forEach(function (d, i) {
         graphData.nodes[i] = {"name": d};
     });
-
-    console.log(graphData);
 
     //малюємо
     d3.select('#sankey > svg').remove();
@@ -147,6 +145,7 @@ var drawSankey = function(data, selectedProduct, startYear, endYear) {
     link.append("title")
         .text(function(d) { return d.source.name + " → " + d.target.name + "\n" + format(d.value); });
 
+
     node = node
         .data(graphData.nodes)
         .enter().append("g");
@@ -165,10 +164,12 @@ var drawSankey = function(data, selectedProduct, startYear, endYear) {
         .attr("y", function(d) { return (d.y1 + d.y0) / 2; })
         .attr("dy", "0.35em")
         .attr("text-anchor", "end")
+        .style("font-size", "12px")
         .text(function(d) { return d.name; })
         .filter(function(d) { return d.x0 < width / 2; })
         .attr("x", function(d) { return d.x1 + 6; })
-        .attr("text-anchor", "start");
+        .attr("text-anchor", "start")
+        .style("font-size", "12px");
 
     node.append("title")
         .text(function(d) { return d.name + "\n" + format(d.value); });

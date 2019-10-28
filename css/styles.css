@@ -375,6 +375,14 @@ table td {
     table td {
       display: block; } }
 
+.examples {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: space-around; }
+  .examples img {
+    height: 500px; }
+
 #data-vis {
   position: relative;
   width: 96%;

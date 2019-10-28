@@ -14,8 +14,8 @@ function drawMap(geodata, container, key, colorShceme) {
         .translate([900 / 2, 550 / 2]);
 
 
-    var min = d3.min(geodata, function(d){return d.properties[key];}),
-            max= d3.max(geodata, function(d){return d.properties[key]});
+    var min = d3.min(geodata, function(d){return d.properties[key]; }),
+        max = d3.max(geodata, function(d){return d.properties[key]; });
 
     //console.log(max, max/1.5, max/2, max/4, max/6);
 

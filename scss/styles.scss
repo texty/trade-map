@@ -129,6 +129,21 @@ header {
  }
 
 
+
+
+ .examples {
+   width: 80%;
+   margin: auto;
+   display: flex;
+   justify-content: space-around;
+
+   img {
+     height: 500px;
+     //margin:auto;
+   }
+ }
+
+
   #data-vis {
     position: relative;
     width: 96%;
