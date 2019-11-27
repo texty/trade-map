@@ -29,7 +29,7 @@
     </div>
 
     <div>
-        <h2> Торгівля з Росією, 2002-2018</h2>
+        <h2 id="selected-country"> Торгівля з Росією, 2002-2018</h2>
 
         <div id="total-chart">
 
@@ -96,19 +96,27 @@
 <script>
     const exColor = "#c01788";
     const imColor = "rgb(24, 100, 170)";
+    var showExport = false;
+    var showImport = true;
 
     var consoleMe = function(e) {
         console.log(this.text)
     };
 
+    /* Показати імпорт */
     $("#show-import").on("click", function(d) {
+        showExport = false;
+        showImport = true;
         d3.selectAll(".svg-wrapper.Exported").style("display", "none");
         d3.selectAll(".svg-wrapper.Imported").style("display", "block");
         d3.select("#show-import").style("background-color", imColor).style("color", "white");
         d3.select("#show-export").style("background-color", "white").style("color", exColor);
     });
 
+    /* Показати експорт */
     $("#show-export").on("click", function(d) {
+        showExport = true;
+        showImport = false;
         d3.selectAll(".svg-wrapper.Imported").style("display", "none");
         d3.selectAll(".svg-wrapper.Exported").style("display", "block");
         d3.select("#show-export").style("background-color", exColor).style("color", "white");

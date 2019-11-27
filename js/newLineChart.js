@@ -24,7 +24,6 @@ function retrieve_chart_data(cb) {
 }
 
 retrieve_chart_data(function(myData){
-
     var eu__I = [];
     var eu__E = [];
     var ru__I = [];
@@ -42,45 +41,31 @@ retrieve_chart_data(function(myData){
         }
     });
 
-    var appendLi = function(dataset, container, country, type) {
-        d3.select(container)
-            .selectAll("li")
-            .data(dataset)
-            .enter()
-            .append("li")
-            .style("color", "grey")
-            .text(function(d) {
-                return d
-            })
-            .attr("country", country)
-            .attr("type", type)
-
-            .on("click", function (item) {
-                $(this).css("text-decoration", "underline");
-                var country = $(this).attr("country");
-                var type = $(this).attr("type");
-
-
-                // if($(this).hasClass("main")){
-                //     $("li").removeClass("clicked");
-                //     var classNumber = $(this).attr('class').split(/\s+/);
-                //     $("li.subgroup").css("display", "none");
-                //     $("li." + classNumber[1]).css("display", "block");
-                // }
-                //
-                // if(item.categoryNumber < 11) {
-                //     $(this).addClass("clicked");
-                // }
-
-                drawLines(myData, item, country, type);
-            });
-    };
+    // var appendLi = function(dataset, container, country, type) {
+    //     d3.select(container)
+    //         .selectAll("li")
+    //         .data(dataset)
+    //         .enter()
+    //         .append("li")
+    //         .style("color", "grey")
+    //         .text(function(d) {
+    //             return d
+    //         })
+    //         .attr("country", country)
+    //         .attr("type", type)
+    //
+    //         .on("click", function (item) {
+    //             $(this).css("text-decoration", "underline");
+    //             var country = $(this).attr("country");
+    //             var type = $(this).attr("type");
+    //             drawLines(myData, item, country, type);
+    //         });
+    // };
 
     //appendLi(eu__I, "#eu-i-items", "ЄС", "Imported");
     //appendLi(eu__E, "#eu-e-items", "ЄС", "Exported");
     //appendLi(ru__E, "#ru-e-items", "Росія", "Exported");
     //appendLi(ru__I, "#ru-i-items", "Росія", "Imported");
-    console.log(eu__I);
 
     ru__I.forEach(function(product){
         drawLines(myData, product, "Росія", "Imported");
@@ -91,7 +76,58 @@ retrieve_chart_data(function(myData){
         drawLines(myData, product, "Росія", "Exported");
     });
 
+    $("#show-eu").on("click", function(d) {
+        /* міняємо стиль кнопок */
+        //$("#show-eu").prependTo("#ru-eu");
+        d3.select("#show-ru").style("background-color", "white").style("color", "grey");
+        d3.select("#show-eu").style("background-color", "grey").style("color", "white");
+        d3.select("#selected-country").html("Торгівля з ЄС, 2002-2018");
 
+        /* малюємо графіки */
+        d3.selectAll(".svg-wrapper").remove();
+
+        eu__I.forEach(function(product){
+            drawLines(myData, product, "ЄС", "Imported");
+        });
+
+
+        eu__E.forEach(function(product){
+            drawLines(myData, product, "ЄС", "Exported");
+        });
+
+        if(showExport === true){
+            d3.selectAll(".svg-wrapper.Exported").style("display", "block");
+            d3.selectAll(".svg-wrapper.Imported").style("display", "none");
+        }
+
+
+    });
+
+    /* Показати Росію */
+    $("#show-ru").on("click", function(d) {
+        //$("#show-ru").prependTo("#ru-eu");
+        d3.select("#show-eu").style("background-color", "white").style("color", "grey");
+        d3.select("#show-ru").style("background-color", "grey").style("color", "white");
+        d3.select("#selected-country").html("Торгівля з Росією, 2002-2018")
+        
+        
+        d3.selectAll(".svg-wrapper").remove();
+        
+        ru__I.forEach(function(product){
+            drawLines(myData, product, "Росія", "Imported");
+        });
+
+
+        ru__E.forEach(function(product){
+            drawLines(myData, product, "Росія", "Exported");
+        });
+
+        if(showExport === true){
+            d3.selectAll(".svg-wrapper.Exported").style("display", "block");
+            d3.selectAll(".svg-wrapper.Imported").style("display", "none");
+        }
+    });
+    
 });
 
 
