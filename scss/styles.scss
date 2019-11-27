@@ -97,14 +97,21 @@ h2 {
 }
 
 #show-import {
+  cursor: pointer;
   background-color: $imColor;
   border: 1px solid $imColor;
   color: white;
 }
 
 #show-export {
+  cursor: pointer;
   border: 1px solid $exColor;
   color: $exColor;
+}
+
+#redraw {
+  cursor: pointer;
+  width: max-content;
 }
 
 
@@ -144,6 +151,9 @@ h2 {
   text-align: center;
 }
 
+.ghost {
+  display: none;
+}
 
 
 

@@ -347,13 +347,19 @@ h2 {
   display: inline-block; }
 
 #show-import {
+  cursor: pointer;
   background-color: #1864aa;
   border: 1px solid #1864aa;
   color: white; }
 
 #show-export {
+  cursor: pointer;
   border: 1px solid #c01788;
   color: #c01788; }
+
+#redraw {
+  cursor: pointer;
+  width: max-content; }
 
 /* графіки */
 .line-chart-container {
@@ -382,6 +388,9 @@ h2 {
 .svg-title {
   font-size: 13px;
   text-align: center; }
+
+.ghost {
+  display: none; }
 
 #scrolly {
   position: relative;
