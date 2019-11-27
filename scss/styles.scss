@@ -59,6 +59,9 @@ h2 {
 /* кнопки росія-єс*/
 #ru-eu {
   margin: 5px 10px;
+  height: max-content;
+  position: sticky;
+  top: 0;
 
   p {
     cursor: pointer;
@@ -124,7 +127,7 @@ h2 {
   grid-template-columns: 300px 4fr;
 }
 
-#total-chart {
+#general-chart {
   height: 200px;
 }
 

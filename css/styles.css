@@ -318,7 +318,10 @@ h2 {
 
 /* кнопки росія-єс*/
 #ru-eu {
-  margin: 5px 10px; }
+  margin: 5px 10px;
+  height: max-content;
+  position: sticky;
+  top: 0; }
   #ru-eu p {
     cursor: pointer;
     text-align: center;
@@ -368,7 +371,7 @@ h2 {
   display: grid;
   grid-template-columns: 300px 4fr; }
 
-#total-chart {
+#general-chart {
   height: 200px; }
 
 #line-chart {

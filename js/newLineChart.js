@@ -8,25 +8,6 @@ var margin = {top: 10, right: 20, bottom: 15, left: 20},
     height = 100 - margin.top - margin.bottom,
     rectWidth = 5;
 
-var chart_data;
-function retrieve_chart_data(cb) {
-    if (chart_data) return cb(chart_data);
-
-    return d3.csv("data/newLineChartData.csv", function(err, myData){
-        if (err) throw err;
-
-        myData.forEach(function (item) {
-            item.code = +item.code;
-            item.year = parseDate(item.year);
-            item.Exported = +item.Exported  || 0;
-            item.Imported = +item.Imported  || 0;
-        });
-
-        chart_data = myData;
-        if (cb) return cb(myData);
-        return;
-    })
-}
 
 retrieve_chart_data(function(myData){
     var ExpArr_ru = [];
@@ -55,11 +36,11 @@ retrieve_chart_data(function(myData){
 
     /* малюємо дефолтну Росія */
     _.uniq(ImpArr_ru, "product").forEach(function(d){
-        drawLines(myData, d.product, "Росія", "Imported", maxImp_ru);
+        drawMultiples(myData, d.product, "Росія", "Imported", maxImp_ru);
     });
 
     _.uniq(ExpArr_ru, "product").forEach(function(d){
-        drawLines(myData, d.product, "Росія", "Exported", maxExp_ru);
+        drawMultiples(myData, d.product, "Росія", "Exported", maxExp_ru);
     });
 
 
@@ -74,12 +55,14 @@ retrieve_chart_data(function(myData){
         d3.selectAll(".svg-wrapper").remove();
 
         _.uniq(ImpArr_eu, "product").forEach(function(d){
-            drawLines(myData, d.product, "ЄС", "Imported", maxImp_eu);
+            drawMultiples(myData, d.product, "ЄС", "Imported", maxImp_eu);
         });
 
         _.uniq(ExpArr_eu, "product").forEach(function(d){
-            drawLines(myData, d.product, "ЄС", "Exported", maxExp_eu);
+            drawMultiples(myData, d.product, "ЄС", "Exported", maxExp_eu);
         });
+
+        drawGeneral(myData, "ЄС");
 
         /* якщо вже обраний експорт, то його і показуємо */
         if(showExport === true){
@@ -98,12 +81,15 @@ retrieve_chart_data(function(myData){
         d3.selectAll(".svg-wrapper").remove();
 
         _.uniq(ImpArr_ru, "product").forEach(function(d){
-            drawLines(myData, d.product, "Росія", "Imported", maxImp_ru);
+            drawMultiples(myData, d.product, "Росія", "Imported", maxImp_ru);
         });
 
         _.uniq(ExpArr_ru, "product").forEach(function(d){
-            drawLines(myData, d.product, "Росія", "Exported", maxExp_ru);
+            drawMultiples(myData, d.product, "Росія", "Exported", maxExp_ru);
         });
+
+
+        drawGeneral(myData, "Росія");
 
         /* якщо вже обраний експорт, то його і показуємо */
         if(showExport === true){
@@ -111,13 +97,15 @@ retrieve_chart_data(function(myData){
             d3.selectAll(".svg-wrapper.Imported").style("display", "none");
         }
     });
+
+    drawGeneral(myData, "Росія")
     
 });
 
 
 
 
-var drawLines = function(data, key, country, type, maxRange) {
+var drawMultiples = function(data, key, country, type, maxRange) {
     //d3.select('#line-chart > svg').remove();
 
     var testData =  data
@@ -228,68 +216,12 @@ var drawLines = function(data, key, country, type, maxRange) {
         })
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    // ghost.append("text")
-    //     .attr("x", 0)
-    //     .attr("y", 0)
-    //     .text("млн $")
-    //     .style("font-size", '10px')
-    //     .style("fill", 'grey');
-
-
+   
     // Add the X Axis
     svg.append("g")
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(x));
 };
-
-
-// var reDraw = function() {
-//     $("svg").each(function(i){
-//         var currentChart = $("svg")[i];
-//         var currentChartDomain = $(currentChart).attr("data");
-//
-//         var y = d3.scaleLinear()
-//             .range([height, 0])
-//             .domain([0, currentChartDomain]);
-//
-//         /* Лінія експорту */
-//         var exportLine = d3.line()
-//             .x(function (d) {  return x(d.year); })
-//             .y(function (d) {  return y(d.Exported);  });
-//
-//
-//         /* Лінія імпорту */
-//         var importLine = d3.line()
-//             .x(function (d) { return x(d.year);  })
-//             .y(function (d) { return y(d.Imported); });
-//
-//
-//         var currentLine = $(currentChart.childNodes[0])
-//             .find("path");
-//
-//         if(showExport === true){
-//
-//             d3.select(currentLine[0])
-//                 .transition()
-//                 .duration(750)
-//                 .attr("d", exportLine);
-//
-//         } else if (showImport === true) {
-//             d3.select(currentLine[0])
-//                 .transition()
-//                 .duration(750)
-//                 .attr("d", importLine);
-//         }
-//
-//     });
-//
-// };
-//
-// $("#redraw").on("click", reDraw);
-
-
-
-
 
 
 

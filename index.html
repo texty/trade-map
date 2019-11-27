@@ -26,22 +26,21 @@
     <div id="ru-eu" class="buttons">
         <p id="show-ru">Росія</p>
         <p id="show-eu">Європейський Союз</p>
+        <p style="font-size:14px; color: grey; text-align: left; font-style: italic ">Під країнами ЄС за кожен рік рахувались ті країни, які входили до ЄС станом на поточний рік. Зростання торгівлі до ЄС на графіках частково повʼязано з цим, адже кількість країн - членів ЄС суттєво збільшилась протягом останніх 20 років </p>
     </div>
 
     <div>
         <h2 id="selected-country"> Торгівля з Росією, 2001-2018</h2>
 
-        <div id="total-chart">
+        <div id="general-chart">
 
         </div>
 
-        <h2> Топ-5 продуктів, 2002-2018</h2>
+        <h2> Топ-5 продуктів, 2001-2018</h2>
         <div class="buttons">
             <p id="show-import" class="switch-button">Імпорт</p>
             <p id="show-export" class="switch-button">Експорт</p>
-            <p style="font-size:14px; color: grey;">Наведіть на графік, щоб побачити динаміку без уніфікованої шкали, і значення (млн $)</p>
-            <!--<p id="redraw" class="switch-button">Прибрати уніфіковану шкалу</p>-->
-
+            <p style="font-size:14px; color: grey;">Наведіть на графік, щоб побачити динаміку без уніфікованої шкали і значення за 2001 та 2018 роки (млн $)</p>
         </div>
         <div id="line-chart"></div>
     </div>
@@ -51,6 +50,9 @@
 <div id="tip-chart">
 
 </div>
+
+
+
 <!--<svg id="export-map"></svg>-->
 
 
@@ -94,8 +96,7 @@
 <!--<script type="text/javascript" src="js/spark.js"></script>-->
 <!--<script type="text/javascript" src="js/script.js"></script>-->
 
-<!-- new version-->
-<script type="text/javascript" src="js/newLineChart.js"></script>
+
 
 <script>
     const exColor = "#c01788";
@@ -103,9 +104,26 @@
     var showExport = false;
     var showImport = true;
 
-    var consoleMe = function(e) {
-        console.log(this.text)
-    };
+
+    var chart_data;
+    function retrieve_chart_data(cb) {
+        if (chart_data) return cb(chart_data);
+
+        return d3.csv("data/newLineChartData.csv", function(err, myData){
+            if (err) throw err;
+
+            myData.forEach(function (item) {
+                item.code = +item.code;
+                item.year = parseDate(item.year);
+                item.Exported = +item.Exported  || 0;
+                item.Imported = +item.Imported  || 0;
+            });
+
+            chart_data = myData;
+            if (cb) return cb(myData);
+            return;
+        })
+    }
 
     /* Показати імпорт */
     $("#show-import").on("click", function(d) {
@@ -126,7 +144,14 @@
         d3.select("#show-export").style("background-color", exColor).style("color", "white");
         d3.select("#show-import").style("background-color", "white").style("color", imColor);
     });
+
+
 </script>
+
+<!-- new version-->
+<script type="text/javascript" src="js/newLineChart.js"></script>
+<script type="text/javascript" src="js/generalRuEuChart.js"></script>
+
 
 <script type="text/javascript">
     var _gaq = _gaq || [];
