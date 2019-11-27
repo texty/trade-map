@@ -3,6 +3,8 @@
 @import "header";
 @import "footer";
 
+$exColor: #c01788;
+$imColor: rgb(24, 100, 170);
 
 * {
   line-height: 1.6;
@@ -48,6 +50,139 @@ header {
     font-size: 30px;
   }
 }
+
+
+h2 {
+  font-weight: 400;
+}
+
+/* кнопки росія-єс*/
+#ru-eu {
+  margin: 5px 10px;
+
+  p {
+    cursor: pointer;
+    text-align: center;
+    width: 200px;
+    //margin: auto;
+    padding: 5px;
+    display: block;
+  }
+}
+
+#show-ru {
+  background-color: grey;
+  border: 2px solid grey;
+  color: white;
+}
+
+#show-eu {
+  border: 1px solid grey;
+  color: grey;
+}
+
+
+
+/* кнопки експорт-іпморт */
+.buttons {
+  margin: 5px auto;
+}
+
+.switch-button {
+  cursor: pointer;
+  text-align: center;
+  width: 100px;
+  padding: 5px;
+  display: inline-block;
+}
+
+#show-import {
+  background-color: $imColor;
+  border: 1px solid $imColor;
+  color: white;
+}
+
+#show-export {
+  border: 1px solid $exColor;
+  color: $exColor;
+}
+
+
+/* графіки */
+.line-chart-container {
+  width: 100%;
+  //max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 300px 4fr;
+}
+
+#total-chart {
+  height: 200px;
+}
+
+
+#line-chart {
+  height:max-content;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.svg-wrapper {
+  margin-right: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.svg-wrapper.Exported {
+  display: none;
+}
+
+.svg-title {
+  font-size: 13px;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   #scrolly {
     position: relative;

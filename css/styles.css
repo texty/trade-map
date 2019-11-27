@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* Smartphones (portrait and landscape) ----------- */
 /* Smartphones (landscape) ----------- */
 /* Smartphones (portrait) ----------- */
@@ -311,6 +312,76 @@ header {
     text-transform: uppercase;
     text-align: center;
     font-size: 30px; }
+
+h2 {
+  font-weight: 400; }
+
+/* кнопки росія-єс*/
+#ru-eu {
+  margin: 5px 10px; }
+  #ru-eu p {
+    cursor: pointer;
+    text-align: center;
+    width: 200px;
+    padding: 5px;
+    display: block; }
+
+#show-ru {
+  background-color: grey;
+  border: 2px solid grey;
+  color: white; }
+
+#show-eu {
+  border: 1px solid grey;
+  color: grey; }
+
+/* кнопки експорт-іпморт */
+.buttons {
+  margin: 5px auto; }
+
+.switch-button {
+  cursor: pointer;
+  text-align: center;
+  width: 100px;
+  padding: 5px;
+  display: inline-block; }
+
+#show-import {
+  background-color: #1864aa;
+  border: 1px solid #1864aa;
+  color: white; }
+
+#show-export {
+  border: 1px solid #c01788;
+  color: #c01788; }
+
+/* графіки */
+.line-chart-container {
+  width: 100%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 300px 4fr; }
+
+#total-chart {
+  height: 200px; }
+
+#line-chart {
+  height: max-content;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start; }
+
+.svg-wrapper {
+  margin-right: 50px;
+  display: flex;
+  flex-direction: column; }
+
+.svg-wrapper.Exported {
+  display: none; }
+
+.svg-title {
+  font-size: 13px;
+  text-align: center; }
 
 #scrolly {
   position: relative;

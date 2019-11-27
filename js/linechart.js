@@ -6,8 +6,7 @@ var drawLines = function(data, key) {
 
     d3.select('#line-chart > svg').remove();
 
-    var testData = 
-        data
+    var testData = data
         .filter(function (d) {
             return d.country === "World" && d.product === key;
         })
