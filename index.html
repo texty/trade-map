@@ -87,6 +87,8 @@
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 <!--<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>-->
 <script src="https://unpkg.com/tippy.js@3/dist/tippy.all.min.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+
 
 <!--<script src="lib/scrollama.min.js"></script>-->
 <!--<script src="lib/share-behavior.js"></script>-->
@@ -103,6 +105,9 @@
     const imColor = "rgb(24, 100, 170)";
     var showExport = false;
     var showImport = true;
+
+    var parseDate = d3.timeParse("%Y");
+    var bisectDate = d3.bisector(function(d) { return d.year; }).left;
 
 
     var chart_data;
@@ -149,6 +154,7 @@
 </script>
 
 <!-- new version-->
+
 <script type="text/javascript" src="js/newLineChart.js"></script>
 <script type="text/javascript" src="js/generalRuEuChart.js"></script>
 

@@ -1,12 +1,11 @@
 /**
  * Created by yevheniia on 18.11.19.
  */
-var parseDate = d3.timeParse("%Y");
-
 var margin = {top: 10, right: 20, bottom: 15, left: 20},
     width = 300 - margin.left - margin.right,
     height = 100 - margin.top - margin.bottom,
     rectWidth = 5;
+
 
 
 retrieve_chart_data(function(myData){
