@@ -1,32 +1,32 @@
 var parseDate = d3.timeParse("%d-%m-%Y");
 
-var chart_data;
+var chart2_data;
 function retrieve_chart_data(cb) {
-    if (chart_data) return cb(chart_data);
+    if (chart2_data) return cb(chart2_data);
 
-    return d3.csv("data/data.csv", function(err, myData){
+    return d3.csv("data/data.csv", function(err, myData2){
         if (err) throw err;
 
-        myData.forEach(function (item) {
+        myData2.forEach(function (item) {
             item.categotyNumber = +item.categotyNumber;
             item.year = parseDate(item.year);
             item.Exported = +item.Exported  || 0;
             item.Imported = +item.Imported  || 0;
         });
 
-        chart_data = myData;
-        if (cb) return cb(myData);
+        chart2_data = myData2;
+        if (cb) return cb(myData2);
         return;
     })
 }
 
-retrieve_chart_data(function(myData){
+retrieve_chart_data(function(myData2){
 
     var group = [];
     var subgroup = [];
 
 
-    var productsList = myData.map(function(item){
+    var productsList = myData2.map(function(item){
         return {
             "category": item.category,
             "categoryNumber": +item.categotyNumber,
@@ -74,94 +74,14 @@ retrieve_chart_data(function(myData){
                 $(this).addClass("clicked");
             }
             
-            drawLines(myData, item.product);
+            drawLines(myData2, item.product);
 
         });
-
 
     li.sort(function(a, b) { return a.sort - b.sort });
 
-    drawLines(myData, "72 Iron and steel");
+    drawLines(myData2, "72 Iron and steel");
 
 });
-
-
-
-
-//карти
-d3.json("data/trade-map.geojson",  function(topo) {
-    topo.features.forEach(function (d) {
-        d.properties["ua_exported_to"] = +d.properties["ua_exported_to"] || 0;
-        d.properties["ua_imported_from"] = +d.properties["ua_imported_from"] || 0;
-    });
-
-
-    drawMap(topo.features, "svg#import-map", "ua_01_18_imported_from", d3.schemePuBu);
-    drawMap(topo.features, "svg#export-map", "ua_01_18_exported_to", d3.schemeRdPu);
-
-    tippy('.tippy', {
-        delay: 0,
-        arrow: true,
-        arrowType: 'round',
-        size: 'small',
-        duration: 500
-    });
-
-    
-});
-
-
-//спарклайни
-d3.json("data/top_5.json", function(top) {
-
-    top.forEach(function(d){
-        d.data.forEach(function(nest){
-            nest.thous = +nest.thous;
-            nest.year = parseDate(nest.year);
-
-        })
-    });
-
-    var tBody = d3.select("#export-top")
-        .append("tbody");
-
-    var rows = tBody.selectAll('tr')
-        .data(top.filter(function(d){ return d.position === "exported"}))
-        .enter()
-        .append('tr');
-
-    rows.append('td')
-        .text(function (d) {
-            return d.product;
-        });
-    
-    rows.append('td')
-        .datum(function (d) {
-            return d.data;
-        })
-        .call(spark(exColor));
-
-
-    var tBody2 = d3.select("#import-top")
-        .append("tbody");
-
-    var rows2 = tBody2.selectAll('tr')
-        .data(top.filter(function(d){ return d.position === "imported"}))
-        .enter()
-        .append('tr');
-
-    rows2.append('td')
-        .text(function (d) {
-            return d.product;
-        });
-
-    rows2.append('td')
-        .datum(function (d) {
-            return d.data;
-        })
-        .call(spark(imColor));
-});
-
-
 
 

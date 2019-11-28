@@ -1,24 +1,22 @@
 
 
-var drawGeneral = function(data, country) {
+var drawLines = function(data, key) {
     
-    d3.select('#general-chart  > svg').remove();
+    d3.select('#line-chart2  > svg').remove();
 
-    var general_data  = data
-        .filter(function (d) {
-            return d.country === country && d.code === "TOTAL" && d.product === "All products";
+    var testData  = data.filter(function (d) {
+            // return d.countries === "World" && d.product === key;
+            return d.country === "World" && d.product === key;
         })
         .sort(function (a, b) { return b.year - a.year  });
     
-    console.log(general_data)
 
-     
     var margin = {top: 20, right: 100, bottom: 30, left: 80},
             width = 700 - margin.left - margin.right,
             height = 150 - margin.top - margin.bottom;
 
         //linechartTest
-    var svg = d3.select("#general-chart").append("svg")
+    var svg = d3.select("#line-chart2").append("svg")
             //.attr("width", width + margin.left + margin.right)
             //.attr("height", height + margin.top + margin.bottom)
             .attr( 'preserveAspectRatio',"xMinYMin meet")
@@ -32,12 +30,12 @@ var drawGeneral = function(data, country) {
     var y = d3.scaleLinear().range([height, 0]);
 
 
-    var redline = d3.line()
+    var line1 = d3.line()
         .x(function (d) { return x(d.year); })
         .y(function (d) { return y(d.Exported); });
 
     // define the 2nd line
-    var blueline = d3.line()
+    var line2 = d3.line()
         .x(function (d) { return x(d.year); })
         .y(function (d) { return y(d.Imported); });
 
@@ -49,16 +47,16 @@ var drawGeneral = function(data, country) {
     // Add the valueline path.
     svg.append("path")
         .data([testData])
-        .attr("class", "valueline1")
+        .attr("class", "redline")
         .style("stroke", "#c01788")
-        .attr("d", valueline);
+        .attr("d", line1);
 
     // Add the valueline2 path.
     svg.append("path")
         .data([testData])
-        .attr("class", "valueline2")
+        .attr("class", "blueline")
         .style("stroke", imColor)
-        .attr("d", valueline2);
+        .attr("d", line2);
 
     // Add the X Axis
     svg.append("g")
@@ -87,31 +85,31 @@ var drawGeneral = function(data, country) {
 
     d3.select("#linechart-title").text(key);
 
-   //  //brush
-   //  var brush = d3.brushX()
-   //      .extent([[0, height], [width, height + 100]])
-   //      .on("end", brushended);
-   //
-   // svg.append("g")
-   //      .attr('class', 'brush')
-   //      .call(brush)
-   //      .call(brush.move, [x(new Date(2014, 0, 1)), x(new Date(2018, 11, 31))]);
-   //
-   //
-   // function brushended() {
-   //     //if (!d3.event.sourceEvent) return; // Only transition after input.
-   //     if (!d3.event.selection) return; // Ignore empty selections.
-   //
-   //     var d0 = d3.event.selection.map(x.invert);
-   //    
-   //     var srartYear = Math.min(d0[0].getFullYear(), d0[1].getFullYear());
-   //     var endYear = Math.max(d0[0].getFullYear(), d0[1].getFullYear());
-   //
-   //     //console.log(srartYear);
-   //     //console.log(endYear);
-   //   
-   //     drawSankey(data, key, srartYear, endYear);
-   // }
+    //brush
+    var brush = d3.brushX()
+        .extent([[0, height], [width, height + 100]])
+        .on("end", brushended);
+
+   svg.append("g")
+        .attr('class', 'brush')
+        .call(brush)
+        .call(brush.move, [x(new Date(2014, 0, 1)), x(new Date(2018, 11, 31))]);
+
+
+   function brushended() {
+       //if (!d3.event.sourceEvent) return; // Only transition after input.
+       if (!d3.event.selection) return; // Ignore empty selections.
+
+       var d0 = d3.event.selection.map(x.invert);
+
+       var srartYear = Math.min(d0[0].getFullYear(), d0[1].getFullYear());
+       var endYear = Math.max(d0[0].getFullYear(), d0[1].getFullYear());
+
+       //console.log(srartYear);
+       //console.log(endYear);
+
+       drawSankey(data, key, srartYear, endYear);
+   }
 
 
   

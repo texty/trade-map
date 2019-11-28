@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- Links -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i|Roboto+Slab:300,400,700|Roboto:400,400i,500,500i,700,700i,900&display=swap&subset=cyrillic" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+
+
+</head>
+
+
+<body>
+
+    <section id="playground">
+        <div id="data-vis">
+            <ul id="my-list"></ul>
+
+            <div id="graphics">
+                <p id="linechart-title"></p>
+                <div id="line-chart2"></div>
+                <p style="font-size: 14px; text-align: center; margin:20px auto;">Графік вище показує динамікау експорту та імпорту з 2001 року.
+                <br><b>Сіра плашка під роками інтерактивна - її можна рухати і тягути праворуч-ліворуч.</b> <br>Встановіть потрібний період і подивіться, з якими країнами <br>ми торгували в обрані роки.
+                </p>
+
+                <p id="sankey-annotation"> У <span id="selected-years"></span> ми торгували з такими країнами:</p>
+                <div id="sankey"></div>
+
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript" src="lib/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="lib/d3.v4.js"></script>
+    <script src="lib/d3-sankey.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore.js"></script>
+    <!--<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>-->
+    <!--<script src="https://unpkg.com/tippy.js@3/dist/tippy.all.min.js"></script>-->
+    <script src="lib/d3.tip.v0.6.3.js"></script>
+
+
+
+
+    <script>
+        var parseDate = d3.timeParse("%Y");
+        const exColor = "#c01788";
+        const imColor = "rgb(24, 100, 170)";
+    </script>
+
+
+<script src="lib/share-behavior.js"></script>
+<script type="text/javascript" src="js/sankey.js"></script>
+<script type="text/javascript" src="js/linechart.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+
+
+
+</body>
+</html>

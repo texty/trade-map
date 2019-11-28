@@ -52,31 +52,22 @@
 </div>
 
 
-
-<!--<svg id="export-map"></svg>-->
-
-
-
-
 <!--<section id="playground">-->
-
     <!--<div id="data-vis">-->
         <!--<ul id="my-list"></ul>-->
 
         <!--<div id="graphics">-->
-
             <!--<p id="linechart-title"></p>-->
-            <!--<div id="line-chart"></div>-->
+            <!--<div id="line-chart2"></div>-->
             <!--<p style="font-size: 14px; text-align: center; margin:20px auto;">Графік вище показує динамікау експорту та імпорту з 2001 року.-->
                 <!--<br><b>Сіра плашка під роками інтерактивна - її можна рухати і тягути праворуч-ліворуч.</b> <br>Встановіть потрібний період і подивіться, з якими країнами <br>ми торгували в обрані роки.-->
-             <!--</p>-->
+            <!--</p>-->
 
             <!--<p id="sankey-annotation"> У <span id="selected-years"></span> ми торгували з такими країнами:</p>-->
             <!--<div id="sankey"></div>-->
 
         <!--</div>-->
     <!--</div>-->
-
 <!--</section>-->
 
 
@@ -88,15 +79,11 @@
 <!--<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>-->
 <script src="https://unpkg.com/tippy.js@3/dist/tippy.all.min.js"></script>
 <script src="lib/d3.tip.v0.6.3.js"></script>
+<script src="lib/share-behavior.js"></script>
 
 
-<!--<script src="lib/scrollama.min.js"></script>-->
-<!--<script src="lib/share-behavior.js"></script>-->
-<!--<script type="text/javascript" src="js/map.js"></script>-->
-<!--<script type="text/javascript" src="js/sankey.js"></script>-->
-<!--<script type="text/javascript" src="js/linechart.js"></script>-->
-<!--<script type="text/javascript" src="js/spark.js"></script>-->
-<!--<script type="text/javascript" src="js/script.js"></script>-->
+
+
 
 
 
@@ -106,7 +93,7 @@
     var showExport = false;
     var showImport = true;
 
-    var parseDate = d3.timeParse("%Y");
+    var parseYear = d3.timeParse("%Y");
     var bisectDate = d3.bisector(function(d) { return d.year; }).left;
 
 
@@ -119,7 +106,7 @@
 
             myData.forEach(function (item) {
                 item.code = +item.code;
-                item.year = parseDate(item.year);
+                item.year = parseYear(item.year);
                 item.Exported = +item.Exported  || 0;
                 item.Imported = +item.Imported  || 0;
             });
@@ -154,9 +141,15 @@
 </script>
 
 <!-- new version-->
-
+<!--<script src="lib/scrollama.min.js"></script>-->
 <script type="text/javascript" src="js/newLineChart.js"></script>
 <script type="text/javascript" src="js/generalRuEuChart.js"></script>
+<!--<script type="text/javascript" src="js/map.js"></script>-->
+<!--<script type="text/javascript" src="js/sankey.js"></script>-->
+<!--<script type="text/javascript" src="js/linechart.js"></script>-->
+<!--<script type="text/javascript" src="js/spark.js"></script>-->
+<!--<script type="text/javascript" src="js/script.js"></script>-->
+
 
 
 <script type="text/javascript">
