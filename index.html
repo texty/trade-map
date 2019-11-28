@@ -35,7 +35,8 @@
         <p id="show-all">Загалом</p>
         <p id="show-eu">Європейський Союз</p>
         <p id="show-ru">Росія</p>
-        <p style="font-size:14px; color: grey; text-align: left; font-style: italic ">Під країнами ЄС за кожен рік рахувались ті країни, які входили до ЄС станом на поточний рік. Зростання торгівлі до ЄС на графіках частково повʼязано з цим, адже кількість країн - членів ЄС суттєво збільшилась протягом останніх 20 років </p>
+
+        <p class="note" style="font-size:14px; color: grey; text-align: left; font-style: italic ">Під країнами ЄС за кожен рік рахувались ті країни, які входили до ЄС станом на поточний рік. Зростання торгівлі до ЄС на графіках частково повʼязано з цим, адже кількість країн - членів ЄС суттєво збільшилась протягом останніх 20 років </p>
     </div>
 
     <div>
@@ -49,7 +50,7 @@
         <div class="buttons">
             <p id="show-import" class="switch-button">Імпорт</p>
             <p id="show-export" class="switch-button">Експорт</p>
-            <p style="font-size:14px; color: grey;">Наведіть на графік, щоб побачити динаміку без уніфікованої шкали і значення за 2001 та 2018 роки (<b>млн $</b>)</p>
+            <p style="font-size:14px; color: grey;">Cіра пунктирна лінія показує динаміку без уніфікованої шкали і значення за 2001 та 2018 роки (<b>млн $</b>)</p>
         </div>
         <div id="line-chart"></div>
     </div>
@@ -57,11 +58,25 @@
 
 <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-<p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-<p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
 <div id="tip-chart"></div>
+
+
+<section id="cases-wrapper">
+    <div></div>
+    <div>
+        <h2>Цікаві випадки</h2>
+        <div class="buttons">
+            <p id="show-import-cases" class="switch-button">Імпорт</p>
+            <p id="show-export-cases" class="switch-button">Експорт</p>
+            <p style="font-size:14px; color: grey;">Cіра пунктирна лінія показує динаміку без уніфікованої шкали і значення за 2001 та 2018 роки (<b>млн $</b>)</p>
+        </div>
+        <div id="cases-chart"></div>
+    </div>
+
+</section>
+
+
+
 
 
 <!--<section id="playground">-->
@@ -133,8 +148,8 @@
     $("#show-import").on("click", function(d) {
         showExport = false;
         showImport = true;
-        d3.selectAll(".svg-wrapper.Exported").style("display", "none");
-        d3.selectAll(".svg-wrapper.Imported").style("display", "block");
+        d3.selectAll("#line-chart > .svg-wrapper.Exported").style("display", "none");
+        d3.selectAll("#line-chart >.svg-wrapper.Imported").style("display", "block");
         d3.select("#show-import").style("background-color", imColor).style("color", "white");
         d3.select("#show-export").style("background-color", "white").style("color", exColor);
     });
@@ -143,10 +158,25 @@
     $("#show-export").on("click", function(d) {
         showExport = true;
         showImport = false;
-        d3.selectAll(".svg-wrapper.Imported").style("display", "none");
-        d3.selectAll(".svg-wrapper.Exported").style("display", "block");
+        d3.selectAll("#line-chart >.svg-wrapper.Imported").style("display", "none");
+        d3.selectAll("#line-chart >.svg-wrapper.Exported").style("display", "block");
         d3.select("#show-export").style("background-color", exColor).style("color", "white");
         d3.select("#show-import").style("background-color", "white").style("color", imColor);
+    });
+
+    /* Показати експорт та імпорт у цікавих випадках*/
+    $("#show-export-cases").on("click", function(d) {
+        d3.selectAll("#cases-chart >.svg-wrapper.Imported").style("display", "none");
+        d3.selectAll("#cases-chart >.svg-wrapper.Exported").style("display", "block");
+        d3.select("#show-export-cases").style("background-color", exColor).style("color", "white");
+        d3.select("#show-import-cases").style("background-color", "white").style("color", imColor);
+    });
+
+    $("#show-import-cases").on("click", function(d) {
+        d3.selectAll("#cases-chart >.svg-wrapper.Imported").style("display", "block");
+        d3.selectAll("#cases-chart >.svg-wrapper.Exported").style("display", "none");
+        d3.select("#show-import-cases").style("background-color", imColor).style("color", "white");
+        d3.select("#show-export-cases").style("background-color", "white").style("color", exColor);
     });
 
 

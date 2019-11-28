@@ -15,6 +15,8 @@ retrieve_chart_data(function(myData){
     var ImpArr_eu = [];
     var ExpArr_all = [];
     var ImpArr_all = [];
+    var ExpArr_cases = [];
+    var ImpArr_cases = [];
 
     myData.forEach(function(d) {
         if(d.country === "Росія" && d.code != "TOTAL" && d.product != "All products" && d.Exported > 0 && d.Exported > d.Imported ){
@@ -29,6 +31,10 @@ retrieve_chart_data(function(myData){
             ImpArr_all.push(d)
         } else if (d.country === "all" && d.code != "TOTAL" && d.product != "All products" && d.Exported > 0 && d.Exported > d.Imported){
             ExpArr_all.push(d)
+        } else if (d.country === "cases" && d.Imported > 0 && d.Imported > d.Exported){
+            ImpArr_cases.push(d)
+        } else if (d.country === "cases" && d.Exported > 0 && d.Exported > d.Imported){
+            ExpArr_cases.push(d)
         }
     });
 
@@ -40,14 +46,27 @@ retrieve_chart_data(function(myData){
     var maxExp_all = d3.max(ExpArr_all, function(d) { return +d.Exported; } );
     var maxImp_all = d3.max(ImpArr_all, function(d) { return +d.Imported; } );
 
+    var maxExp_cases = d3.max(ExpArr_cases, function(d) { return +d.Exported; } );
+    var maxImp_cases = d3.max(ImpArr_cases, function(d) { return +d.Imported; } );
+
 
     /* малюємо дефолтнe ЗАГАЛОМ */
     _.uniq(ImpArr_all, "product").forEach(function(d){
-        drawMultiples(myData, d.product, "all", "Imported", maxImp_all);
+        drawMultiples(myData, d.product, "all", "Imported", maxImp_all, "#line-chart");
     });
 
     _.uniq(ExpArr_all, "product").forEach(function(d){
-        drawMultiples(myData, d.product, "all", "Exported", maxExp_all);
+        drawMultiples(myData, d.product, "all", "Exported", maxExp_all, "#line-chart");
+    });
+
+
+    /* малюємо дефолтні цікаві випадки */
+    _.uniq(ImpArr_cases, "product").forEach(function(d){
+        drawMultiples(myData, d.product, "cases", "Imported", maxImp_cases, "#cases-chart");
+    });
+
+    _.uniq(ExpArr_cases, "product").forEach(function(d){
+        drawMultiples(myData, d.product, "cases", "Exported", maxExp_cases, "#cases-chart");
     });
 
 
@@ -61,14 +80,14 @@ retrieve_chart_data(function(myData){
         d3.select("#selected-country").html("Торгівля зі світом, 2001-2018");
 
         /* малюємо графіки */
-        d3.selectAll(".svg-wrapper").remove();
+        d3.selectAll("#line-chart >.svg-wrapper").remove();
 
         _.uniq(ImpArr_all, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "all", "Imported", maxImp_all);
+            drawMultiples(myData, d.product, "all", "Imported", maxImp_all, "#line-chart");
         });
 
         _.uniq(ExpArr_all, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "all", "Exported", maxExp_all);
+            drawMultiples(myData, d.product, "all", "Exported", maxExp_all, "#line-chart");
         });
 
         drawGeneral(myData, "all");
@@ -89,14 +108,14 @@ retrieve_chart_data(function(myData){
         d3.select("#selected-country").html("Торгівля з ЄС, 2001-2018");
 
         /* малюємо графіки */
-        d3.selectAll(".svg-wrapper").remove();
+        d3.selectAll("#line-chart >.svg-wrapper").remove();
 
         _.uniq(ImpArr_eu, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "ЄС", "Imported", maxImp_eu);
+            drawMultiples(myData, d.product, "ЄС", "Imported", maxImp_eu, "#line-chart");
         });
 
         _.uniq(ExpArr_eu, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "ЄС", "Exported", maxExp_eu);
+            drawMultiples(myData, d.product, "ЄС", "Exported", maxExp_eu, "#line-chart");
         });
 
         drawGeneral(myData, "ЄС");
@@ -116,14 +135,14 @@ retrieve_chart_data(function(myData){
         d3.select("#show-ru").style("background-color", "grey").style("color", "white");
         d3.select("#selected-country").html("Торгівля з Росією, 2001-2018");
         
-        d3.selectAll(".svg-wrapper").remove();
+        d3.selectAll("#line-chart >.svg-wrapper").remove();
 
         _.uniq(ImpArr_ru, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "Росія", "Imported", maxImp_ru);
+            drawMultiples(myData, d.product, "Росія", "Imported", maxImp_ru, "#line-chart");
         });
 
         _.uniq(ExpArr_ru, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "Росія", "Exported", maxExp_ru);
+            drawMultiples(myData, d.product, "Росія", "Exported", maxExp_ru, "#line-chart");
         });
 
 
@@ -143,7 +162,7 @@ retrieve_chart_data(function(myData){
 
 
 
-var drawMultiples = function(data, key, country, type, maxRange) {
+var drawMultiples = function(data, key, country, type, maxRange, container) {
     //d3.select('#line-chart > svg').remove();
 
     var testData =  data
@@ -181,18 +200,19 @@ var drawMultiples = function(data, key, country, type, maxRange) {
         });
 
     //linechartTest
-    var svgContainer = d3.select("#line-chart")
+    var svgContainer = d3.select(container)
         .append("div")
         .attr("class", "svg-wrapper "+ type)
         .style("width", '300px')
         .style("height", '200px')
-        .on("mouseover", function(d) {
-            $('.ghost').css("display", "none");
-            $(this).find("svg").find('.ghost').css("display", "block")
-        })
-        .on("mouseleave", function(d) {
-            $('.ghost').css("display", "none");
-        });
+        // .on("mouseover", function(d) {
+        //     $('.ghost').css("display", "none");
+        //     $(this).find("svg").find('.ghost').css("display", "block")
+        // })
+        // .on("mouseleave", function(d) {
+        //     $('.ghost').css("display", "none");
+        // })
+        ;
 
 
     var svg = svgContainer.append("svg")
