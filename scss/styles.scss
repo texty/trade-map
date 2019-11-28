@@ -17,8 +17,6 @@ $imColor: rgb(24, 100, 170);
 body {
   margin: 0;
   padding: 0;
-  //font-family: 'Roboto', sans-serif;
-  //font-family: 'Open Sans', sans-serif;
   font-family: 'Roboto Slab', serif;
 
   color: #33302e;
@@ -73,13 +71,13 @@ h2 {
   }
 }
 
-#show-ru {
+#show-all {
   background-color: grey;
   border: 1px solid grey;
   color: white;
 }
 
-#show-eu {
+#show-eu, #show-ru {
   border: 1px solid grey;
   color: grey;
 }

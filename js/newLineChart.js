@@ -13,6 +13,8 @@ retrieve_chart_data(function(myData){
     var ImpArr_ru = [];
     var ExpArr_eu = [];
     var ImpArr_eu = [];
+    var ExpArr_all = [];
+    var ImpArr_all = [];
 
     myData.forEach(function(d) {
         if(d.country === "Росія" && d.code != "TOTAL" && d.product != "All products" && d.Exported > 0 && d.Exported > d.Imported ){
@@ -23,6 +25,10 @@ retrieve_chart_data(function(myData){
             ImpArr_eu.push(d)
         } else if (d.country === "ЄС" && d.code != "TOTAL" && d.product != "All products" && d.Exported > 0 && d.Exported > d.Imported){
             ExpArr_eu.push(d)
+        } else if (d.country === "all" && d.code != "TOTAL" && d.product != "All products" && d.Imported > 0 && d.Imported > d.Exported){
+            ImpArr_all.push(d)
+        } else if (d.country === "all" && d.code != "TOTAL" && d.product != "All products" && d.Exported > 0 && d.Exported > d.Imported){
+            ExpArr_all.push(d)
         }
     });
 
@@ -31,21 +37,53 @@ retrieve_chart_data(function(myData){
     var maxImp_ru = d3.max(ImpArr_ru, function(d) { return +d.Imported; } );
     var maxExp_eu = d3.max(ExpArr_eu, function(d) { return +d.Exported; } );
     var maxImp_eu = d3.max(ImpArr_eu, function(d) { return +d.Imported; } );
+    var maxExp_all = d3.max(ExpArr_all, function(d) { return +d.Exported; } );
+    var maxImp_all = d3.max(ImpArr_all, function(d) { return +d.Imported; } );
 
 
-    /* малюємо дефолтну Росія */
-    _.uniq(ImpArr_ru, "product").forEach(function(d){
-        drawMultiples(myData, d.product, "Росія", "Imported", maxImp_ru);
+    /* малюємо дефолтнe ЗАГАЛОМ */
+    _.uniq(ImpArr_all, "product").forEach(function(d){
+        drawMultiples(myData, d.product, "all", "Imported", maxImp_all);
     });
 
-    _.uniq(ExpArr_ru, "product").forEach(function(d){
-        drawMultiples(myData, d.product, "Росія", "Exported", maxExp_ru);
+    _.uniq(ExpArr_all, "product").forEach(function(d){
+        drawMultiples(myData, d.product, "all", "Exported", maxExp_all);
     });
 
 
     /* перемикач між країнами */
+    //Загалом
+    $("#show-all").on("click", function(d) {
+        /* міняємо стиль кнопок */
+        d3.select("#show-ru").style("background-color", "white").style("color", "grey");
+        d3.select("#show-eu").style("background-color", "white").style("color", "grey");
+        d3.select("#show-all").style("background-color", "grey").style("color", "white");
+        d3.select("#selected-country").html("Торгівля зі світом, 2001-2018");
+
+        /* малюємо графіки */
+        d3.selectAll(".svg-wrapper").remove();
+
+        _.uniq(ImpArr_all, "product").forEach(function(d){
+            drawMultiples(myData, d.product, "all", "Imported", maxImp_all);
+        });
+
+        _.uniq(ExpArr_all, "product").forEach(function(d){
+            drawMultiples(myData, d.product, "all", "Exported", maxExp_all);
+        });
+
+        drawGeneral(myData, "all");
+
+        /* якщо вже обраний експорт, то його і показуємо */
+        if(showExport === true){
+            d3.selectAll(".svg-wrapper.Exported").style("display", "block");
+            d3.selectAll(".svg-wrapper.Imported").style("display", "none");
+        }
+    });
+    
+    //Показати Європу
     $("#show-eu").on("click", function(d) {
         /* міняємо стиль кнопок */
+        d3.select("#show-all").style("background-color", "white").style("color", "grey");
         d3.select("#show-ru").style("background-color", "white").style("color", "grey");
         d3.select("#show-eu").style("background-color", "grey").style("color", "white");
         d3.select("#selected-country").html("Торгівля з ЄС, 2001-2018");
@@ -74,6 +112,7 @@ retrieve_chart_data(function(myData){
     /* Показати Росію */
     $("#show-ru").on("click", function(d) {
         d3.select("#show-eu").style("background-color", "white").style("color", "grey");
+        d3.select("#show-all").style("background-color", "white").style("color", "grey");
         d3.select("#show-ru").style("background-color", "grey").style("color", "white");
         d3.select("#selected-country").html("Торгівля з Росією, 2001-2018");
         
@@ -97,7 +136,7 @@ retrieve_chart_data(function(myData){
         }
     });
 
-    drawGeneral(myData, "Росія")
+    drawGeneral(myData, "all")
     
 });
 

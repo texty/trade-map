@@ -329,12 +329,12 @@ h2 {
     padding: 5px;
     display: block; }
 
-#show-ru {
+#show-all {
   background-color: grey;
   border: 1px solid grey;
   color: white; }
 
-#show-eu {
+#show-eu, #show-ru {
   border: 1px solid grey;
   color: grey; }
 
