@@ -36,14 +36,6 @@ p.text {
   }
 }
 
-//.text {
-//  width: 50%;
-//  margin: 20px auto;
-//  @media(max-width:800px) {
-//    width: 80%;
-//  }
-//}
-
 header {
   background: grey;
   display:flex;
@@ -62,14 +54,6 @@ header {
     font-size: 30px;
   }
 }
-
-
-//h2 {
-//  font-weight: 400;
-//  font-size: 19px;
-//}
-
-
 
 /* графіки */
 .line-chart-container, #cases-wrapper {
@@ -176,6 +160,7 @@ header {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
+  margin-bottom: 50px;
 
 }
 

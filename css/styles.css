@@ -394,7 +394,8 @@ header {
   height: max-content;
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start; }
+  align-items: flex-start;
+  margin-bottom: 50px; }
 
 .svg-wrapper {
   margin-right: 50px;

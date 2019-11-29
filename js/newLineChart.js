@@ -52,21 +52,21 @@ retrieve_chart_data(function(myData){
 
     /* малюємо дефолтнe ЗАГАЛОМ */
     _.uniq(ImpArr_all, "product").forEach(function(d){
-        drawMultiples(myData, d.product, "all", "Imported", maxImp_all, "#line-chart");
+        drawMultiples(myData, d.product_uk, "all", "Imported", maxImp_all, "#line-chart");
     });
 
     _.uniq(ExpArr_all, "product").forEach(function(d){
-        drawMultiples(myData, d.product, "all", "Exported", maxExp_all, "#line-chart");
+        drawMultiples(myData, d.product_uk, "all", "Exported", maxExp_all, "#line-chart");
     });
 
 
     /* малюємо дефолтні цікаві випадки */
     _.uniq(ImpArr_cases, "product").forEach(function(d){
-        drawMultiples(myData, d.product, "cases", "Imported", maxImp_cases, "#cases-chart");
+        drawMultiples(myData, d.product_uk, "cases", "Imported", maxImp_cases, "#cases-chart");
     });
 
     _.uniq(ExpArr_cases, "product").forEach(function(d){
-        drawMultiples(myData, d.product, "cases", "Exported", maxExp_cases, "#cases-chart");
+        drawMultiples(myData, d.product_uk, "cases", "Exported", maxExp_cases, "#cases-chart");
     });
 
 
@@ -83,11 +83,11 @@ retrieve_chart_data(function(myData){
         d3.selectAll("#line-chart >.svg-wrapper").remove();
 
         _.uniq(ImpArr_all, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "all", "Imported", maxImp_all, "#line-chart");
+            drawMultiples(myData, d.product_uk, "all", "Imported", maxImp_all, "#line-chart");
         });
 
         _.uniq(ExpArr_all, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "all", "Exported", maxExp_all, "#line-chart");
+            drawMultiples(myData, d.product_uk, "all", "Exported", maxExp_all, "#line-chart");
         });
 
         drawGeneral(myData, "all");
@@ -111,11 +111,11 @@ retrieve_chart_data(function(myData){
         d3.selectAll("#line-chart >.svg-wrapper").remove();
 
         _.uniq(ImpArr_eu, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "ЄС", "Imported", maxImp_eu, "#line-chart");
+            drawMultiples(myData, d.product_uk, "ЄС", "Imported", maxImp_eu, "#line-chart");
         });
 
         _.uniq(ExpArr_eu, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "ЄС", "Exported", maxExp_eu, "#line-chart");
+            drawMultiples(myData, d.product_uk, "ЄС", "Exported", maxExp_eu, "#line-chart");
         });
 
         drawGeneral(myData, "ЄС");
@@ -138,11 +138,11 @@ retrieve_chart_data(function(myData){
         d3.selectAll("#line-chart >.svg-wrapper").remove();
 
         _.uniq(ImpArr_ru, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "Росія", "Imported", maxImp_ru, "#line-chart");
+            drawMultiples(myData, d.product_uk, "Росія", "Imported", maxImp_ru, "#line-chart");
         });
 
         _.uniq(ExpArr_ru, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "Росія", "Exported", maxExp_ru, "#line-chart");
+            drawMultiples(myData, d.product_uk, "Росія", "Exported", maxExp_ru, "#line-chart");
         });
 
 
@@ -167,7 +167,7 @@ var drawMultiples = function(data, key, country, type, maxRange, container) {
 
     var testData =  data
         .filter(function (d) {
-            return d.country === country && d.product === key;
+            return d.country === country && d.product_uk === key;
         })
         .sort(function (a, b) {
             return b.year - a.year
