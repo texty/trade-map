@@ -354,7 +354,7 @@ header {
   border: 1px solid grey;
   color: white; }
 
-#show-eu, #show-ru {
+#show-eu, #show-ru, #show-usa, #show-asia, #show-africa {
   border: 1px solid grey;
   color: grey; }
 

@@ -9,7 +9,6 @@ var drawGeneral = function(data, country) {
         height = 150 - margin.top - margin.bottom;
 
     d3.select('#general-chart  > svg').remove();
-
     var general_data  = data.filter(function (d) {
             return d.country === country && d.product === "All products";
         })
