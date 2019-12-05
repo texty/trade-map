@@ -140,10 +140,16 @@ header {
 
 
 
-#general-chart {
+#general-charts {
   //height: 200px;
   width: 100%;
-  max-width: 700px;
+  //max-width: 700px;
+  display: flex;
+
+  .general-chart {
+    width: 30%;
+    margin-right: 5%;
+  }
 
 
   svg {
@@ -215,6 +221,8 @@ header {
   font-size: 18px;
   pointer-events: none;
 }
+
+
 
 
 

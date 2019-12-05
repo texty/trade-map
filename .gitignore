@@ -6,4 +6,5 @@
 *.sln
 *.sw?
 *.xml
-*.RData
+.RData
+.Rhistory

@@ -384,10 +384,13 @@ header {
   cursor: pointer;
   width: max-content; }
 
-#general-chart {
+#general-charts {
   width: 100%;
-  max-width: 700px; }
-  #general-chart svg text {
+  display: flex; }
+  #general-charts .general-chart {
+    width: 30%;
+    margin-right: 5%; }
+  #general-charts svg text {
     font-size: 13px; }
 
 #line-chart, #cases-chart {
