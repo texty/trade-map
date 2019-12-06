@@ -35,18 +35,18 @@
             <p id="show-import" class="switch-button">Імпорт</p>
             <p id="show-export" class="switch-button">Експорт</p>
         </div>
-        <p style="font-size:14px; color: grey;">Наведіть мишею на графік, аби подивитись на цифри</p>
+        <p style="font-size:14px; color: grey;">Наведіть мишею на графік, аби подивитись на цифри:</p>
 
     </div>
 
 
     <div id="ru-eu" class="buttons">
-        <p id="show-all">Загалом</p>
-        <p id="show-eu">Європейський Союз</p>
-        <p id="show-asia">Азія</p>
-        <p id="show-ru">Росія</p>
-        <p id="show-usa">США</p>
-        <p id="show-africa">Африка</p>
+        <p id="show-all" class="changeCountry">Загалом</p>
+        <p id="show-eu" class="changeCountry">Європейський Союз</p>
+        <p id="show-asia" class="changeCountry">Азія</p>
+        <p id="show-ru" class="changeCountry">Росія</p>
+        <p id="show-usa" class="changeCountry">США</p>
+        <p id="show-africa" class="changeCountry">Африка</p>
 
 
         <p class="note" style="font-size:14px; color: grey; text-align: left; font-style: italic ">Під країнами ЄС за кожен рік рахувались ті країни, які входили до ЄС станом на поточний рік. Зростання торгівлі до ЄС на графіках частково повʼязано з цим, адже кількість країн - членів ЄС суттєво збільшилась протягом останніх 20 років </p>
@@ -129,6 +129,9 @@
     const imColor = "rgb(24, 100, 170)";
     var showImport = true;
     var showExport = false;
+    var tradeColor = imColor;
+    var selectedType = 1;
+    var selectedCountry  = "загалом";
 
     var parseDate = d3.timeParse("%Y-%m");
     var monthNames = ["Січень", "Лютий ", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень"];
@@ -161,6 +164,8 @@
     $("#show-import").on("click", function(d) {
         showExport = false;
         showImport = true;
+        tradeColor = imColor;
+        selectedType = 1;
         d3.selectAll("#line-chart > .svg-wrapper.Exported").style("display", "none");
         d3.selectAll("#line-chart >.svg-wrapper.Imported").style("display", "block");
         d3.select("#show-import").style("background-color", imColor).style("color", "white");
@@ -171,6 +176,8 @@
     $("#show-export").on("click", function(d) {
         showExport = true;
         showImport = false;
+        tradeColor = exColor;
+        selectedType = 2;
         d3.selectAll("#line-chart >.svg-wrapper.Imported").style("display", "none");
         d3.selectAll("#line-chart >.svg-wrapper.Exported").style("display", "block");
         d3.select("#show-export").style("background-color", exColor).style("color", "white");
@@ -197,9 +204,9 @@
 
 <!-- new version-->
 <!--<script src="lib/scrollama.min.js"></script>-->
+<script type="text/javascript" src="js/comparable.js"></script>
 <script type="text/javascript" src="js/newLineChart.js"></script>
 <!--<script type="text/javascript" src="js/generalRuEuChart.js"></script>-->
-<script type="text/javascript" src="js/comparable.js"></script>
 
 <!--<script type="text/javascript" src="js/map.js"></script>-->
 <!--<script type="text/javascript" src="js/sankey.js"></script>-->

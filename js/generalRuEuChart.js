@@ -9,6 +9,7 @@ var drawGeneral = function(data, wrapper, selectedCountry, type) {
 
     d3.select(wrapper +' > svg').remove();
     
+    
     const general_data  = data
         .filter(function (d) {  return d.product === "All products"; })
         .sort(function (a, b) { return b.year - a.year  });

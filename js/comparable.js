@@ -3,6 +3,7 @@
  */
 var drawMain = function() {
     var glines;
+    var lines;
     var mouseG;
     var tooltip;
 
@@ -68,85 +69,50 @@ var drawMain = function() {
             .attr("transform", 'translate(0, ' + height + ')')
             .call(xAxis);
 
-    //         .call(g => {
-    //         var years = xScale.ticks(d3.timeYear.every(2));
-    //     var xshift = (width / (years.length)) / 4;
-    //     g.selectAll("text").attr("transform", `translate(${xshift}, 0)`) //shift tick labels to middle of interval
-    //         .style("text-anchor", "middle")
-    //         .attr("y", axisPad)
-    //         .attr('fill', '#A9A9A9');
-    //
-    //     g.selectAll("line")
-    //         .attr('stroke', '#A9A9A9');
-    //
-    //     g.select(".domain")
-    //         .attr('stroke', '#A9A9A9')
-    //
-    // })
-
-    //     svg.append("g")
-    //         .attr("class", "y axis")
-    //         .call(yAxis)
-    // //         .call(g => {
-    // //         g.selectAll("text")
-    // //         .style("text-anchor", "middle")
-    // //         .attr("x", -axisPad * 2)
-    // //         .attr('fill', '#A9A9A9');
-    // //
-    // //     g.selectAll("line")
-    // //         .attr('stroke', '#A9A9A9')
-    // //         .attr('stroke-width', 0.7) // make horizontal tick thinner and lighter so that line paths can stand out
-    // //         .attr('opacity', 0.3);
-    // //
-    // //     g.select(".domain").remove();
-    // //
-    // // })
-    //     .
-    //     append('text')
-    //         .attr('x', 50)
-    //         .attr("y", -10)
-    //         .attr("fill", "#A9A9A9")
-    //     //.text("Singapore Dollars")
-    //     ;
-
         var svgLegend = svg.append('g')
             .attr('class', 'gLegend')
             .attr("transform", "translate(" + (width + 20) + "," + 0 + ")");
 
-        var legend = svgLegend.selectAll('.legend')
-            .data(category)
-            .enter().append('g')
-            .attr("class", "legend")
-            .attr("transform", function (d, i) {
-                return "translate(0," + i * 20 + ")"
-            });
-
-        legend.append("circle")
-            .attr("class", "legend-node")
-            .attr("cx", 0)
-            .attr("cy", 0)
-            .attr("r", radius)
-            .style("fill", function(d) { return showImport ? colorBlue(d) : colorPink(d)});
-
-        legend.append("text")
-            .attr("class", "legend-text")
-            .attr("x", radius * 2)
-            .attr("y", radius / 2)
-            .style("fill", "#A9A9A9")
-            .style("font-size", 12)
-            .text(function(d) { return d });
+        // var legend = svgLegend.selectAll('.legend')
+        //     .data(category)
+        //     .enter().append('g')
+        //     .attr("class", "legend")
+        //     .attr("transform", function (d, i) {
+        //         return "translate(0," + i * 20 + ")"
+        //     });
+        //
+        // legend.append("circle")
+        //     .attr("class", "legend-node")
+        //     .attr("cx", 0)
+        //     .attr("cy", 0)
+        //     .attr("r", radius)
+        //     .style("fill", function(d) { return showImport ? colorBlue(d) : colorPink(d)});
+        //
+        // legend.append("text")
+        //     .attr("class", "legend-text")
+        //     .attr("x", radius * 2)
+        //     .attr("y", radius / 2)
+        //     .style("fill", "#A9A9A9")
+        //     .style("font-size", 12)
+        //     .text(function(d) { return d });
 
         var line = d3.line()
                 .x(function (d) { return  xScale(d.date) })
                 .y(function (d) { return yScale(d.value) });
 
         renderChart(1);
-        d3.selectAll("#show-export").on('click', function () { updateChart(2);  });
-        d3.selectAll("#show-import").on('click', function () { updateChart(1);  });
+
+        d3.selectAll("#show-export").on('click', function () { updateChart(selectedCountry, 2);  });
+        d3.selectAll("#show-import").on('click', function () { updateChart(selectedCountry, 1);  });
+
+        d3.selectAll(".changeCountry").on("click", function() {
+            updateChart(selectedCountry, selectedType)
+        });
 
 
 
-        function updateChart(type) {
+
+        function updateChart(selectedCountry, type) {
             var resNew = res.filter(function(d) { return d.type == parseInt(type); });
 
             var res_nested = d3.nest()
@@ -159,12 +125,24 @@ var drawMain = function() {
                 .attr('d', function (d) {
                     return line(d.values)
                 })
-                .style('stroke', function (d, i) { return showImport ? colorBlue(i) : colorPink(i)} );
+                // .style('stroke', function (d, i) { return showImport ? colorBlue(i) : colorPink(i)} );
+                .style('stroke', function (d, i) { return d.key === selectedCountry ? tradeColor : "lightgrey" });
+
+            glines.select('.data-circle')
+                .data(res_nested)
+                .transition()
+                .duration(750)
+                .attr("y", function(d, i) {
+                    console.log(d);
+                    return yScale(d.values[17].value);
+                })
+                .attr('fill', function (d, i) {
+                    return d.key === selectedCountry ? tradeColor : "lightgrey" });
 
 
-            legend.selectAll(".legend-node")
-                .transition().duration(750)
-                .style("fill", function (d) { return showImport ? colorBlue(d) : colorPink(d)});
+            // legend.selectAll(".legend-node")
+            //     .transition().duration(750)
+            //     .style("fill", function (d) { return showImport ? colorBlue(d) : colorPink(d)});
 
             mouseG.selectAll('.mouse-per-line')
                 .data(res_nested);
@@ -186,7 +164,7 @@ var drawMain = function() {
                 .key( function(d) { return d.country })
                 .entries(resNew);
 
-            var lines = svg.append('g')
+            lines = svg.append('g')
                 .attr('class', 'lines');
 
             glines = lines.selectAll('.line-group')
@@ -198,22 +176,37 @@ var drawMain = function() {
                 .append('path')
                 .attr('class', 'line')
                 .attr('d', function(d){ return line(d.values) })
-                .style('stroke', function (d, i) { return showImport ? colorBlue(i): colorPink(i) })
+                .style('stroke', function (d, i) { return d.key === selectedCountry ? tradeColor : "lightgrey" })
                 .style('fill', 'none')
                 .style('opacity', lineOpacity)
-                .style('stroke-width', lineStroke);
+                .style('stroke-width', function (d, i) { return d.key === selectedCountry ? 2 : 1 });
+
+
+            glines
+                .append("text")
+                .attr("class", "data-circle")
+                .attr("x", function(d, i) {
+                    return xScale(d.values[17].date) + 5;
+                })
+                .attr("y", function(d, i) {
+                    return yScale(d.values[17].value);
+                })
+                .attr('fill', function (d, i) {
+                    return d.key === selectedCountry ? tradeColor : "lightgrey" })
+                .text(function(d, i) {
+                    // if(d.key === selectedCountry){ return "$ " + Math.floor(d.values[17].value/1000) + " млн" }
+                     return d.key
+                });
+
+
+
+
+
 
 
             tooltip = d3.select("#general-chart").append("div")
                 .attr('id', 'tooltip')
-                .style('position', 'absolute')
-                .style("top", 0)
-                .style("left", 0)
-                .style("background-color", "grey")
-                .style("color", "white")
-                .style("font-size", "12px")
-                .style('padding', 6)
-                .style('display', 'none');
+                
 
             mouseG = svg.append("g")
                 .attr("class", "mouse-over-effects");
@@ -286,6 +279,7 @@ var drawMain = function() {
 
                 })
 
+
         }
         
         
@@ -319,11 +313,11 @@ var drawMain = function() {
                 .style('display', 'block')
                 .style('left', d3.event.pageX + 20 + "px")
                 .style('top', d3.event.pageY - 20 + "px")
-                .style('font-size', "14px")
+                .style('font-size', "12px")
                 .selectAll()
                 .data(res_nested1).enter() 
                 .append('div')
-                .style('font-size', "14px")
+                .style('font-size', "12px")
                 .html(function(d) {
                     var xDate = xScale.invert(mouse[0]);
                     var idx = bisect(d.values, xDate);
@@ -341,4 +335,4 @@ var formatter = new Intl.NumberFormat('en-US', {
     currency: 'USD'
 });
 
-drawMain();
+// drawMain("загалом");
