@@ -388,8 +388,7 @@ header {
 
 #general-chart {
   grid-column: 2/3;
-  width: 100%;
-  max-width: 700px; }
+  width: 70%; }
   #general-chart svg text {
     font-size: 13px; }
 

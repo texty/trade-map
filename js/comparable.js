@@ -40,8 +40,6 @@ var drawMain = function() {
             }
         });
 
-        console.log(res);
-
         var xScale = d3.scaleTime()
             .domain([new Date(2001, 0, 1), new Date(2018, 11, 31)])
             .range([0, width]);
@@ -198,12 +196,6 @@ var drawMain = function() {
                      return d.key
                 });
 
-
-
-
-
-
-
             tooltip = d3.select("#general-chart").append("div")
                 .attr('id', 'tooltip')
                 
@@ -281,6 +273,47 @@ var drawMain = function() {
 
 
         }
+
+
+        $(window).on("resize", function(){
+            var newContainer = $("#general-chart")[0].getBoundingClientRect();
+            var newWidth = newContainer.width;
+
+           svg.attr("width", newWidth + margin.left + margin.right);
+
+           var newX = d3.scaleTime()
+                .range([0, newWidth])
+                .domain([new Date(2001, 0, 1), new Date(2018, 11, 31)]);
+
+           var newLine = d3.line()
+                .x(function (d) { return  newX(d.date) })
+                .y(function (d) { return yScale(d.value) });
+
+            // var newRedline = d3.line()
+            //     .x(function (d) { return newX(d.year); })
+            //     .y(function (d) { return y(d.Exported); });
+            //
+            // // define the 2nd line
+            // var newBlueline = d3.line()
+            //     .x(function (d) { return newX(d.year); })
+            //     .y(function (d) { return y(d.Imported); });
+
+            svg.select(".x.axis")
+                .transition()
+                .duration(500)
+                .call(d3.axisBottom(newX));
+
+            svg.selectAll(".line")
+                .transition()
+                .duration(500)
+                .attr('d', function(d){ return newLine(d.values) });
+
+            svg.selectAll(".data-circle")
+                .transition()
+                .duration(500)
+                .attr("x", function(d) { return newX(d.values[17].date) + 5 })
+
+        });
         
         
         //tooltip, base code took from here: https://bl.ocks.org/dianaow/0da76b59a7dffe24abcfa55d5b9e163e
