@@ -8,9 +8,10 @@ var drawMain = function() {
     var tooltip;
 
     var container = $("#general-chart")[0].getBoundingClientRect();
+    console.log(container.width);
     
-    var margin = {top: 80, right: 200, bottom: 40, left: 0};
-    var width = container.width;
+    var margin = {top: 80, right: 100, bottom: 40, left: 0};
+    var width = container.width - margin.left - margin.right;
     var height = 300 - margin.top - margin.bottom;
 
     var lineOpacity = 1;
@@ -52,10 +53,11 @@ var drawMain = function() {
             .domain([0, d3.max(res, function (d) { return d.value })])
             .range([height, 0]);
 
-        var svg = d3.select("#general-chart").append("svg")
-            .attr("width", width + margin.left + margin.right)
+        var canvas = d3.select("#general-chart").append("svg")
+            .attr("width", "70%" + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
-            .append('g')
+
+        var svg = canvas.append('g')
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
@@ -117,11 +119,25 @@ var drawMain = function() {
                 .key( function(d) { return d.country })
                 .entries(resNew);
 
+            var newContainer = $("#general-chart")[0].getBoundingClientRect();
+            var newWidth = newContainer.width;
+
+            canvas.attr("width", newWidth + margin.left + margin.right);
+            svg.attr("width", newWidth + margin.left + margin.right);
+
+            var newX = d3.scaleTime()
+                .range([0, newWidth - margin.left - margin.right])
+                .domain([new Date(2001, 0, 1), new Date(2018, 11, 31)]);
+
+            var newLine = d3.line()
+                .x(function (d) { return  newX(d.date) })
+                .y(function (d) { return yScale(d.value) });
+
             glines.select('.line')
                 .data(res_nested)
                 .transition().duration(750)
                 .attr('d', function (d) {
-                    return line(d.values)
+                    return newLine(d.values)
                 })
                 // .style('stroke', function (d, i) { return showImport ? colorBlue(i) : colorPink(i)} );
                 .style('stroke', function (d, i) { return d.key === selectedCountry ? tradeColor : "lightgrey" });
@@ -279,10 +295,11 @@ var drawMain = function() {
             var newContainer = $("#general-chart")[0].getBoundingClientRect();
             var newWidth = newContainer.width;
 
+           canvas.attr("width", newWidth + margin.left + margin.right);
            svg.attr("width", newWidth + margin.left + margin.right);
 
            var newX = d3.scaleTime()
-                .range([0, newWidth])
+                .range([0, newWidth - margin.left - margin.right])
                 .domain([new Date(2001, 0, 1), new Date(2018, 11, 31)]);
 
            var newLine = d3.line()

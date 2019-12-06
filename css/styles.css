@@ -386,7 +386,10 @@ header {
 
 #general-chart {
   grid-column: 2/3;
-  width: 70%; }
+  width: calc(80% - 10%); }
+  @media (max-width: 800px) {
+    #general-chart {
+      width: calc(100% - 20%); } }
   #general-chart svg text {
     font-size: 13px; }
 
