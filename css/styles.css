@@ -384,14 +384,18 @@ header {
   cursor: pointer;
   width: max-content; }
 
-#general-charts {
+#general-chart {
+  grid-column: 2/3;
   width: 100%;
-  display: flex; }
-  #general-charts .general-chart {
-    width: 100%;
-    max-width: 700px; }
-  #general-charts svg text {
+  max-width: 700px; }
+  #general-chart svg text {
     font-size: 13px; }
+
+.buttons {
+  grid-row: 1/3; }
+
+#top5-wrapper {
+  grid-column: 2/3; }
 
 #line-chart, #cases-chart {
   height: max-content;

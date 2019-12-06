@@ -6,7 +6,7 @@ var drawMain = function() {
     var mouseG;
     var tooltip;
 
-    var container = $("#general-import")[0].getBoundingClientRect();
+    var container = $("#general-chart")[0].getBoundingClientRect();
     
     var margin = {top: 80, right: 200, bottom: 40, left: 0};
     var width = container.width;
@@ -53,7 +53,7 @@ var drawMain = function() {
             .domain([0, d3.max(res, function (d) { return d.value })])
             .range([height, 0]);
 
-        var svg = d3.select("#general-import").append("svg")
+        var svg = d3.select("#general-chart").append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append('g')
@@ -204,7 +204,7 @@ var drawMain = function() {
                 .style('stroke-width', lineStroke);
 
 
-            tooltip = d3.select("#general-import").append("div")
+            tooltip = d3.select("#general-chart").append("div")
                 .attr('id', 'tooltip')
                 .style('position', 'absolute')
                 .style("top", 0)
