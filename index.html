@@ -45,18 +45,19 @@
     <div>
         <h2 id="selected-country"> Торгівля зі світом, 2001-2018</h2>
 
+
         <div id="general-charts">
             <div id="general-import" class="general-chart"></div>
-            <div id="general-export" class="general-chart"></div>
+            <!--<div id="general-export" class="general-chart"></div>-->
         </div>
-
-
-        <h3> Топ-5 продуктів, 2001-2018</h3>
         <div class="buttons">
             <p id="show-import" class="switch-button">Імпорт</p>
             <p id="show-export" class="switch-button">Експорт</p>
-            <p style="font-size:14px; color: grey;">Cіра пунктирна лінія показує динаміку без уніфікованої шкали і значення за 2001 та 2018 роки (<b>млн $</b>)</p>
         </div>
+
+        <h3> Топ-5 продуктів, 2001-2018</h3>
+        <p style="font-size:14px; color: grey;">Cіра пунктирна лінія показує динаміку без уніфікованої шкали і значення за 2001 та 2018 роки (<b>млн $</b>)</p>
+
         <div id="line-chart"></div>
     </div>
 </section>
@@ -109,8 +110,11 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore.js"></script>
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 <!--<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>-->
-<script src="https://unpkg.com/tippy.js@3/dist/tippy.all.min.js"></script>
-<script src="lib/d3.tip.v0.6.3.js"></script>
+<!--<script src="https://unpkg.com/tippy.js@3/dist/tippy.all.min.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<!--<script src="lib/d3.tip.v0.6.3.js"></script>-->
 <script src="lib/share-behavior.js"></script>
 
 
@@ -122,11 +126,14 @@
 <script>
     const exColor = "#c01788";
     const imColor = "rgb(24, 100, 170)";
-    var showExport = false;
     var showImport = true;
+    var showExport = false;
+
+    var parseDate = d3.timeParse("%Y-%m");
+    var monthNames = ["Січень", "Лютий ", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень"];
 
     var parseYear = d3.timeParse("%Y");
-    var bisectDate = d3.bisector(function(d) { return d.year; }).left;
+    var bisect = d3.bisector(function(d) { return d.date; }).left;
 
 
     var chart_data;
@@ -190,7 +197,9 @@
 <!-- new version-->
 <!--<script src="lib/scrollama.min.js"></script>-->
 <script type="text/javascript" src="js/newLineChart.js"></script>
-<script type="text/javascript" src="js/generalRuEuChart.js"></script>
+<!--<script type="text/javascript" src="js/generalRuEuChart.js"></script>-->
+<script type="text/javascript" src="js/comparable.js"></script>
+
 <!--<script type="text/javascript" src="js/map.js"></script>-->
 <!--<script type="text/javascript" src="js/sankey.js"></script>-->
 <!--<script type="text/javascript" src="js/linechart.js"></script>-->

@@ -388,8 +388,8 @@ header {
   width: 100%;
   display: flex; }
   #general-charts .general-chart {
-    width: 30%;
-    margin-right: 5%; }
+    width: 100%;
+    max-width: 700px; }
   #general-charts svg text {
     font-size: 13px; }
 
@@ -636,5 +636,8 @@ path.line {
 
 .overlay {
   fill: transparent; }
+
+#tooltip {
+  padding: 5px; }
 
 /*# sourceMappingURL=styles.css.map */

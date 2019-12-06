@@ -1,6 +1,6 @@
 var drawGeneral = function(data, wrapper, selectedCountry, type) {
 
-    const countries = ["Росія", "ЄС", "Азія", "Африка", "США", "загалом"];
+    const countries = ["загалом", "ЄС", "Росія", "Азія", "Африка", "США"];
     var container = $(wrapper)[0].getBoundingClientRect();
 
     const margin = {top: 20, right: 60, bottom: 30, left: 0},
@@ -34,9 +34,9 @@ var drawGeneral = function(data, wrapper, selectedCountry, type) {
     var min = d3.min(general_data, function (d) { return Math.max(d[type]); }),
         max = d3.max(general_data, function (d) { return Math.max(d[type]); });
 
-    var colorImport = d3.scaleLinear()
-        .domain([min, max])
-        .range(["#a3c1dd", "#1864aa"]);
+    var colorImport = d3.scaleOrdinal()
+        .domain(countries)
+        .range(["#0c3255", "#165a99", "#4683bb", "#5d93c4", "#8cb2d5", "#a3c1dd"]);
 
     var colorExport = d3.scaleLinear()
         .domain([min, max])
@@ -82,11 +82,11 @@ var drawGeneral = function(data, wrapper, selectedCountry, type) {
             })
             .text(function(d) {
                 if(d.country === selectedCountry){ return "$ " + Math.floor(d[type]/1000) + " млн" }
-                else { return (d.country) }
+                // else { return (d.country) }
             })
             .style("font-weight", function(d) {
                 if(d.country === selectedCountry){ return "bold" }
-                else {  return "normal"  }
+                // else {  return "normal"  }
             });
 
     };

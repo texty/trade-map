@@ -115,8 +115,8 @@ retrieve_chart_data(function(myData){
             drawMultiples(myData, d.product, "загалом", "Exported", maxExp_all, "#line-chart");
         });
 
-        drawGeneral(myData, "#general-import", "загалом", "Imported");
-        drawGeneral(myData, "#general-export", "загалом", "Exported");
+        // drawGeneral(myData, "#general-import", "загалом", "Imported");
+        // drawGeneral(myData, "#general-export", "загалом", "Exported");
 
         /* якщо вже обраний експорт, то його і показуємо */
         if(showExport === true){
@@ -143,8 +143,8 @@ retrieve_chart_data(function(myData){
             drawMultiples(myData, d.product, "ЄС", "Exported", maxExp_eu, "#line-chart");
         });
 
-        drawGeneral(myData, "#general-import", "ЄС", "Imported");
-        drawGeneral(myData, "#general-export", "ЄС", "Exported");
+        // drawGeneral(myData, "#general-import", "ЄС", "Imported");
+        // drawGeneral(myData, "#general-export", "ЄС", "Exported");
 
 
         /* якщо вже обраний експорт, то його і показуємо */
@@ -172,8 +172,8 @@ retrieve_chart_data(function(myData){
         });
 
 
-        drawGeneral(myData, "#general-import", "Росія", "Imported");
-        drawGeneral(myData, "#general-export", "Росія", "Exported");
+        // drawGeneral(myData, "#general-import", "Росія", "Imported");
+        // drawGeneral(myData, "#general-export", "Росія", "Exported");
 
         /* якщо вже обраний експорт, то його і показуємо */
         if(showExport === true){
@@ -199,8 +199,8 @@ retrieve_chart_data(function(myData){
         });
 
 
-        drawGeneral(myData, "#general-import", "Азія", "Imported");
-        drawGeneral(myData, "#general-export", "Азія", "Exported");
+        // drawGeneral(myData, "#general-import", "Азія", "Imported");
+        // drawGeneral(myData, "#general-export", "Азія", "Exported");
 
 
         /* якщо вже обраний експорт, то його і показуємо */
@@ -225,8 +225,8 @@ retrieve_chart_data(function(myData){
             drawMultiples(myData, d.product, "Африка", "Exported", maxExp_africa, "#line-chart");
         });
 
-        drawGeneral(myData, "#general-import", "Африка", "Imported");
-        drawGeneral(myData, "#general-export", "Африка", "Exported");
+        // drawGeneral(myData, "#general-import", "Африка", "Imported");
+        // drawGeneral(myData, "#general-export", "Африка", "Exported");
 
         /* якщо вже обраний експорт, то його і показуємо */
         if(showExport === true){
@@ -250,8 +250,8 @@ retrieve_chart_data(function(myData){
             drawMultiples(myData, d.product, "США", "Exported", maxExp_usa, "#line-chart");
         });
 
-        drawGeneral(myData, "#general-import", "США", "Imported");
-        drawGeneral(myData, "#general-export", "США", "Exported");
+        // drawGeneral(myData, "#general-import", "США", "Imported");
+        // drawGeneral(myData, "#general-export", "США", "Exported");
 
 
         /* якщо вже обраний експорт, то його і показуємо */
@@ -261,8 +261,8 @@ retrieve_chart_data(function(myData){
         }
     });
 
-    drawGeneral(myData, "#general-import", "загалом", "Imported");
-    drawGeneral(myData, "#general-export", "загалом", "Exported");
+    // drawGeneral(myData, "#general-import", "загалом", "Imported");
+    // drawGeneral(myData, "#general-export", "загалом", "Exported");
     
 });
 
