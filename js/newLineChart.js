@@ -112,7 +112,7 @@ retrieve_chart_data(function(myData){
 
         });
 
-        d3.select("#selected-country").html("Торгівля" + targetArray[1].text +", 2001-2018");
+        d3.select("#selected-country").html("Торгівля " + targetArray[1].text +", 2001-2018");
 
         if(showExport === true){
             d3.selectAll(".svg-wrapper.Exported").style("display", "block");
