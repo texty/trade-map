@@ -162,13 +162,6 @@ header {
 
 #general-wrapper {
   grid-column: 2/3;
-
-  .buttons {
-    @media(max-width: 800px){
-      position: sticky;
-      top: 60px;
-    }
-  }
 }
 
 

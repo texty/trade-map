@@ -402,10 +402,6 @@ header {
 
 #general-wrapper {
   grid-column: 2/3; }
-  @media (max-width: 800px) {
-    #general-wrapper .buttons {
-      position: sticky;
-      top: 60px; } }
 
 #general-chart {
   grid-column: 2/3;
