@@ -245,6 +245,7 @@ var drawMain = function() {
             mouseG.append('svg:rect')
                 .attr('width', width)
                 .attr('height', height)
+                .attr("class", "rect")
                 .attr('fill', 'none')
                 .attr('pointer-events', 'all')
                 .on('mouseout', function () {
@@ -285,7 +286,7 @@ var drawMain = function() {
                             return "translate(" + xScale(d.values[idx].date) + "," + yScale(d.values[idx].value) + ")";
 
                         });
-                    updateTooltipContent(mouse, res_nested)
+                    updateTooltipContent(mouse, res_nested, xScale)
 
                 })
 
@@ -303,7 +304,7 @@ var drawMain = function() {
             var newContainer = $("#general-chart")[0].getBoundingClientRect();
 
 
-            canvas.attr("width", newContainer.width + margin.left + margin.right);
+            svg.attr("width", newContainer.width + margin.left + margin.right);
             canvas.attr("width", newContainer.width + margin.left + margin.right);
 
            var newX = d3.scaleTime()
@@ -327,18 +328,44 @@ var drawMain = function() {
             svg.selectAll(".data-circle")
                 .transition()
                 .duration(500)
-                .attr("x", function(d) { return newX(d.values[17].date) + 5 })
+                .attr("x", function(d) { return newX(d.values[17].date) + 5 });
 
-            //updateTooltipContent(mouse, res_nested)
+            svg.select('.rect')
+                .attr('width', newContainer.width - margin.left - margin.right)
+                // .on('mousemove', function () {
+                //     var mouse = d3.mouse(this);
 
+
+                .on('mousemove', function () {
+                    var mouse = d3.mouse(this);
+                    d3.selectAll(".mouse-per-line")
+                        .attr("transform", function (d, i) {
+                            var xDate = newX.invert(mouse[0]);
+                            var bisect = d3.bisector(function (d) {
+                                return d.date;
+                            }).left;
+                            var idx = bisect(d.values, xDate);
+
+                            d3.select(".mouse-line")
+                                .attr("d", function () {
+                                    var data = "M" + newX(d.values[idx].date) + "," + (height);
+                                    data += " " + newX(d.values[idx].date) + "," + 0;
+                                    return data;
+                                });
+                            return "translate(" + newX(d.values[idx].date) + "," + yScale(d.values[idx].value) + ")";
+
+                        });
+                    updateTooltipContent(mouse, res_nested, newX)
+
+                })
         });
         
         
         //tooltip, base code took from here: https://bl.ocks.org/dianaow/0da76b59a7dffe24abcfa55d5b9e163e
-        function updateTooltipContent(mouse, res_nested) {
+        function updateTooltipContent(mouse, res_nested, scale) {
             var sortingObj = [];
             res_nested.map(function(d) {
-                var xDate = xScale.invert(mouse[0]);
+                var xDate = scale.invert(mouse[0]);
                 var bisect = d3.bisector(function (d) {  return d.date;  }).left;
                 var idx = bisect(d.values, xDate);
                 sortingObj.push({
@@ -370,7 +397,7 @@ var drawMain = function() {
                 .append('div')
                 .style('font-size', "12px")
                 .html(function(d) {
-                    var xDate = xScale.invert(mouse[0]);
+                    var xDate = scale.invert(mouse[0]);
                     var idx = bisect(d.values, xDate);
                     return d.key + " " + ": $ " + ((d.values[idx].value * 1000)/ 1000000000).toFixed(1) + " млрд";
                 //return d.key + " " +  formatter.format(d.values[idx].value)
@@ -381,9 +408,3 @@ var drawMain = function() {
     })
 };
 
-var formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD'
-});
-
-// drawMain("загалом");
