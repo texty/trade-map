@@ -3,10 +3,7 @@
  */
 var margin = {top: 10, right: 20, bottom: 15, left: 20},
     width = 300 - margin.left - margin.right,
-    height = 100 - margin.top - margin.bottom,
-    rectWidth = 5;
-
-
+    height = 100 - margin.top - margin.bottom;
 
 retrieve_chart_data(function(myData){
     var ExpArr_ru = [];
@@ -57,24 +54,27 @@ retrieve_chart_data(function(myData){
         }
     });
 
-    /* знаходимо максимальні значення для кожного з чотирьох блоків */
-    var maxExp_ru = d3.max(ExpArr_ru, function(d) { return +d.Exported; } );
-    var maxImp_ru = d3.max(ImpArr_ru, function(d) { return +d.Imported; } );
-    var maxExp_eu = d3.max(ExpArr_eu, function(d) { return +d.Exported; } );
-    var maxImp_eu = d3.max(ImpArr_eu, function(d) { return +d.Imported; } );
+    // /* знаходимо максимальні значення для початкових  блоків */
     var maxExp_all = d3.max(ExpArr_all, function(d) { return +d.Exported; } );
     var maxImp_all = d3.max(ImpArr_all, function(d) { return +d.Imported; } );
-
     var maxExp_cases = d3.max(ExpArr_cases, function(d) { return +d.Exported; } );
     var maxImp_cases = d3.max(ImpArr_cases, function(d) { return +d.Imported; } );
 
-    var maxExp_asia = d3.max(ExpArr_asia, function(d) { return +d.Exported; } );
-    var maxImp_asia = d3.max(ImpArr_asia, function(d) { return +d.Imported; } );
-    var maxExp_africa = d3.max(ExpArr_africa, function(d) { return +d.Exported; } );
-    var maxImp_africa = d3.max(ImpArr_africa, function(d) { return +d.Imported; } );
-    var maxExp_usa = d3.max(ExpArr_usa, function(d) { return +d.Exported; } );
-    var maxImp_usa = d3.max(ImpArr_usa, function(d) { return +d.Imported; } );
 
+    const correspondings = [
+        {country: "загалом", type: "Imported", data: ImpArr_all, button: "show-all", text: "зі світом" },
+        {country: "загалом", type: "Exported", data: ExpArr_all, button: "show-all", text: "зі світом"  },
+        {country: "ЄС", type: "Imported", data: ImpArr_eu, button: "show-eu", text: "з Європейським Союзом"  },
+        {country: "ЄС", type: "Exported", data: ExpArr_eu, button: "show-eu", text: "з Європейським Союзом"  },
+        {country: "Росія", type: "Imported", data: ImpArr_ru, button: "show-ru", text: "з Росією"  },
+        {country: "Росія", type: "Exported", data: ExpArr_ru, button: "show-ru", text: "з Росією"  },
+        {country: "Азія", type: "Imported", data: ImpArr_asia, button: "show-asia", text: "з Азією"  },
+        {country: "Азія", type: "Exported", data: ExpArr_asia, button: "show-asia", text: "з Азією"  },
+        {country: "Африка", type: "Imported", data: ImpArr_africa, button: "show-africa", text: "з Африкою"  },
+        {country: "Африка", type: "Exported", data: ExpArr_africa, button: "show-africa", text: "з Африкою"  },
+        {country: "США", type: "Imported", data: ImpArr_usa, button: "show-usa", text: "із США"  },
+        {country: "США", type: "Exported", data: ExpArr_usa, button: "show-usa", text: "із США"  }
+    ];
 
     /* малюємо дефолтнe ЗАГАЛОМ */
     _.uniq(ImpArr_all, "product").forEach(function(d){
@@ -96,179 +96,53 @@ retrieve_chart_data(function(myData){
     });
 
 
-    /* перемикач між країнами */
-    //Загалом
-    $("#show-all").on("click", function(d) {
-        /* міняємо стиль кнопок */
-        d3.selectAll("#show-ru, #show-eu, #show-asia, #show-africa, #show-usa").style("background-color", "white").style("color", "grey");
-        d3.select("#show-all").style("background-color", "grey").style("color", "white");
-        d3.select("#selected-country").html("Торгівля зі світом, 2001-2018");
 
-        /* малюємо графіки */
+    $(".changeCountry").on("click", function(){
+        d3.selectAll(".changeCountry").style("background-color", "white").style("color", "grey");
+        d3.select(this).style("background-color", "grey").style("color", "white");
+        selectedCountry = $(this).attr("data");
+        var targetArray = correspondings.filter(function(d){ return d.country === selectedCountry });
+
         d3.selectAll("#line-chart >.svg-wrapper").remove();
 
-        _.uniq(ImpArr_all, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "загалом", "Imported", maxImp_all, "#line-chart");
+        targetArray.forEach(function(d){
+            _.uniq(d.data, "product").forEach(function(k){
+                drawMultiples(myData, k.product, k.country, d.type, d3.max(d.data, function(p) { return p[d.type];}), "#line-chart");
+            });
+
         });
 
-        _.uniq(ExpArr_all, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "загалом", "Exported", maxExp_all, "#line-chart");
-        });
-        
-        selectedCountry =  "загалом";
+        d3.select("#selected-country").html("Торгівля" + targetArray[1].text +", 2001-2018");
 
-        // drawGeneral(myData, "#general-import", "загалом", "Imported");
-        // drawGeneral(myData, "#general-export", "загалом", "Exported");
-
-        /* якщо вже обраний експорт, то його і показуємо */
         if(showExport === true){
             d3.selectAll(".svg-wrapper.Exported").style("display", "block");
             d3.selectAll(".svg-wrapper.Imported").style("display", "none");
         }
     });
     
-    //Показати Європу
-    $("#show-eu").on("click", function(d) {
-        /* міняємо стиль кнопок */
-        d3.selectAll("#show-ru, #show-all, #show-asia, #show-africa, #show-usa").style("background-color", "white").style("color", "grey");
-        d3.select("#show-eu").style("background-color", "grey").style("color", "white");
-        d3.select("#selected-country").html("Торгівля з ЄС, 2001-2018");
 
-        /* малюємо графіки */
+    $('select').on('change', function() {
+        selectedCountry = this.value;
         d3.selectAll("#line-chart >.svg-wrapper").remove();
+        var targetArray = correspondings.filter(function(d){ return d.country === selectedCountry });
 
-        _.uniq(ImpArr_eu, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "ЄС", "Imported", maxImp_eu, "#line-chart");
+        targetArray.forEach(function(d){
+            _.uniq(d.data, "product").forEach(function(k){
+                drawMultiples(myData, k.product, k.country, d.type, d3.max(d.data, function(p) { return p[d.type];}), "#line-chart");
+            });
+
         });
 
-        _.uniq(ExpArr_eu, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "ЄС", "Exported", maxExp_eu, "#line-chart");
-        });
+        d3.select("#selected-country").html("Торгівля" + targetArray[1].text +", 2001-2018");
 
-        selectedCountry =  "ЄС";
-        // drawGeneral(myData, "#general-import", "ЄС", "Imported");
-        // drawGeneral(myData, "#general-export", "ЄС", "Exported");
-
-
-        /* якщо вже обраний експорт, то його і показуємо */
         if(showExport === true){
             d3.selectAll(".svg-wrapper.Exported").style("display", "block");
             d3.selectAll(".svg-wrapper.Imported").style("display", "none");
         }
     });
 
-
-    /* Показати Росію */
-    $("#show-ru").on("click", function(d) {
-        d3.selectAll("#show-eu, #show-all, #show-asia, #show-africa, #show-usa").style("background-color", "white").style("color", "grey");
-        d3.select("#show-ru").style("background-color", "grey").style("color", "white");
-        d3.select("#selected-country").html("Торгівля з Росією, 2001-2018");
-        
-        d3.selectAll("#line-chart >.svg-wrapper").remove();
-
-        _.uniq(ImpArr_ru, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "Росія", "Imported", maxImp_ru, "#line-chart");
-        });
-
-        _.uniq(ExpArr_ru, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "Росія", "Exported", maxExp_ru, "#line-chart");
-        });
-
-        selectedCountry =  "Росія";
-        // drawGeneral(myData, "#general-import", "Росія", "Imported");
-        // drawGeneral(myData, "#general-export", "Росія", "Exported");
-
-        /* якщо вже обраний експорт, то його і показуємо */
-        if(showExport === true){
-            d3.selectAll(".svg-wrapper.Exported").style("display", "block");
-            d3.selectAll(".svg-wrapper.Imported").style("display", "none");
-        }
-    });
-
-
-    $("#show-asia").on("click", function(d) {
-        d3.selectAll("#show-eu, #show-all, #show-ru, #show-africa, #show-usa").style("background-color", "white").style("color", "grey");
-        d3.select("#show-asia").style("background-color", "grey").style("color", "white");
-        d3.select("#selected-country").html("Торгівля з Азією, 2001-2018");
-
-        d3.selectAll("#line-chart >.svg-wrapper").remove();
-
-        _.uniq(ImpArr_asia, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "Азія", "Imported", maxImp_asia, "#line-chart");
-        });
-
-        _.uniq(ExpArr_asia, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "Азія", "Exported", maxExp_asia, "#line-chart");
-        });
-
-        selectedCountry =  "Азія";
-        // drawGeneral(myData, "#general-import", "Азія", "Imported");
-        // drawGeneral(myData, "#general-export", "Азія", "Exported");
-
-
-        /* якщо вже обраний експорт, то його і показуємо */
-        if(showExport === true){
-            d3.selectAll(".svg-wrapper.Exported").style("display", "block");
-            d3.selectAll(".svg-wrapper.Imported").style("display", "none");
-        }
-    });
-
-    $("#show-africa").on("click", function(d) {
-        d3.selectAll("#show-eu, #show-all, #show-ru, #show-asia, #show-usa").style("background-color", "white").style("color", "grey");
-        d3.select("#show-africa").style("background-color", "grey").style("color", "white");
-        d3.select("#selected-country").html("Торгівля з Африкою, 2001-2018");
-
-        d3.selectAll("#line-chart >.svg-wrapper").remove();
-
-        _.uniq(ImpArr_africa, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "Африка", "Imported", maxImp_africa, "#line-chart");
-        });
-
-        _.uniq(ExpArr_africa, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "Африка", "Exported", maxExp_africa, "#line-chart");
-        });
-
-        selectedCountry =  "Африка";
-        // drawGeneral(myData, "#general-import", "Африка", "Imported");
-        // drawGeneral(myData, "#general-export", "Африка", "Exported");
-
-        /* якщо вже обраний експорт, то його і показуємо */
-        if(showExport === true){
-            d3.selectAll(".svg-wrapper.Exported").style("display", "block");
-            d3.selectAll(".svg-wrapper.Imported").style("display", "none");
-        }
-    });
-
-    $("#show-usa").on("click", function(d) {
-        d3.selectAll("#show-eu, #show-all, #show-ru, #show-asia, #show-africa").style("background-color", "white").style("color", "grey");
-        d3.select("#show-usa").style("background-color", "grey").style("color", "white");
-        d3.select("#selected-country").html("Торгівля із США, 2001-2018");
-
-        d3.selectAll("#line-chart >.svg-wrapper").remove();
-
-        _.uniq(ImpArr_usa, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "США", "Imported", maxImp_usa, "#line-chart");
-        });
-
-        _.uniq(ExpArr_usa, "product").forEach(function(d){
-            drawMultiples(myData, d.product, "США", "Exported", maxExp_usa, "#line-chart");
-        });
-
-        selectedCountry =  "США";
-        // drawGeneral(myData, "#general-import", "США", "Imported");
-        // drawGeneral(myData, "#general-export", "США", "Exported");
-
-
-        /* якщо вже обраний експорт, то його і показуємо */
-        if(showExport === true){
-            d3.selectAll(".svg-wrapper.Exported").style("display", "block");
-            d3.selectAll(".svg-wrapper.Imported").style("display", "none");
-        }
-    });
 
     drawMain();
-    // drawGeneral(myData, "#general-import", "загалом", "Imported");
-    // drawGeneral(myData, "#general-export", "загалом", "Exported");
     
 });
 
@@ -317,15 +191,7 @@ var drawMultiples = function(data, key, country, type, maxRange, container) {
         .append("div")
         .attr("class", "svg-wrapper "+ type)
         .style("width", '300px')
-        .style("height", '200px')
-        // .on("mouseover", function(d) {
-        //     $('.ghost').css("display", "none");
-        //     $(this).find("svg").find('.ghost').css("display", "block")
-        // })
-        // .on("mouseleave", function(d) {
-        //     $('.ghost').css("display", "none");
-        // })
-        ;
+        .style("height", '200px');
 
 
     var svg = svgContainer.append("svg")
@@ -334,7 +200,6 @@ var drawMultiples = function(data, key, country, type, maxRange, container) {
         .attr("data", maxDataValue)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
 
     svgContainer
         .append("div")
@@ -394,23 +259,3 @@ var drawMultiples = function(data, key, country, type, maxRange, container) {
         .call(d3.axisBottom(x));
 };
 
-
-
-
-// // Add the valueline2 path.
-// svg.append("path")
-//     .data([testData])
-//     .attr("class", "valueline2")
-//     .style("stroke", imColor)
-//     .attr("d", valueline2);
-
-// svg.selectAll("line-circle")
-//     .data(testData)
-//     .enter().append("rect")
-//     .attr("class", "data-circle")
-//     .attr("width", rectWidth)
-//     .attr("height", rectWidth)
-//     .style("margin-left", -2.5)
-//     .attr("x", function(d) { return x(d.year)  - rectWidth/2; })
-//     .attr("y", function(d) { return y(d[type]) - rectWidth/2; })
-//     .attr("fill", type === "Exported" ? exColor : imColor);

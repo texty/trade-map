@@ -8,11 +8,10 @@ var drawMain = function() {
     var tooltip;
 
     var container = $("#general-chart")[0].getBoundingClientRect();
-    console.log(container.width);
     
-    var margin = {top: 80, right: 100, bottom: 40, left: 0};
+    var margin = {top: 20, right: 100, bottom: 40, left: 0};
     var width = container.width - margin.left - margin.right;
-    var height = 300 - margin.top - margin.bottom;
+    var height = container.height - margin.top - margin.bottom;
 
     var lineOpacity = 1;
     var lineStroke = "2px";
@@ -54,7 +53,7 @@ var drawMain = function() {
             .range([height, 0]);
 
         var canvas = d3.select("#general-chart").append("svg")
-            .attr("width", "70%" + margin.left + margin.right)
+            .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
 
         var svg = canvas.append('g')
@@ -109,6 +108,11 @@ var drawMain = function() {
             updateChart(selectedCountry, selectedType)
         });
 
+        $('select').on('change', function() {
+            selectedCountry = this.value;
+            updateChart(selectedCountry, selectedType);
+        });
+
 
 
 
@@ -147,12 +151,10 @@ var drawMain = function() {
                 .transition()
                 .duration(750)
                 .attr("y", function(d, i) {
-                    console.log(d);
                     return yScale(d.values[17].value);
                 })
                 .attr('fill', function (d, i) {
                     return d.key === selectedCountry ? tradeColor : "lightgrey" });
-
 
             // legend.selectAll(".legend-node")
             //     .transition().duration(750)
@@ -213,7 +215,7 @@ var drawMain = function() {
                 });
 
             tooltip = d3.select("#general-chart").append("div")
-                .attr('id', 'tooltip')
+                .attr('id', 'tooltip');
                 
 
             mouseG = svg.append("g")
@@ -292,28 +294,25 @@ var drawMain = function() {
 
 
         $(window).on("resize", function(){
-            var newContainer = $("#general-chart")[0].getBoundingClientRect();
-            var newWidth = newContainer.width;
+            var resNew = res.filter(function(d) { return d.type == parseInt(selectedType); });
 
-           canvas.attr("width", newWidth + margin.left + margin.right);
-           svg.attr("width", newWidth + margin.left + margin.right);
+            var res_nested = d3.nest()
+                .key( function(d) { return d.country })
+                .entries(resNew);
+
+            var newContainer = $("#general-chart")[0].getBoundingClientRect();
+
+
+            canvas.attr("width", newContainer.width + margin.left + margin.right);
+            canvas.attr("width", newContainer.width + margin.left + margin.right);
 
            var newX = d3.scaleTime()
-                .range([0, newWidth - margin.left - margin.right])
+                .range([0, newContainer.width - margin.left - margin.right])
                 .domain([new Date(2001, 0, 1), new Date(2018, 11, 31)]);
 
            var newLine = d3.line()
                 .x(function (d) { return  newX(d.date) })
                 .y(function (d) { return yScale(d.value) });
-
-            // var newRedline = d3.line()
-            //     .x(function (d) { return newX(d.year); })
-            //     .y(function (d) { return y(d.Exported); });
-            //
-            // // define the 2nd line
-            // var newBlueline = d3.line()
-            //     .x(function (d) { return newX(d.year); })
-            //     .y(function (d) { return y(d.Imported); });
 
             svg.select(".x.axis")
                 .transition()
@@ -329,6 +328,8 @@ var drawMain = function() {
                 .transition()
                 .duration(500)
                 .attr("x", function(d) { return newX(d.values[17].date) + 5 })
+
+            //updateTooltipContent(mouse, res_nested)
 
         });
         

@@ -27,26 +27,42 @@
 
 
 <section class="line-chart-container">
-
-
-    <div id="general-chart">
+    <div id="sticky-content">
         <h2 id="selected-country"> Торгівля зі світом, 2001-2018</h2>
+        <select name="select">
+            <option value="загалом" selected>Загалом</option>
+            <option value="ЄС" >Європейський Союз</option>
+            <option value="Азія">Азія</option>
+            <option value="Росія">Росія</option>
+            <option value="США">США</option>
+            <option value="Африка">Африка</option>
+        </select>
+    </div>
+
+
+
+    <div id="general-wrapper">
         <div class="buttons">
             <p id="show-import" class="switch-button">Імпорт</p>
             <p id="show-export" class="switch-button">Експорт</p>
         </div>
         <p style="font-size:14px; color: grey;">Наведіть мишею на графік, аби подивитись на цифри:</p>
-
+        <div id="general-chart">  </div>
     </div>
 
 
+
+
+
+
+
     <div id="ru-eu" class="buttons">
-        <p id="show-all" class="changeCountry">Загалом</p>
-        <p id="show-eu" class="changeCountry">Європейський Союз</p>
-        <p id="show-asia" class="changeCountry">Азія</p>
-        <p id="show-ru" class="changeCountry">Росія</p>
-        <p id="show-usa" class="changeCountry">США</p>
-        <p id="show-africa" class="changeCountry">Африка</p>
+        <p id="show-all" class="changeCountry" data="загалом">Загалом</p>
+        <p id="show-eu" class="changeCountry" data="ЄС">Європейський Союз</p>
+        <p id="show-asia" class="changeCountry" data="Азія">Азія</p>
+        <p id="show-ru" class="changeCountry" data="Росія">Росія</p>
+        <p id="show-usa" class="changeCountry" data="США">США</p>
+        <p id="show-africa" class="changeCountry" data="Африка">Африка</p>
 
 
         <p class="note" style="font-size:14px; color: grey; text-align: left; font-style: italic ">Під країнами ЄС за кожен рік рахувались ті країни, які входили до ЄС станом на поточний рік. Зростання торгівлі до ЄС на графіках частково повʼязано з цим, адже кількість країн - членів ЄС суттєво збільшилась протягом останніх 20 років </p>
