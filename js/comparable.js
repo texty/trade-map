@@ -144,7 +144,8 @@ var drawMain = function() {
                     return newLine(d.values)
                 })
                 // .style('stroke', function (d, i) { return showImport ? colorBlue(i) : colorPink(i)} );
-                .style('stroke', function (d, i) { return d.key === selectedCountry ? tradeColor : "lightgrey" });
+                .style('stroke', function (d, i) { return d.key === selectedCountry ? tradeColor : "lightgrey" })
+                .style('stroke-width', function (d, i) { return d.key === selectedCountry ? 2 : 1 });
 
             glines.select('.data-circle')
                 .data(res_nested)
