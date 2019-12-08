@@ -170,7 +170,7 @@ var drawMain = function() {
 
             mouseG.on('mousemove', function () {
                 var mouse = d3.mouse(this);
-                updateTooltipContent(mouse, res_nested)
+                updateTooltipContent(mouse, res_nested, newX)
             })
         }
 
