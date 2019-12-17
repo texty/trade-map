@@ -42,10 +42,7 @@
 
 
     <div id="general-wrapper">
-        <div class="buttons">
-            <p id="show-import" class="switch-button">Імпорт</p>
-            <p id="show-export" class="switch-button">Експорт</p>
-        </div>
+
         <p style="font-size:14px; color: grey;">Наведіть мишею на графік, аби подивитись на цифри:</p>
         <div id="general-chart">  </div>
     </div>
@@ -72,6 +69,10 @@
     </div>
 
     <div id="top5-wrapper">
+        <div class="buttons">
+            <p id="show-import" class="switch-button">Імпорт</p>
+            <p id="show-export" class="switch-button">Експорт</p>
+        </div>
         <h3> Топ-5 продуктів, 2001-2018</h3>
         <p style="font-size:14px; color: grey;">Блакитна лінія дає змогу порівняти графіки між собою: максимальне значення на кожному графіку - це максимальне значення найвищого графіку. Cіра пунктирна лінія дає змогу розгледіти динаміку більш детально: максимальне значення на графіку - максимальне значення для цього конкретного продукту. (<b>млн $</b>)</p>
 
@@ -160,7 +161,7 @@
     function retrieve_chart_data(cb) {
         if (chart_data) return cb(chart_data);
 
-        return d3.csv("data/newLineChartData2.csv", function(err, myData){
+        return d3.csv("data/newLineChartData_temp_translate.csv", function(err, myData){
             if (err) throw err;
 
             myData.forEach(function (item) {
