@@ -29,7 +29,7 @@ body {
   }
 }
 
-p.text {
+p.text, h2 {
   width: 40%;
   margin: 20px auto;
   @media(max-width: 800px) {
