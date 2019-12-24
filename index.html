@@ -78,10 +78,12 @@
 
 
 
-        <h3> Топ-5 продуктів, 2001-2018</h3>
-        <p style="font-size:14px; color: grey;">Блакитна лінія дає змогу порівняти графіки між собою: максимальне значення на кожному графіку - це максимальне значення найвищого графіку. Cіра пунктирна лінія дає змогу розгледіти динаміку більш детально: максимальне значення на графіку - максимальне значення для цього конкретного продукту. (<b>млн $</b>)</p>
+        <h3> Топ продуктів експорту / імпорту, 2001-2018</h3>
 
-        <div id="line-chart"></div>
+        <div id="line-chart">
+            <div class="imported-top"></div>
+            <div class="exported-top"></div>
+        </div>
     </div>
 </section>
 
@@ -196,6 +198,8 @@
 
 <script type="text/javascript" src="lib/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="lib/d3.v4.js"></script>
+<script src="https://unpkg.com/popper.js@1"></script>
+<script src="https://unpkg.com/tippy.js@5"></script>
 <script src="lib/d3-sankey.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore.js"></script>
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>

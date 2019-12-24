@@ -451,13 +451,19 @@ select {
   grid-column: 2/3; }
 
 #line-chart, #cases-chart {
+  width: 100%;
   height: max-content;
   display: flex;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: flex-end;
   margin-bottom: 50px; }
 
+#line-chart {
+  margin-top: -100px; }
+
 .svg-wrapper {
+  margin-top: 50px;
   margin-right: 50px;
   display: flex;
   flex-direction: column; }
@@ -481,6 +487,16 @@ select {
   background-color: grey;
   color: white;
   font-size: 12px;
+  display: none; }
+
+g.tick > line {
+  stroke-width: 0.5px;
+  stroke: lighgrey; }
+
+g.tick > text {
+  fill: grey; }
+
+path.domain {
   display: none; }
 
 #scrolly {

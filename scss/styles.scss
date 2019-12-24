@@ -229,15 +229,26 @@ select {
 }
 
 #line-chart, #cases-chart {
+  width: 100%;
   height:max-content;
   display: flex;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: flex-end;
   margin-bottom: 50px;
 
+  //.imported-top, .exported-top {
+  //  display: flex;
+  //  align-items: flex-end;
+  //}
+}
+
+#line-chart {
+  margin-top: -100px;
 }
 
 .svg-wrapper {
+  margin-top: 50px;
   margin-right: 50px;
   display: flex;
   flex-direction: column;
@@ -274,6 +285,18 @@ select {
 }
 
 
+g.tick > line {
+  stroke-width: 0.5px;
+  stroke: lighgrey;
+}
+
+g.tick > text {
+  fill: grey;
+}
+
+path.domain {
+  display: none;
+}
 
 
 
