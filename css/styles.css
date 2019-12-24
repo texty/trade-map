@@ -325,7 +325,7 @@ header {
   width: 100%;
   margin: auto;
   display: grid;
-  grid-template-columns: 300px 4fr; }
+  grid-template-columns: 300px auto; }
   @media (max-width: 800px) {
     .line-chart-container, #cases-wrapper {
       display: block; } }
