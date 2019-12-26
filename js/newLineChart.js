@@ -57,6 +57,8 @@ retrieve_chart_data(function(myData){
     // /* знаходимо максимальні значення для початкових  блоків */
     var maxExp_all = d3.max(ExpArr_all, function(d) { return +d.Exported; } );
     var maxImp_all = d3.max(ImpArr_all, function(d) { return +d.Imported; } );
+    var maxExp_eu = d3.max(ExpArr_eu, function(d) { return +d.Exported; } );
+    var maxExp_ru = d3.max(ExpArr_ru, function(d) { return +d.Exported; } );
     var maxExp_cases = d3.max(ExpArr_cases, function(d) { return +d.Exported; } );
     var maxImp_cases = d3.max(ImpArr_cases, function(d) { return +d.Imported; } );
 
@@ -79,41 +81,77 @@ retrieve_chart_data(function(myData){
     /* малюємо дефолтнe ЗАГАЛОМ */
     _.uniq(ImpArr_all, "product").forEach(function(d){
         drawMultiples(myData, d.product, "загалом", "Imported", maxImp_all, "#line-chart");
-        // $(".svg-wrapper.Exported").appendTo(".exported-top");
-        // $(".svg-wrapper.Imported").appendTo(".imported-top");
+        drawMultiples(myData, d.product, "загалом", "Imported", maxImp_all, "#total-import-chart");
 
 
         $('#line-chart').find('.svg-wrapper.Imported').sort(function (a, b) {
             return $(b).attr('data') - $(a).attr('data');
         }).appendTo('#line-chart');
 
+        $('#total-import-chart').find('.svg-wrapper.Imported').sort(function (a, b) {
+            return $(b).attr('data') - $(a).attr('data');
+        }).appendTo('#total-import-chart');
+
     });
 
     _.uniq(ExpArr_all, "product").forEach(function(d){
         drawMultiples(myData, d.product, "загалом", "Exported", maxExp_all, "#line-chart");
+        drawMultiples(myData, d.product, "загалом", "Exported", maxExp_all, "#total-export-chart");
 
         $('#line-chart').find('.svg-wrapper.Exported').sort(function (a, b) {
             return $(b).attr('data') - $(a).attr('data');
         }).appendTo('#line-chart');
+
+        $('#total-export-chart').find('.svg-wrapper.Exported').sort(function (a, b) {
+            return $(b).attr('data') - $(a).attr('data');
+        }).appendTo('#total-export-chart');
     });
 
-
-    /* малюємо дефолтні цікаві випадки */
-    _.uniq(ImpArr_cases, "product").forEach(function(d){
-        drawMultiples(myData, d.product, "cases", "Imported", maxImp_cases, "#cases-chart");
-    });
-
-    $('#cases-chart').find('.svg-wrapper.Imported').sort(function (a, b) {
+    /*Євросоюз експорт*/
+    _.uniq(ExpArr_eu, "product").forEach(function(d){
+        drawMultiples(myData, d.product, "ЄС", "Exported", maxExp_eu, "#eu-export-chart");
+     });
+    $('#eu-export-chart').find('.svg-wrapper.Exported').sort(function (a, b) {
         return $(b).attr('data') - $(a).attr('data');
-    }).appendTo('#cases-chart');
+    }).appendTo('#eu-export-chart');
 
-    _.uniq(ExpArr_cases, "product").forEach(function(d){
-        drawMultiples(myData, d.product, "cases", "Exported", maxExp_cases, "#cases-chart");
+
+    /* Росія експорт*/
+    _.uniq(ExpArr_ru, "product").forEach(function(d){
+        drawMultiples(myData, d.product, "Росія", "Exported", maxExp_ru, "#ru-export-chart");
     });
-
-    $('#cases-chart').find('.svg-wrapper.Exported').sort(function (a, b) {
+    $('#ru-export-chart').find('.svg-wrapper.Exported').sort(function (a, b) {
         return $(b).attr('data') - $(a).attr('data');
-    }).appendTo('#cases-chart');
+    }).appendTo('#ru-export-chart');
+
+    /* цікаві випадки */
+    drawMultiples(myData, "Залізо і сталь", "загалом", "Exported", maxExp_all, "#total-iron-chart");
+    drawMultiples(myData, "Зернові", "загалом", "Exported", maxExp_all, "#total-ceresals-chart");
+    drawMultiples(myData, "Тваринні або рослинні жири і масла та продукти їх розщеплення; готові харчові жири; тваринні або рослинні воски", "загалом", "Exported", maxExp_all, "#total-fats");
+    drawMultiples(myData, "М'ясо і харчові субпродукти птахів виду Gallus Domesticus, качок, гусей, індиків та цесарок, свіжі, охолоджені або заморожені", "cases", "Exported", maxExp_cases, "#cases-meet");
+    drawMultiples(myData, "Натуральний мед", "cases", "Exported", maxExp_cases, "#cases-honey");
+    drawMultiples(myData, "Добрива", "Росія", "Imported", maxExp_cases, "#ru-fertilizers");
+    drawMultiples(myData, "Деревина та вироби з деревини; деревне вугілля", "cases", "Exported", maxExp_cases, "#cases-wood");
+    
+
+
+
+    // /* малюємо дефолтні цікаві випадки */
+    // _.uniq(ImpArr_cases, "product").forEach(function(d){
+    //     drawMultiples(myData, d.product, "cases", "Imported", maxImp_cases, "#cases-chart");
+    // });
+    //
+    // $('#cases-chart').find('.svg-wrapper.Imported').sort(function (a, b) {
+    //     return $(b).attr('data') - $(a).attr('data');
+    // }).appendTo('#cases-chart');
+    //
+    // _.uniq(ExpArr_cases, "product").forEach(function(d){
+    //     drawMultiples(myData, d.product, "cases", "Exported", maxExp_cases, "#cases-chart");
+    // });
+    //
+    // $('#cases-chart').find('.svg-wrapper.Exported').sort(function (a, b) {
+    //     return $(b).attr('data') - $(a).attr('data');
+    // }).appendTo('#cases-chart');
 
 
 
@@ -131,7 +169,6 @@ retrieve_chart_data(function(myData){
             _.uniq(d.data, "product").forEach(function(k){
                 drawMultiples(myData, k.product, k.country, d.type, d3.max(d.data, function(p) { return p[d.type];}), "#line-chart");
             });
-
         });
 
         $('#line-chart').find('.svg-wrapper.Imported').sort(function (a, b) {
@@ -160,7 +197,6 @@ retrieve_chart_data(function(myData){
             _.uniq(d.data, "product").forEach(function(k){
                 drawMultiples(myData, k.product, k.country, d.type, d3.max(d.data, function(p) { return p[d.type];}), "#line-chart");
             });
-
         });
 
         $('#line-chart').find('.svg-wrapper.Imported').sort(function (a, b) {
@@ -197,7 +233,6 @@ var drawMultiples = function(data, key, country, type, maxRange, container) {
             return b.year - a.year
         });
 
-    console.log(testData);
 
     /* максимальне значення саме цього графіку для перемальовки */
     var maxDataValue = d3.max(testData, function (d) { return Math.max(d[type]);  });

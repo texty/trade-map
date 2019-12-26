@@ -11,14 +11,12 @@
 }
 
 .logo {
+  margin-left: 10px;
   height:50px;
   width:200px;
   grid-column: 1/2;
   @media #{$large}{
-    width:250px;
-  }
-  @media #{$mobile} {
-    width:120px;
+    width:150px;
   }
 
   a {

@@ -19,9 +19,6 @@ body {
   width: 100%;
   max-width: 1600px;
   margin:auto;
-  //font-family: 'Source Sans Pro', sans-serif;
-  //font-family: 'Roboto', sans-serif;
-  //font-family: 'Open Sans', sans-serif;
   font-family: 'Noto Sans', sans-serif;
   color: #33302e;
   @media(max-width: 800px) {
@@ -29,7 +26,69 @@ body {
   }
 }
 
-p.text, h2 {
+header {
+  display:flex;
+  min-height: 200px;
+
+
+  h1 {
+    width: 40%;
+    margin: auto;
+    font-size: 55px;
+    @media(max-width: 800px) {
+      width: 96%;
+    }
+  }
+}
+
+/* графіка в середині тексту */
+#total-export-chart,
+#total-import-chart,
+#eu-export-chart,
+#ru-export-chart {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  //flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-around;
+  width: 80%;
+  margin: -100px auto 80px auto;
+  @media(max-width: 800px) {
+    width: 96%;
+  }
+
+  .svg-wrapper {
+    margin-bottom: 50px;
+  }
+
+  .svg-wrapper.Exported {
+    display: block !important;
+  }
+
+}
+
+/* поодинокі графічки */
+#total-iron-chart,
+#total-ceresals-chart,
+#total-fats,
+#cases-meet,
+#cases-honey,
+#ru-fertilizers,
+#cases-wood {
+  width: max-content;
+  margin: 0 auto 50px auto;
+
+  .svg-wrapper {
+    margin-top: 0;
+  }
+
+  .svg-wrapper.Exported {
+    display: block !important;
+  }
+
+}
+
+p.text, h2, h4 {
   width: 40%;
   margin: 20px auto;
   @media(max-width: 800px) {
@@ -38,29 +97,28 @@ p.text, h2 {
   }
 }
 
+h2 {
+  text-transform: uppercase;
+  margin-top: 100px;
+}
+
+h4 {
+  margin-top: 40px;
+  font-size: 20px;
+}
+
+.chart-title {
+  width: 300px;
+  margin: auto;
+  font-size: 14px;
+}
+
 .description-text {
   width: 80%;
   //margin: 20px auto;
 }
 
-header {
-  //background: grey;
-  display:flex;
-  min-height: 200px;
-  //color: white;
 
-  div {
-    margin: auto;
-  }
-
-
-  h1 {
-    margin: auto;
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 30px;
-  }
-}
 
 /* графіки */
 .line-chart-container, #cases-wrapper {
@@ -248,8 +306,7 @@ select {
 }
 
 .svg-wrapper {
-  margin-top: 50px;
-  margin-right: 50px;
+  margin: 50px;
   display: flex;
   flex-direction: column;
 }

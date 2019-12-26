@@ -17,9 +17,6 @@
     @media(max-width: 1024px) and (orientation: portrait) {
       font-size: 20px !important;
     }
-    @media(min-width:1800px){
-      font-size:30px;
-    }
   }
 }
 
@@ -40,10 +37,5 @@
   font-size:18px;
   margin:auto;
   cursor:pointer;
-  @media(max-width: 1024px) and (orientation: portrait) {
-    font-size: 20px !important;
-  }
-  @media(min-width:1800px){
-    font-size:30px;
-  }
+  letter-spacing: 1px;
 }
