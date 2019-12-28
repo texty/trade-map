@@ -54,7 +54,7 @@ var drawMain = function() {
 
         var canvas = d3.select("#general-chart").append("svg")
             .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
+            .attr("height", height + margin.top + margin.bottom);
 
         var svg = canvas.append('g')
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -290,8 +290,6 @@ var drawMain = function() {
                     updateTooltipContent(mouse, res_nested, xScale)
 
                 })
-
-
         }
 
 

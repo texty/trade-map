@@ -205,11 +205,19 @@ header {
         width: 96%;
         font-size: 40px; } }
 
+.png_pic {
+  display: block;
+  width: 40%;
+  margin: auto auto 80px auto; }
+  @media (max-width: 800px) {
+    .png_pic {
+      width: 96%; } }
+
 /* графіка в середині тексту */
-#total-export-chart,
-#total-import-chart,
-#eu-export-chart,
-#ru-export-chart {
+#total-export-top,
+#total-import-top,
+#eu-export-top,
+#ru-export-top {
   display: grid;
   grid-template-columns: repeat(auto-fit, 300px);
   align-items: flex-end;
@@ -217,20 +225,23 @@ header {
   width: 80%;
   margin: -100px auto 80px auto; }
   @media (max-width: 800px) {
-    #total-export-chart,
-    #total-import-chart,
-    #eu-export-chart,
-    #ru-export-chart {
+    #total-export-top,
+    #total-import-top,
+    #eu-export-top,
+    #ru-export-top {
       width: 96%; } }
-  #total-export-chart .svg-wrapper,
-  #total-import-chart .svg-wrapper,
-  #eu-export-chart .svg-wrapper,
-  #ru-export-chart .svg-wrapper {
+  #total-export-top .svg-wrapper,
+  #total-import-top .svg-wrapper,
+  #eu-export-top .svg-wrapper,
+  #ru-export-top .svg-wrapper {
     margin-bottom: 50px; }
-  #total-export-chart .svg-wrapper.Exported,
-  #total-import-chart .svg-wrapper.Exported,
-  #eu-export-chart .svg-wrapper.Exported,
-  #ru-export-chart .svg-wrapper.Exported {
+  #total-export-top .svg-wrapper.Exported, #total-export-top .svg-wrapper.Imported,
+  #total-import-top .svg-wrapper.Exported,
+  #total-import-top .svg-wrapper.Imported,
+  #eu-export-top .svg-wrapper.Exported,
+  #eu-export-top .svg-wrapper.Imported,
+  #ru-export-top .svg-wrapper.Exported,
+  #ru-export-top .svg-wrapper.Imported {
     display: block !important; }
 
 /* поодинокі графічки */
@@ -251,13 +262,19 @@ header {
   #ru-fertilizers .svg-wrapper,
   #cases-wood .svg-wrapper {
     margin-top: 0; }
-  #total-iron-chart .svg-wrapper.Exported,
+  #total-iron-chart .svg-wrapper.Exported, #total-iron-chart .svg-wrapper.Imported,
   #total-ceresals-chart .svg-wrapper.Exported,
+  #total-ceresals-chart .svg-wrapper.Imported,
   #total-fats .svg-wrapper.Exported,
+  #total-fats .svg-wrapper.Imported,
   #cases-meet .svg-wrapper.Exported,
+  #cases-meet .svg-wrapper.Imported,
   #cases-honey .svg-wrapper.Exported,
+  #cases-honey .svg-wrapper.Imported,
   #ru-fertilizers .svg-wrapper.Exported,
-  #cases-wood .svg-wrapper.Exported {
+  #ru-fertilizers .svg-wrapper.Imported,
+  #cases-wood .svg-wrapper.Exported,
+  #cases-wood .svg-wrapper.Imported {
     display: block !important; }
 
 p.text, h2, h4 {
@@ -278,7 +295,7 @@ h4 {
 
 .chart-title {
   width: 300px;
-  margin: auto;
+  margin: 50px auto auto auto;
   font-size: 14px; }
   @media (max-width: 800px) {
     .chart-title {
@@ -421,14 +438,14 @@ select {
 #line-chart, #cases-chart {
   width: 100%;
   height: max-content;
-  display: flex;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
   flex-wrap: wrap;
   align-items: flex-end;
   margin-bottom: 50px; }
 
 #line-chart {
-  margin-top: -100px; }
+  margin-top: -50px; }
 
 .svg-wrapper {
   margin: 50px auto 50px 0;

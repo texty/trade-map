@@ -81,48 +81,48 @@ retrieve_chart_data(function(myData){
     /* малюємо дефолтнe ЗАГАЛОМ */
     _.uniq(ImpArr_all, "product").forEach(function(d){
         drawMultiples(myData, d.product, "загалом", "Imported", maxImp_all, "#line-chart");
-        drawMultiples(myData, d.product, "загалом", "Imported", maxImp_all, "#total-import-chart");
+        drawMultiples(myData, d.product, "загалом", "Imported", maxImp_all, "#total-import-top");
 
 
         $('#line-chart').find('.svg-wrapper.Imported').sort(function (a, b) {
             return $(b).attr('data') - $(a).attr('data');
         }).appendTo('#line-chart');
 
-        $('#total-import-chart').find('.svg-wrapper.Imported').sort(function (a, b) {
+        $('#total-import-top').find('.svg-wrapper.Imported').sort(function (a, b) {
             return $(b).attr('data') - $(a).attr('data');
-        }).appendTo('#total-import-chart');
+        }).appendTo('#total-import-top');
 
     });
 
     _.uniq(ExpArr_all, "product").forEach(function(d){
         drawMultiples(myData, d.product, "загалом", "Exported", maxExp_all, "#line-chart");
-        drawMultiples(myData, d.product, "загалом", "Exported", maxExp_all, "#total-export-chart");
+        drawMultiples(myData, d.product, "загалом", "Exported", maxExp_all, "#total-export-top");
 
         $('#line-chart').find('.svg-wrapper.Exported').sort(function (a, b) {
             return $(b).attr('data') - $(a).attr('data');
         }).appendTo('#line-chart');
 
-        $('#total-export-chart').find('.svg-wrapper.Exported').sort(function (a, b) {
+        $('#total-export-top').find('.svg-wrapper.Exported').sort(function (a, b) {
             return $(b).attr('data') - $(a).attr('data');
-        }).appendTo('#total-export-chart');
+        }).appendTo('#total-export-top');
     });
 
     /*Євросоюз експорт*/
     _.uniq(ExpArr_eu, "product").forEach(function(d){
-        drawMultiples(myData, d.product, "ЄС", "Exported", maxExp_eu, "#eu-export-chart");
+        drawMultiples(myData, d.product, "ЄС", "Exported", maxExp_eu, "#eu-export-top");
      });
-    $('#eu-export-chart').find('.svg-wrapper.Exported').sort(function (a, b) {
+    $('#eu-export-top').find('.svg-wrapper.Exported').sort(function (a, b) {
         return $(b).attr('data') - $(a).attr('data');
-    }).appendTo('#eu-export-chart');
+    }).appendTo('#eu-export-top');
 
 
     /* Росія експорт*/
     _.uniq(ExpArr_ru, "product").forEach(function(d){
-        drawMultiples(myData, d.product, "Росія", "Exported", maxExp_ru, "#ru-export-chart");
+        drawMultiples(myData, d.product, "Росія", "Exported", maxExp_ru, "#ru-export-top");
     });
-    $('#ru-export-chart').find('.svg-wrapper.Exported').sort(function (a, b) {
+    $('#ru-export-top').find('.svg-wrapper.Exported').sort(function (a, b) {
         return $(b).attr('data') - $(a).attr('data');
-    }).appendTo('#ru-export-chart');
+    }).appendTo('#ru-export-top');
 
     /* цікаві випадки */
     drawMultiples(myData, "Залізо і сталь", "загалом", "Exported", maxExp_all, "#total-iron-chart");
@@ -132,8 +132,9 @@ retrieve_chart_data(function(myData){
     drawMultiples(myData, "Натуральний мед", "cases", "Exported", maxExp_cases, "#cases-honey");
     drawMultiples(myData, "Добрива", "Росія", "Imported", maxExp_cases, "#ru-fertilizers");
     drawMultiples(myData, "Деревина та вироби з деревини; деревне вугілля", "cases", "Exported", maxExp_cases, "#cases-wood");
-    
 
+    // drawEmbed("#total-export-chart", "Росія", "експорт");
+    // drawEmbed("#total-import-chart", "загалом", "імпорт");
 
 
     // /* малюємо дефолтні цікаві випадки */
@@ -223,7 +224,6 @@ retrieve_chart_data(function(myData){
 
 
 var drawMultiples = function(data, key, country, type, maxRange, container) {
-    //d3.select('#line-chart > svg').remove();
 
     var testData =  data
         .filter(function (d) {
@@ -244,7 +244,7 @@ var drawMultiples = function(data, key, country, type, maxRange, container) {
     var ySelf = d3.scaleLinear().range([height, 0]);
 
    // define the 1st line
-    var valueline = d3.line()
+    var valueline  = d3.line()
         .x(function (d) {
             return x(d.year);
         })
@@ -252,13 +252,22 @@ var drawMultiples = function(data, key, country, type, maxRange, container) {
             return y(d[type]);
         });
 
-    var selfline = d3.line()
+    var valuarea = d3.area()
         .x(function (d) {
             return x(d.year);
         })
-        .y(function (d) {
-            return ySelf(d[type]);
+        .y0(y(0))
+        .y1(function (d) {
+            return y(d[type]);
         });
+
+    // var selfline = d3.line()
+    //     .x(function (d) {
+    //         return x(d.year);
+    //     })
+    //     .y(function (d) {
+    //         return ySelf(d[type]);
+    //     });
 
     //linechartTest
     var svgContainer = d3.select(container)
@@ -305,9 +314,18 @@ var drawMultiples = function(data, key, country, type, maxRange, container) {
     // Єдина шкала
     svg.append("path")
         .data([testData])
+        .attr("class", "valuarea")
+        .style("fill", type === "Exported" ? exColor : imColor)
+        .style("stroke", "none")
+        .attr("d", valuarea)
+        .style("fill-opacity", 0.5);
+
+    svg.append("path")
+        .data([testData])
         .attr("class", "valueline1")
         .style("stroke", type === "Exported" ? exColor : imColor)
         .attr("d", valueline);
+
 
     //Персональна шкала
     // ghost.append("path")
@@ -327,10 +345,10 @@ var drawMultiples = function(data, key, country, type, maxRange, container) {
         .filter(function(d, i) { return i === 0 || i === (testData.length - 1) })
         .classed('label', true)
         .attr('x', function(d) {
-                return x(d.year) - 15;
+                return x(d.year) - 30;
             })
         .attr("y", function(d) {
-                return y(d[type]) - 10;
+                return y(d[type]) - 20;
 
         })
         .style("font-size", '10px')

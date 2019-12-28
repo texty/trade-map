@@ -44,11 +44,29 @@ header {
   }
 }
 
+#total-export-chart, #total-import-chart {
+
+
+  @media(max-width: 800px) {
+  }
+}
+
+.png_pic {
+  display: block;
+  width: 40%;
+  margin: auto auto 80px auto;
+  //height: 400px;
+
+  @media(max-width: 800px) {
+    width: 96%;
+  }
+}
+
 /* графіка в середині тексту */
-#total-export-chart,
-#total-import-chart,
-#eu-export-chart,
-#ru-export-chart {
+#total-export-top,
+#total-import-top,
+#eu-export-top,
+#ru-export-top {
   display: grid;
   grid-template-columns: repeat(auto-fit, 300px);
   //flex-wrap: wrap;
@@ -64,7 +82,7 @@ header {
     margin-bottom: 50px;
   }
 
-  .svg-wrapper.Exported {
+  .svg-wrapper.Exported, .svg-wrapper.Imported{
     display: block !important;
   }
 
@@ -85,7 +103,7 @@ header {
     margin-top: 0;
   }
 
-  .svg-wrapper.Exported {
+  .svg-wrapper.Exported, .svg-wrapper.Imported {
     display: block !important;
   }
 
@@ -112,7 +130,7 @@ h4 {
 
 .chart-title {
   width: 300px;
-  margin: auto;
+  margin: 50px auto auto auto;
   font-size: 14px;
   @media(max-width: 800px) {
     width: max-content;
@@ -293,15 +311,17 @@ select {
 #line-chart, #cases-chart {
   width: 100%;
   height:max-content;
-  display: flex;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  //display: flex;
+  //justify-content: flex-start;
   flex-wrap: wrap;
   align-items: flex-end;
   margin-bottom: 50px;
 }
 
 #line-chart {
-  margin-top: -100px;
+  margin-top: -50px;
 }
 
 .svg-wrapper {
