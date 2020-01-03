@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="926.02362"
+   height="552.8819"
+   viewBox="0 0 245.0099 146.28304"
+   version="1.1"
+   id="svg8"
+   inkscape:export-filename="/home/yevheniia/git/import-export/img/ru_export.png"
+   inkscape:export-xdpi="169.39717"
+   inkscape:export-ydpi="169.39717"
+   inkscape:version="0.92.4 (unknown)"
+   sodipodi:docname="ru-export.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.70000001"
+     inkscape:cx="126.44851"
+     inkscape:cy="-10.863498"
+     inkscape:document-units="mm"
+     inkscape:current-layer="g7416"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1859"
+     inkscape:window-height="1056"
+     inkscape:window-x="61"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-150.71755)">
+    <g
+       id="g5123"
+       width="740"
+       transform="matrix(0.37738042,0,0,0.37738042,2.5044076,149.70944)">
+      <g
+         id="g5053"
+         transform="translate(378)"
+         class="gLegend" />
+      <g
+         transform="matrix(1.0188042,0,0,1.0188042,1.9352171,4.0063176)"
+         id="g6433">
+        <g
+           class="gLegend"
+           transform="translate(560)"
+           id="g6363" />
+        <g
+           id="g7416"
+           transform="matrix(1.2538848,0,0,1.2538848,-161.81179,-91.919074)">
+          <g
+             id="g7344"
+             style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;fill:none"
+             font-size="10"
+             transform="matrix(0.79431332,0,0,0.85477313,134.42692,340)"
+             class="x axis">
+            <path
+               id="path7288"
+               style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;display:none;fill:none;stroke:#000000"
+               d="M 0.5,6 V 0.5 h 540 V 6"
+               class="domain"
+               inkscape:connector-curvature="0" />
+            <g
+               id="g7294"
+               style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;opacity:1;fill:none"
+               transform="translate(30.486308)"
+               class="tick">
+              <line
+                 id="line7290"
+                 style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.5px"
+                 y2="6"
+                 x1="0"
+                 y1="0"
+                 x2="0" />
+              <text
+                 id="text7292"
+                 style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;white-space:nowrap;display:block;fill:#808080"
+                 dy="0.70999998em"
+                 y="9">2002</text>
+            </g>
+            <g
+               id="g7300"
+               style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;opacity:1;fill:none"
+               transform="translate(90.458923)"
+               class="tick">
+              <line
+                 id="line7296"
+                 style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.5px"
+                 y2="6"
+                 x1="0"
+                 y1="0"
+                 x2="0" />
+              <text
+                 id="text7298"
+                 style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;white-space:nowrap;display:block;fill:#808080"
+                 dy="0.70999998em"
+                 y="9">2004</text>
+            </g>
+            <g
+               id="g7306"
+               style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;opacity:1;fill:none"
+               transform="translate(150.51369)"
+               class="tick">
+              <line
+                 id="line7302"
+                 style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.5px"
+                 y2="6"
+                 x1="0"
+                 y1="0"
+                 x2="0" />
+              <text
+                 id="text7304"
+                 style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;white-space:nowrap;display:block;fill:#808080"
+                 dy="0.70999998em"
+                 y="9">2006</text>
+            </g>
+            <g
+               id="g7312"
+               style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;opacity:1;fill:none"
+               transform="translate(210.48631)"
+               class="tick">
+              <line
+                 id="line7308"
+                 style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.5px"
+                 y2="6"
+                 x1="0"
+                 y1="0"
+                 x2="0" />
+              <text
+                 id="text7310"
+                 style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;white-space:nowrap;display:block;fill:#808080"
+                 dy="0.70999998em"
+                 y="9">2008</text>
+            </g>
+            <g
+               id="g7318"
+               style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;opacity:1;fill:none"
+               transform="translate(270.54108)"
+               class="tick">
+              <line
+                 id="line7314"
+                 style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.5px"
+                 y2="6"
+                 x1="0"
+                 y1="0"
+                 x2="0" />
+              <text
+                 id="text7316"
+                 style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;white-space:nowrap;display:block;fill:#808080"
+                 dy="0.70999998em"
+                 y="9">2010</text>
+            </g>
+            <g
+               id="g7324"
+               style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;opacity:1;fill:none"
+               transform="translate(330.51369)"
+               class="tick">
+              <line
+                 id="line7320"
+                 style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.5px"
+                 y2="6"
+                 x1="0"
+                 y1="0"
+                 x2="0" />
+              <text
+                 id="text7322"
+                 style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;white-space:nowrap;display:block;fill:#808080"
+                 dy="0.70999998em"
+                 y="9">2012</text>
+            </g>
+            <g
+               id="g7330"
+               style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;opacity:1;fill:none"
+               transform="translate(390.56846)"
+               class="tick">
+              <line
+                 id="line7326"
+                 style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.5px"
+                 y2="6"
+                 x1="0"
+                 y1="0"
+                 x2="0" />
+              <text
+                 id="text7328"
+                 style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;white-space:nowrap;display:block;fill:#808080"
+                 dy="0.70999998em"
+                 y="9">2014</text>
+            </g>
+            <g
+               id="g7336"
+               style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;opacity:1;fill:none"
+               transform="translate(450.54108)"
+               class="tick">
+              <line
+                 id="line7332"
+                 style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.5px"
+                 y2="6"
+                 x1="0"
+                 y1="0"
+                 x2="0" />
+              <text
+                 id="text7334"
+                 style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;white-space:nowrap;display:block;fill:#808080"
+                 dy="0.70999998em"
+                 y="9">2016</text>
+            </g>
+            <g
+               id="g7342"
+               style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;opacity:1;fill:none"
+               transform="translate(510.59585)"
+               class="tick">
+              <line
+                 id="line7338"
+                 style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.5px"
+                 y2="6"
+                 x1="0"
+                 y1="0"
+                 x2="0" />
+              <text
+                 id="text7340"
+                 style="font-size:10px;line-height:16px;font-family:sans-serif;text-anchor:middle;white-space:nowrap;display:block;fill:#808080"
+                 dy="0.70999998em"
+                 y="9">2018</text>
+            </g>
+          </g>
+          <g
+             id="g7346"
+             transform="translate(560)"
+             class="gLegend" />
+          <g
+             class="line-group"
+             id="g7352"
+             transform="matrix(0.79431332,0,0,0.85477313,134.42692,49.37714)">
+            <path
+               inkscape:connector-curvature="0"
+               class="line"
+               d="m 0,275.28245 29.986308,-6.61589 29.986307,-20.44978 29.986308,-38.19566 30.068457,-6.21459 29.98631,-16.47165 L 180,143.85711 209.98631,73.596076 240.05477,182.0506 l 29.98631,-46.69224 29.9863,-67.494956 29.98631,-1.199517 30.06846,21.383306 29.98631,37.431217 29.98631,62.8137 29.98631,7.02696 30.06846,-28.12109 57.42583,-15.54317"
+               style="fill:none;stroke:#d3d3d3"
+               id="path7348" />
+            <text
+               class="data-circle"
+               x="542.5354"
+               y="151.65482"
+               style="white-space:nowrap;display:block;fill:#d3d3d3"
+               id="text7350">
+              <tspan
+                 style="font-size:14.2092523px"
+                 id="tspan7525">загалом</tspan>
+            </text>
+          </g>
+          <g
+             class="line-group"
+             id="g7358"
+             transform="matrix(0.79431332,0,0,0.85477313,134.42692,49.37714)">
+            <path
+               inkscape:connector-curvature="0"
+               class="line"
+               d="m 0,323.64966 29.986308,-4.06991 29.986307,-2.64556 29.986308,-12.12072 30.068457,-3.37655 29.98631,-0.82054 L 180,286.21183 l 29.98631,-23.77823 30.06846,18.35203 29.98631,-5.00727 29.9863,-19.19503 29.98631,-4.10977 30.06846,5.49239 29.98631,11.65288 29.98631,15.29623 29.98631,4.57645 30.06846,-5.24081 57.42583,-3.44326"
+               style="fill:none;stroke:#d3d3d3"
+               id="path7354" />
+            <text
+               class="data-circle"
+               x="542.5354"
+               y="280.80743"
+               style="white-space:nowrap;display:block;fill:#d3d3d3"
+               id="text7356">
+              <tspan
+                 style="font-size:14.2092523px"
+                 id="tspan7521">Азія</tspan>
+            </text>
+          </g>
+          <path
+             id="path7360"
+             style="fill:none;stroke:#d3d3d3;stroke-width:0.82398891"
+             d="m 134.42692,337.14954 23.81853,-0.63844 23.81852,-0.76353 23.81854,-1.56444 23.88377,-2.32504 23.81853,0.0677 23.81852,-1.42206 23.81852,-3.77652 23.88378,4.33511 23.81852,-1.32929 23.81852,-1.10731 23.81853,-7.41144 23.88377,1.46811 23.81854,-0.0172 23.81852,4.40018 23.81853,-0.19684 23.88377,-0.64419 45.61411,-0.25301"
+             class="line"
+             inkscape:connector-curvature="0" />
+          <g
+             class="line-group"
+             id="g7370"
+             transform="matrix(0.79431332,0,0,0.85477313,134.42692,49.37714)">
+            <path
+               inkscape:connector-curvature="0"
+               class="line"
+               d="m 0,328.42266 29.986308,-2.29461 29.986307,-4.33654 29.986308,-20.4488 30.068457,2.02527 29.98631,-6.62559 L 180,284.62658 l 29.98631,-16.76654 30.06846,34.31872 29.98631,-14.15485 29.9863,-19.5305 29.98631,3.53286 30.06846,1.26936 29.98631,-0.97572 29.98631,15.87614 29.98631,-1.92875 30.06846,-16.12259 57.42583,-10.37271"
+               style="fill:none;stroke:#d3d3d3"
+               id="path7366" />
+            <text
+               class="data-circle"
+               x="542.5354"
+               y="259.772"
+               style="white-space:nowrap;display:block;fill:#d3d3d3"
+               id="text7368">
+              <tspan
+                 style="font-size:14.2092523px"
+                 id="tspan7523">ЄС</tspan>
+            </text>
+          </g>
+          <path
+             id="path7372"
+             style="fill:none;stroke:#c01788;stroke-width:1.64797783px"
+             d="m 134.42692,327.61701 23.81852,1.67363 23.81853,-3.95428 23.81852,-5.14748 23.88378,-5.66279 23.81852,-3.94843 23.81853,-13.66507 23.81852,-10.43052 23.88378,24.62563 23.81853,-16.79155 23.81851,-21.72598 23.81853,7.44159 23.88378,8.68821 23.81852,17.95166 23.81853,16.90858 23.81852,4.19991 23.88378,-1.1916 45.6141,0.98902"
+             class="line"
+             inkscape:connector-curvature="0" />
+          <text
+             id="text7374"
+             style="font-size:9.88786697px;white-space:nowrap;display:block;fill:#c01788;stroke-width:0.82398891"
+             y="316.64844"
+             x="588.64893"
+             class="data-circle"
+             transform="scale(0.9639855,1.03736)">
+            <tspan
+               id="tspan7515"
+               style="font-size:11.70826626px;stroke-width:0.82398891">Росія</tspan>
+          </text>
+          <path
+             id="path7378"
+             style="fill:none;stroke:#d3d3d3;stroke-width:0.82398891"
+             d="m 134.42692,338.09141 23.81852,0.19085 23.81853,-0.72615 23.81852,-2.6636 23.88378,1.85436 23.81852,-0.83435 23.81853,0.4889 23.81852,-3.03088 23.88378,5.7777 23.81853,-1.9112 23.81851,-1.02602 23.81853,0.33754 23.88378,0.42503 23.81852,0.7545 23.81853,0.63265 23.81852,0.18528 23.88378,-1.38252 45.6141,-0.94924"
+             class="line"
+             inkscape:connector-curvature="0" />
+          <text
+             id="text7380"
+             style="font-size:9.88786697px;white-space:nowrap;display:block;fill:#d3d3d3;stroke-width:0.82398891"
+             y="327.31778"
+             x="586.08557"
+             class="data-circle"
+             transform="scale(0.96398549,1.03736)">
+            <tspan
+               style="font-size:11.70826603px"
+               id="tspan7519">США</tspan>
+          </text>
+          <g
+             id="g7414"
+             class="mouse-over-effects">
+            <path
+               id="path7386"
+               style="opacity:0;stroke:#a9a9a9;stroke-width:2px"
+               d="M 209.98631,340 V 0"
+               class="mouse-line_"
+               inkscape:connector-curvature="0" />
+            <g
+               id="g7390"
+               transform="translate(209.98631,73.596076)"
+               class="mouse-per-line">
+              <circle
+                 id="circle7388"
+                 style="opacity:0;fill:none;stroke:#600c44;stroke-width:2px"
+                 r="4"
+                 cx="0"
+                 cy="0" />
+            </g>
+            <g
+               id="g7394"
+               transform="translate(209.98631,262.4336)"
+               class="mouse-per-line">
+              <circle
+                 id="circle7392"
+                 style="opacity:0;fill:none;stroke:#d35dac;stroke-width:2px"
+                 r="4"
+                 cx="0"
+                 cy="0" />
+            </g>
+            <g
+               id="g7398"
+               transform="translate(209.98631,324.47227)"
+               class="mouse-per-line">
+              <circle
+                 id="circle7396"
+                 style="opacity:0;fill:none;stroke:#e08bc4;stroke-width:2px"
+                 r="4"
+                 cx="0"
+                 cy="0" />
+            </g>
+            <g
+               id="g7402"
+               transform="translate(209.98631,267.86004)"
+               class="mouse-per-line">
+              <circle
+                 id="circle7400"
+                 style="opacity:0;fill:none;stroke:#c01788;stroke-width:2px"
+                 r="4"
+                 cx="0"
+                 cy="0" />
+            </g>
+            <g
+               id="g7406"
+               transform="translate(209.98631,277.38931)"
+               class="mouse-per-line">
+              <circle
+                 id="circle7404"
+                 style="opacity:0;fill:none;stroke:#c62e94;stroke-width:2px"
+                 r="4"
+                 cx="0"
+                 cy="0" />
+            </g>
+            <g
+               id="g7410"
+               transform="translate(209.98631,332.24418)"
+               class="mouse-per-line">
+              <circle
+                 id="circle7408"
+                 style="opacity:0;fill:none;stroke:#ecb9db;stroke-width:2px"
+                 r="4"
+                 cx="0"
+                 cy="0" />
+            </g>
+            <rect
+               id="rect7412"
+               style="fill:none"
+               pointer-events="all"
+               class="rect"
+               height="340"
+               width="540"
+               x="0"
+               y="0" />
+          </g>
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.78119946px;line-height:1.25;font-family:'Clear Sans';-inkscape-font-specification:'Clear Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#c01788;fill-opacity:1;stroke:none;stroke-width:0.54882497"
+             x="524.05896"
+             y="311.84506"
+             id="text7513"><tspan
+               sodipodi:role="line"
+               id="tspan7511"
+               x="524.05896"
+               y="311.84506"
+               style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.70826626px;font-family:'Clear Sans';-inkscape-font-specification:'Clear Sans Bold';fill:#c01788;fill-opacity:1;stroke-width:0.54882497">3.7 млрд USD</tspan></text>
+          <g
+             id="g6419-9"
+             transform="matrix(0.79752143,0,0,0.79752143,563.70784,326.84155)"
+             class="mouse-per-line">
+            <circle
+               id="circle6417-7"
+               style="fill:none;stroke:#c01788;stroke-width:2px"
+               r="4"
+               cx="0"
+               cy="0" />
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

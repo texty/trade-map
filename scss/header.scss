@@ -30,6 +30,9 @@
 }
 
 #soc {
+  position: fixed;
+  top:10px;
+  right: 0;
   display:flex;
   justify-content: flex-end;
   margin-right:20px;
@@ -59,7 +62,7 @@
 
   i {
     font-size:40px;
-    color: lighten($grey-color, 30%);
+    color: #33302e;
     margin: 0 0 0 0.5em;
     max-height: 1em;
     transition: all 0.5s;

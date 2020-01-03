@@ -8,3 +8,16 @@
 *.xml
 .RData
 .Rhistory
+*.R
+.RData
+.Rhistory
+
+
+index2-style.scss
+index2-style.css
+index2-style.css.map
+index3.html
+
+newLineChartData3.csv
+
+_embed_main_chart_.js
