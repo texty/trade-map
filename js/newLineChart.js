@@ -157,8 +157,8 @@ retrieve_chart_data(function(myData){
 
 
     $(".changeCountry").on("click", function(){
-        d3.selectAll(".changeCountry").style("background-color", "white").style("color", "grey");
-        d3.select(this).style("background-color", "grey").style("color", "white");
+        d3.selectAll(".changeCountry").style("background-color", bgColor).style("color", "grey");
+        d3.select(this).style("background-color", "grey").style("color", bgColor);
         selectedCountry = $(this).attr("data");
         var targetArray = correspondings.filter(function(d){ return d.country === selectedCountry });
 
@@ -362,7 +362,9 @@ var drawMultiples = function(data, key, country, type, maxRange, container) {
     // Add the X Axis
     svg.append("g")
         .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x).tickSize(-height));
+        .call(d3.axisBottom(x)
+             .tickSize(-height)
+        );
 
     svg.selectAll(".tick > line")
         .attr("stroke", "lightgrey")

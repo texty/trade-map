@@ -306,6 +306,7 @@
 <script>
     const exColor = "#c01788";
     const imColor = "rgb(24, 100, 170)";
+    const bgColor = '#efeedf';
     var showImport = true;
     var showExport = false;
     var tradeColor = imColor;
@@ -347,8 +348,8 @@
         selectedType = 1;
         d3.selectAll("#line-chart > .svg-wrapper.Exported").style("display", "none");
         d3.selectAll("#line-chart >.svg-wrapper.Imported").style("display", "block");
-        d3.select("#show-import").style("background-color", imColor).style("color", "white");
-        d3.select("#show-export").style("background-color", "white").style("color", exColor);
+        d3.select("#show-import").style("background-color", imColor).style("color", bgColor);
+        d3.select("#show-export").style("background-color", bgColor).style("color", exColor);
         d3.select("#selected-vector").html("імпорту")
     });
 
@@ -360,8 +361,8 @@
         selectedType = 2;
         d3.selectAll("#line-chart >.svg-wrapper.Imported").style("display", "none");
         d3.selectAll("#line-chart >.svg-wrapper.Exported").style("display", "block");
-        d3.select("#show-export").style("background-color", exColor).style("color", "white");
-        d3.select("#show-import").style("background-color", "white").style("color", imColor);
+        d3.select("#show-export").style("background-color", exColor).style("color", bgColor);
+        d3.select("#show-import").style("background-color", bgColor).style("color", imColor);
         d3.select("#selected-vector").html("експорту")
     });
 
@@ -369,16 +370,16 @@
     $("#show-export-cases").on("click", function(d) {
         d3.selectAll("#cases-chart >.svg-wrapper.Imported").style("display", "none");
         d3.selectAll("#cases-chart >.svg-wrapper.Exported").style("display", "block");
-        d3.select("#show-export-cases").style("background-color", exColor).style("color", "white");
-        d3.select("#show-import-cases").style("background-color", "white").style("color", imColor);
+        d3.select("#show-export-cases").style("background-color", exColor).style("color", bgColor);
+        d3.select("#show-import-cases").style("background-color", bgColor).style("color", imColor);
 
     });
 
     $("#show-import-cases").on("click", function(d) {
         d3.selectAll("#cases-chart >.svg-wrapper.Imported").style("display", "block");
         d3.selectAll("#cases-chart >.svg-wrapper.Exported").style("display", "none");
-        d3.select("#show-import-cases").style("background-color", imColor).style("color", "white");
-        d3.select("#show-export-cases").style("background-color", "white").style("color", exColor);
+        d3.select("#show-import-cases").style("background-color", imColor).style("color", bgColor);
+        d3.select("#show-export-cases").style("background-color", bgColor).style("color", exColor);
     });
 
 
