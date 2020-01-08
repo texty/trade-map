@@ -105,8 +105,7 @@
     font-size: 40px;
     color: #33302e;
     margin: 0 0 0 0.5em;
-    max-height: 1em;
-    transition: all 0.5s; }
+    max-height: 1em; }
     @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
       #soc i {
         font-size: 20px; } }
