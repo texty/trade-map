@@ -9,8 +9,6 @@
 .RData
 .Rhistory
 *.R
-.RData
-.Rhistory
 
 
 index2-style.scss
