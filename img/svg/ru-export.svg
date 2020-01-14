@@ -29,8 +29,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.70000001"
-     inkscape:cx="126.44851"
-     inkscape:cy="-10.863498"
+     inkscape:cx="423.99653"
+     inkscape:cy="95.065791"
      inkscape:document-units="mm"
      inkscape:current-layer="g7416"
      showgrid="false"
@@ -325,20 +325,20 @@
           </g>
           <path
              id="path7372"
-             style="fill:none;stroke:#c01788;stroke-width:1.64797783px"
+             style="fill:none;stroke:#ff6156;stroke-width:1.64797783px;stroke-opacity:1"
              d="m 134.42692,327.61701 23.81852,1.67363 23.81853,-3.95428 23.81852,-5.14748 23.88378,-5.66279 23.81852,-3.94843 23.81853,-13.66507 23.81852,-10.43052 23.88378,24.62563 23.81853,-16.79155 23.81851,-21.72598 23.81853,7.44159 23.88378,8.68821 23.81852,17.95166 23.81853,16.90858 23.81852,4.19991 23.88378,-1.1916 45.6141,0.98902"
              class="line"
              inkscape:connector-curvature="0" />
           <text
              id="text7374"
-             style="font-size:9.88786697px;white-space:nowrap;display:block;fill:#c01788;stroke-width:0.82398891"
+             style="font-size:9.88786697px;white-space:nowrap;display:block;fill:#ff6156;stroke-width:0.82398891;fill-opacity:1;"
              y="316.64844"
              x="588.64893"
              class="data-circle"
              transform="scale(0.9639855,1.03736)">
             <tspan
                id="tspan7515"
-               style="font-size:11.70826626px;stroke-width:0.82398891">Росія</tspan>
+               style="font-size:11.70826626px;stroke-width:0.82398891;fill:#ff6156;fill-opacity:1;">Росія</tspan>
           </text>
           <path
              id="path7378"
@@ -444,7 +444,7 @@
           </g>
           <text
              xml:space="preserve"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.78119946px;line-height:1.25;font-family:'Clear Sans';-inkscape-font-specification:'Clear Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#c01788;fill-opacity:1;stroke:none;stroke-width:0.54882497"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.78119946px;line-height:1.25;font-family:'Clear Sans';-inkscape-font-specification:'Clear Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff6156;fill-opacity:1;stroke:none;stroke-width:0.54882497;"
              x="524.05896"
              y="311.84506"
              id="text7513"><tspan
@@ -452,14 +452,15 @@
                id="tspan7511"
                x="524.05896"
                y="311.84506"
-               style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.70826626px;font-family:'Clear Sans';-inkscape-font-specification:'Clear Sans Bold';fill:#c01788;fill-opacity:1;stroke-width:0.54882497">3.7 млрд USD</tspan></text>
+               style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.70826626px;font-family:'Clear Sans';-inkscape-font-specification:'Clear Sans Bold';fill:#ff6156;fill-opacity:1;stroke-width:0.54882497;">3.7 млрд USD</tspan></text>
           <g
              id="g6419-9"
              transform="matrix(0.79752143,0,0,0.79752143,563.70784,326.84155)"
-             class="mouse-per-line">
+             class="mouse-per-line"
+             style="stroke:#ff6156;stroke-opacity:1">
             <circle
                id="circle6417-7"
-               style="fill:none;stroke:#c01788;stroke-width:2px"
+               style="fill:none;stroke:#ff6156;stroke-width:2px;stroke-opacity:1"
                r="4"
                cx="0"
                cy="0" />

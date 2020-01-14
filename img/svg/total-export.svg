@@ -28,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.979899"
-     inkscape:cx="664.24251"
-     inkscape:cy="217.21169"
+     inkscape:zoom="0.70000001"
+     inkscape:cx="341.34462"
+     inkscape:cy="288.21755"
      inkscape:document-units="mm"
      inkscape:current-layer="g5091"
      showgrid="false"
@@ -247,17 +247,17 @@
            inkscape:connector-curvature="0"
            class="line"
            d="m 0,275.28245 29.986308,-6.61589 29.986307,-20.44978 29.986308,-38.19566 30.068457,-6.21459 29.98631,-16.47165 L 180,143.85711 209.98631,73.596076 240.05477,182.0506 l 29.98631,-46.69224 29.9863,-67.494956 29.98631,-1.199517 30.06846,21.383306 29.98631,37.431217 29.98631,62.8137 29.98631,7.02696 30.06846,-28.12109 57.42583,-15.54317"
-           style="fill:none;stroke:#c01788;stroke-width:2px"
+           style="fill:none;stroke:#ff6156;stroke-width:2px;stroke-opacity:1"
            id="path5055" />
         <text
            class="data-circle"
            x="550.38269"
            y="151.65482"
-           style="white-space:nowrap;display:block;fill:#c01788"
+           style="white-space:nowrap;display:block;fill:#ff6156;fill-opacity:1;"
            id="text5057">
           <tspan
              id="tspan5198"
-             style="font-size:14.95687771px">загалом</tspan>
+             style="font-size:14.95687771px;fill:#ff6156;fill-opacity:1;">загалом</tspan>
         </text>
         <g
            id="g5065"
@@ -349,7 +349,7 @@
         </text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.21765804px;line-height:1.25;font-family:'Clear Sans';-inkscape-font-specification:'Clear Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#c01788;fill-opacity:1;stroke:none;stroke-width:0.70110363"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.21765804px;line-height:1.25;font-family:'Clear Sans';-inkscape-font-specification:'Clear Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff6156;fill-opacity:1;stroke:none;stroke-width:0.70110363;"
            x="509.22205"
            y="132.06709"
            id="text5212"><tspan
@@ -357,14 +357,15 @@
              id="tspan5210"
              x="509.22205"
              y="132.06709"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.95687675px;font-family:'Clear Sans';-inkscape-font-specification:'Clear Sans Bold';fill:#c01788;fill-opacity:1;stroke-width:0.70110363">47.3 млрд USD</tspan></text>
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.95687675px;font-family:'Clear Sans';-inkscape-font-specification:'Clear Sans Bold';fill:#ff6156;fill-opacity:1;stroke-width:0.70110363;">47.3 млрд USD</tspan></text>
         <g
            id="g6419"
            transform="matrix(1.0188042,0,0,1.0188042,540.28784,150.30034)"
-           class="mouse-per-line">
+           class="mouse-per-line"
+           style="stroke:#ff6156;stroke-opacity:1">
           <circle
              id="circle6417"
-             style="fill:none;stroke:#c01788;stroke-width:2px"
+             style="fill:none;stroke:#ff6156;stroke-width:2px;stroke-opacity:1"
              r="4"
              cx="0"
              cy="0" />

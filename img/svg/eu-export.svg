@@ -28,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="149.98664"
-     inkscape:cy="-170.16291"
+     inkscape:zoom="0.9899495"
+     inkscape:cx="370.3798"
+     inkscape:cy="152.6016"
      inkscape:document-units="mm"
      inkscape:current-layer="g6433"
      showgrid="false"
@@ -307,17 +307,17 @@
            inkscape:connector-curvature="0"
            class="line"
            d="m 0,328.42266 29.986308,-2.29461 29.986307,-4.33654 29.986308,-20.4488 30.068457,2.02527 29.98631,-6.62559 L 180,284.62658 l 29.98631,-16.76654 30.06846,34.31872 29.98631,-14.15485 29.9863,-19.5305 29.98631,3.53286 30.06846,1.26936 29.98631,-0.97572 29.98631,15.87614 29.98631,-1.92875 30.06846,-16.12259 57.42583,-10.37271"
-           style="fill:none;stroke:#c01788;stroke-width:2px"
+           style="fill:none;stroke:#ff6156;stroke-width:2px;stroke-opacity:1"
            id="path6383" />
         <text
            class="data-circle"
            x="547.57373"
            y="259.772"
-           style="white-space:nowrap;display:block;fill:#c01788"
+           style="white-space:nowrap;display:block;fill:#ff6156;fill-opacity:1;"
            id="text6385">
           <tspan
              id="tspan6512"
-             style="font-size:14.6808157px">ЄС</tspan>
+             style="font-size:14.6808157px;fill:#ff6156;fill-opacity:1;">ЄС</tspan>
         </text>
         <path
            inkscape:connector-curvature="0"
@@ -354,10 +354,11 @@
         <g
            id="g6419"
            transform="translate(540.30315,258.79653)"
-           class="mouse-per-line">
+           class="mouse-per-line"
+           style="fill:none;fill-opacity:1;stroke:#ff6156;stroke-opacity:1">
           <circle
              id="circle6417"
-             style="fill:none;stroke:#c01788;stroke-width:2px"
+             style="fill:none;stroke:#ff6156;stroke-width:2px;fill-opacity:1;stroke-opacity:1"
              r="4"
              cx="0"
              cy="0" />
@@ -373,7 +374,7 @@
            y="0" />
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.01061153px;line-height:1.25;font-family:'Clear Sans';-inkscape-font-specification:'Clear Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#c01788;fill-opacity:1;stroke:none;stroke-width:0.68816322"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.01061153px;line-height:1.25;font-family:'Clear Sans';-inkscape-font-specification:'Clear Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff6156;fill-opacity:1;stroke:none;stroke-width:0.68816322;"
            x="466.38336"
            y="244.2336"
            id="text6510"><tspan
@@ -381,7 +382,7 @@
              id="tspan6508"
              x="466.38336"
              y="244.2336"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.68081665px;font-family:'Clear Sans';-inkscape-font-specification:'Clear Sans Bold';fill:#c01788;fill-opacity:1;stroke-width:0.68816322">20.2 млрд USD</tspan></text>
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.68081665px;font-family:'Clear Sans';-inkscape-font-specification:'Clear Sans Bold';fill:#ff6156;fill-opacity:1;stroke-width:0.68816322;">20.2 млрд USD</tspan></text>
       </g>
     </g>
   </g>
