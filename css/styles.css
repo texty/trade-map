@@ -185,6 +185,18 @@
 .icon-arrow {
   mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 284.929 284.929'><path d='M282.082,76.511l-14.274-14.273c-1.902-1.906-4.093-2.856-6.57-2.856c-2.471,0-4.661,0.95-6.563,2.856L142.466,174.441	L30.262,62.241c-1.903-1.906-4.093-2.856-6.567-2.856c-2.475,0-4.665,0.95-6.567,2.856L2.856,76.515C0.95,78.417,0,80.607,0,83.082c0,2.473,0.953,4.663,2.856,6.565l133.043,133.046c1.902,1.903,4.093,2.854,6.567,2.854s4.661-0.951,6.562-2.854L282.082,89.647c1.902-1.903,2.847-4.093,2.847-6.565C284.929,80.607,283.984,78.417,282.082,76.511z'/></svg>"); }
 
+.mobile {
+  display: none; }
+  @media (max-width: 800px) {
+    .mobile {
+      display: block; } }
+
+.desktop {
+  display: block; }
+  @media (max-width: 800px) {
+    .desktop {
+      display: none; } }
+
 body {
   padding: 0;
   margin: 0;
@@ -192,38 +204,47 @@ body {
   color: #33302e;
   background-color: #efeedf; }
 
+h1 {
+  grid-column: 1/-1;
+  grid-row: 2/-1;
+  margin: auto auto auto auto;
+  font-size: 70px;
+  color: white; }
+  @media (max-width: 1200px) {
+    h1 {
+      font-size: 55px; } }
+  @media (max-width: 800px) {
+    h1 {
+      width: 90%;
+      margin: 20px auto;
+      color: #33302e;
+      text-align: left;
+      font-size: 40px; } }
+
 header {
   display: grid;
   margin-bottom: 100px;
   grid-template-rows: auto max-content; }
   @media (max-width: 800px) {
     header {
-      display: block; } }
+      display: block;
+      min-height: 30vh;
+      background-image: url("../img/cover_header.png");
+      background-size: contain;
+      margin-bottom: 10px; } }
   header img {
     grid-column: 1/-1;
     grid-row: 1/-1;
     z-index: -1;
     width: 100%; }
-  header a {
-    text-decoration: none;
-    color: inherit;
-    border-bottom: 1px dashed #33302e;
-    padding-bottom: 2px; }
-  header h1 {
-    grid-column: 1/-1;
-    grid-row: 2/-1;
-    margin: auto auto auto auto;
-    font-size: 70px;
-    color: white; }
-    @media (max-width: 1200px) {
-      header h1 {
-        font-size: 55px; } }
     @media (max-width: 800px) {
-      header h1 {
-        color: #33302e;
-        text-align: center;
-        width: 96%;
-        font-size: 40px; } }
+      header img {
+        display: none; } }
+
+#credits {
+  font-size: 14px;
+  margin: 30px auto;
+  text-align: right; }
 
 article {
   width: 100%;
@@ -237,11 +258,28 @@ article {
       article h3 {
         width: 90%;
         margin: 20px auto; } }
-
-#credits {
-  font-size: 14px;
-  margin: 30px auto;
-  text-align: right; }
+  article p.text, article h2, article h4 {
+    width: 40%;
+    margin: 20px auto; }
+    @media (max-width: 800px) {
+      article p.text, article h2, article h4 {
+        width: 90%;
+        margin: 20px auto; } }
+  article h2 {
+    text-transform: uppercase;
+    margin-top: 100px; }
+  article h4 {
+    margin-top: 40px;
+    font-size: 20px; }
+  article .chart-title {
+    width: 300px;
+    margin: 50px auto auto auto;
+    font-size: 14px; }
+    @media (max-width: 800px) {
+      article .chart-title {
+        width: max-content; } }
+  article .description-text {
+    width: 80%; }
 
 .png_pic {
   display: block;
@@ -315,34 +353,7 @@ article {
   #cases-wood .svg-wrapper.Imported {
     display: block !important; }
 
-p.text, h2, h4 {
-  width: 40%;
-  margin: 20px auto; }
-  @media (max-width: 800px) {
-    p.text, h2, h4 {
-      width: 90%;
-      margin: 20px auto; } }
-
-h2 {
-  text-transform: uppercase;
-  margin-top: 100px; }
-
-h4 {
-  margin-top: 40px;
-  font-size: 20px; }
-
-.chart-title {
-  width: 300px;
-  margin: 50px auto auto auto;
-  font-size: 14px; }
-  @media (max-width: 800px) {
-    .chart-title {
-      width: max-content; } }
-
-.description-text {
-  width: 80%; }
-
-/* графіки */
+/* графіка */
 .line-chart-container, #cases-wrapper {
   width: 100%;
   margin: auto;
