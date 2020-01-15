@@ -38,7 +38,6 @@ body {
   @media(max-width: 800px) {}
 }
 
-
 h1 {
   grid-column: 1/-1;
   grid-row: 2/-1;
@@ -56,8 +55,6 @@ h1 {
     font-size: 40px;
   }
 }
-
-
 
 header {
   display: grid;
@@ -138,7 +135,6 @@ article {
 }
 
 
-
 .png_pic {
   display: block;
   width: 40%;
@@ -193,10 +189,7 @@ article {
   }
 }
 
-
-
-
-/* графіка */
+/* інтерактивна графіка */
 .line-chart-container, #cases-wrapper {
   width: 100%;
   margin: auto;
@@ -247,8 +240,6 @@ article {
   color: grey;
 }
 
-
-
 /* кнопки експорт-іпморт */
 .buttons {
   margin: 5px auto;
@@ -297,13 +288,11 @@ article {
     background-color: $back-color;
     padding-bottom: 20px;
   }
-
 }
 
 #general-wrapper {
   grid-column: 2/3;
 }
-
 
 #general-chart {
   grid-column: 2/3;
